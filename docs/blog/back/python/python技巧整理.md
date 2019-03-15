@@ -8,6 +8,12 @@ tags:
 - 后端
 
 ---
+# Anaconda&conda
+## 修改豆瓣源
+某一次使用:
+- pip  install  -i  https://pypi.doubanio.com/simple/  --trusted-host pypi.doubanio.com  xxx
+命令速查:
+
 
 ## 小栗子
 ### 一行九九乘法表
