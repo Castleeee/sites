@@ -66,6 +66,47 @@ tags:
 看<a href="https://blog.csdn.net/ce123_zhouwei/article/details/9104681">这里</a><br/>
 `int a=5;`<br/>
 `double_a=(double) a;`#类型转换不会影响原来的值<br/>
+## 常量
+### define
+`#define X 3`定义了X为3，利用宏定义，不能改变，不做计算，不做表达式求解
+- define宏是在预处理阶段展开。
+- define宏没有类型，不做任何类型检查，仅仅是展开
+- define宏仅仅是展开，有多少地方使用，就展开多少次，不会分配内存。
+:::tip 冷知识
+宏定义不分配内存，变量定义分配内存<br/>
+比如说C语言标准规定编译器至少支持宏的名字有63个字符（多的话意义不能保证），至少支持同时定义4095个宏，函数形的宏最多可能有127个参数
+:::
+<a href='https://blog.csdn.net/clever101/article/details/8053510'>define的上限</a>
+
+### const
+`const 变量类型 X=3`使用const定义了X为3
+- const常量是编译运行阶段使用。
+- const常量有具体的类型，在编译阶段会执行类型检查
+- const常量会在内存中分配(可以是堆中也可以是栈中)
+const  可以节省空间，避免不必要的内存分配看代码
+```c
+#define PI 3.14159 //常量宏
+const doulbe Pi=3.14159; //此时并未将Pi放入ROM中
+double i=Pi; //此时为Pi分配内存，以后不再分配！
+double I=PI; //编译期间进行宏替换，分配内存
+double j=Pi; //没有内存分配
+double J=PI; //再进行宏替换，又一次分配内存！
+```
+:::warning
+const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是象#define一样给出的是立即数，所以，const定义的常量在程序运行过程中只有一份拷贝（因为是全局的只读变量，存在静态区），而 #define定义的常量在内存中有若干个拷贝。
+<br/>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高。
+:::
+一些规则<br/>
+- 有些集成化的调试工具可以对const常量进行调试，但是不能对宏常量进行调试。
+- 在C++ 程序中只使用const常量而不使用宏常量，即const常量完全取代宏常量。
+- 需对外公开的常量放在头文件中，不对外公开的常量放在定义文件头部,可以把不同模块的常量集中放在一个公共头文件中
+- 如果某一常量与其它常量密切相关，应在定义中包含这种关系，而不应给出一些孤立的值。
+
+:::danger
+const数据成员只在某个对象生存期内是常量，而对于整个类而言却是可变的，因为类可以创建多个对象，不同的对象其const数据成员的值可以不同,应该用类中的枚举常量来实现
+:::
+
+
 ## 输入输出
 ### 占位符
 格式字符有d,o,x,u,c,s,f,e,g等。 
@@ -188,9 +229,7 @@ tags:
 
 ### static
 
-### const
 
-### define
 
 ### 程序内存分配
 
@@ -198,6 +237,10 @@ tags:
 
 ### 数据结构和算法常用lib
 
-
-
+## 参考资料列表
+- <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define（⭐）</a>
+- <a href='http://www.runoob.com/cprogramming/c-tutorial.html'>菜鸟c语言</a>
+- <a href='https://www.imooc.com/view/249'>慕课c语言</a>
+- <a href=''>1</a>
+- <a href=''>1</a>
 <Valine></Valine>
