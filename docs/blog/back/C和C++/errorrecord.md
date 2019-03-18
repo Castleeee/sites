@@ -319,19 +319,19 @@ do while后面有分号
 
 返回值没有就写void,自定义函数尽量放在main函数之前，如果要放在main函数后面的话，需要在main函数之前先声明自定义函数<br/>声明格式为：`返回值类型 函数名(参数);`
 ```c
-void f();
+void f(int,int);
 int main() {
 
 f();
 }
-void f(){
+void f(int a,int b){
     printf("da sha bi");
 }
 
 ```
 void 可以有`return;`其他的函数可以`return x;`或`return (x);`
 ### 参数
-
+<h4>形参和实参</h4>
 分型参和实参,形参是在定义函数名和函数体的时候使用的参数,目的是用来接收调用该函数时传入的参数，实参就是实际使用到的参数。
 
 - 形参只有在被调用时才分配内存单元，在调用结束时会释放所分配的内存单元。
@@ -341,13 +341,51 @@ void 可以有`return;`其他的函数可以`return x;`或`return (x);`
 
 <h4>不定长参数</h4>
 
+不定长参数需要先引入`#include <stdarg.h>`,函数的第一个参数需要int，指明传进来多少，然后是三个...<br/>
+
+函数体内拿到一个数组，赋值给另一个已知类型的数组，然后清理内存就拿到了。
+```c
+#include <stdarg.h>
+...
+int main()
+{
+    double x=f1(2,22,55);
+    return 0;
+}
+...
+double f1(int a,...){
+    double res=0;
+    va_list valist;
+    va_start(valist,a);
+    for (int i=0;i<a;i++){
+        double temp=double(va_arg(valist,int));
+        printf("%f\n",temp);
+        res+=temp;
+    }
+    va_end(valist);
+    return res/a;
+}
+```
+
+:::danger
+实际的可变参数的个数必须比前面强制参数中指定的个数要多，或者不小于。也即后续参数多一点不要紧，但不能少！如果少了则会访问到函数参数以外的堆栈区域，这可能会把程序搞崩掉。前面强制参数中指定的类型和后面实际参数的类型不匹配也有可能造成程序崩溃
+:::
 ### 递归
+
 ### 闭包
+
 ## 变量存储机制
+
 ### 局部&全局
-### 静态
+global和local。在一个代码块中新定义的变量在代码块使用结束后就会释放，不能在外面调用。在全局定义的变量(全局变量)可以直接调用，如果在代码块中定义了和外面相同名字的变量就优先使用local的变量。
+:::danger
+当局部变量被定义时，系统不会对其初始化，您必须自行对其初始化。定义全局变量时，系统会自动对其初始化<br/>
+`int->0` `char->'0'` `float->0` `double->0` `pointer->NULL`
+:::
+### 静态static
 
 ### extern
+
 ## 数组
 
 ## 指针
@@ -356,7 +394,7 @@ void 可以有`return;`其他的函数可以`return x;`或`return (x);`
 
 
 ## 参考资料列表
-- <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define（⭐）</a>
+- <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define√</a>
 - <a href='http://www.runoob.com/cprogramming/c-tutorial.html'>菜鸟c语言</a>
 - <a href='https://www.imooc.com/view/249'>慕课c语言</a>
 - <a href=''>1</a>
