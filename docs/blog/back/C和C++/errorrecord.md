@@ -355,10 +355,10 @@ int main()
 ...
 double f1(int a,...){
     double res=0;
-    va_list valist;
-    va_start(valist,a);
-    for (int i=0;i<a;i++){
-        double temp=double(va_arg(valist,int));
+    va_list valist;//定义一个va_list数组
+    va_start(valist,a);//将数组初始化
+    for (int i=0;i<a;i++){//循环访问
+        double temp=double(va_arg(valist,int));//注意这个函数每次调用拿到一个,不使用下标
         printf("%f\n",temp);
         res+=temp;
     }
@@ -369,11 +369,13 @@ double f1(int a,...){
 
 :::danger
 实际的可变参数的个数必须比前面强制参数中指定的个数要多，或者不小于。也即后续参数多一点不要紧，但不能少！如果少了则会访问到函数参数以外的堆栈区域，这可能会把程序搞崩掉。前面强制参数中指定的类型和后面实际参数的类型不匹配也有可能造成程序崩溃
+<br/>va_arg(valist,int);//注意这个函数每次调用拿到一个，无论什么时候，不使用下标
 :::
 ### 递归
+定义:在含树体中自己调用自己，执行递归函数将反复调用其自身，每调用一次就进入新的一层。递归需要有边界条件、递归前进段和递归返回段。
 
 ### 闭包
-
+不支持闭包但是可以通过`Lambda`和`struct`嵌套定义来实现。用到再说
 ## 变量存储机制
 
 ### 局部&全局
@@ -386,7 +388,15 @@ global和local。在一个代码块中新定义的变量在代码块使用结束
 
 ### extern
 
-## 数组
+## 标准数据结构
+
+### 数组list
+
+### 元组tuple
+
+### 集合set
+
+### 映射tuple
 
 ## 指针
 
