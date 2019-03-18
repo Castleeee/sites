@@ -447,12 +447,17 @@ p2 = (char *)malloc(20);  堆
 ### 集合set
 
 ### 映射tuple
+
 ### 向量vector
+
 ## 指针
 
 ## 结构体
 
+<div align="center"><h1>C++</h1></div>
 
+## C++
+##
 ## 参考资料列表
 - <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define√</a>
 - <a href='http://www.runoob.com/cprogramming/c-tutorial.html'>菜鸟c语言</a>
