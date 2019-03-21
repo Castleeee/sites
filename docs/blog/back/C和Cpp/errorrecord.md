@@ -15,10 +15,10 @@ tags:
 因为不是专精底层，记录错误和踩到的坑
 :::
 <!-- more -->
-
-<div align="center"><h1>C语言</h1></div>
-
 ## C
+<div align="center"><h1><strong>C语言</strong></h1></div>
+
+
 
 ## 变量和类型
 1B=8bit<br/>
@@ -548,7 +548,7 @@ char b[2][4];={1,2,3,4,5,6,7,8};
 :::warning
 数组的下标均以`0`开始；初始化的时候，数组内元素的个数`不能大于`声明的数组长度；如果采用`第一种`初始化方式，元素个数小于数组的长度时，多余的数组元素初始化为`0`；在声明数组后没有进行初始化的时候，静态（static）和外部（extern）类型的数组元素初始化元素为0，`自动`（auto）类型的数组的元素初始化值`不确定`。
 :::
-单独把数组拿出来的时候获得是的数组的`首地址`<br/>，也就是数组的名字就是指向数组的指针
+单独把数组拿出来的时候获得是的数组的`首地址`，也就是数组的名字就是指向数组的指针
 作为参数，返回值
 ```c
 # include<stdio.h>
@@ -568,18 +568,16 @@ int main() {
 <h4>不定长数组</h4>
 参见vector
 
-:::tips
+:::tip
 另外，C 不支持在函数外返回局部变量的地址会报空指针，除非定义局部变量为 static 变量
 :::
-### 队列queue
-### 双向数组list
 ### 向量vector
+### 队列queue
+### 双向队列list
 ### 元组tuple
 ### 集合set
 ### 映射map
 ### 栈stack
-
-
 ## 指针
 **指针是C语言的灵魂！**<br/>
 <strong>`&`</strong>符号是取<strong>`地址`</strong>，取得地址之后得到的是一个<strong>`指针`</strong>类型<br/>
@@ -622,12 +620,22 @@ char   *ch;
 -----转自<a href='https://blog.csdn.net/constantin_/article/details/79575638'>指针超详细解释</a>
 :::danger
 void * 类型表示未确定类型的指针。C/C++ 规定 void * 类型可以通过类型转换强制转换为任何其它类型的指针。
+<a href="http://www.runoob.com/w3cnote/c-void-intro.html">详解</a>
 :::
 ## 内存管理
 c语言的难点，好在数据结构考试中不那么看重，简单整理一下
 需要引入`#include <stdlib.h>`
 ### malloc;free
-
+|函数|作用|
+|:----|:-----:|
+|void *calloc(int num, int size);|在内存中动态地分配 num 个长度为 size 的连续空间，并将每一个字节都初始化为 0。所以它的结果是分配了 num*size 个字节长度的内存空间，并且每个字节的值都是0。|
+|void free(void *address); |该函数释放 address 所指向的内存块,释放的是动态分配的内存空间。|
+|void *malloc(int num); |在`堆区`分配一块指定大小的内存空间，用来存放数据。这块内存空间在函数执行完成后不会被初始化，它们的值是未知的。|
+|void *realloc(void *address, int newsize); |该函数重新分配内存，把内存扩展到 newsize。|
+一般也是配合数组来使用，一个例子就明白了
+```c
+留坑
+```
 ### memset;memcopy
 C语言需要包含头文件string.h；C++需要包含cstring  或  string.h<br/>
 - void *memset(void *s,int c,size_t n)<br/>
@@ -680,13 +688,13 @@ Sizeof操作符的结果类型是size_t
 ## 结构体
 有点面向对象的意思了，不过还没有对象
 ### struct
-struct name { 
-    member-list
-    member-list 
-    member-list  
-    ...
-} variable-list ;
-struct name n; 
+`struct` **name** { <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**member-list**;<br/>
+&nbsp;&nbsp;&nbsp;member-list; <br/>
+&nbsp;&nbsp;&nbsp;member-list;  <br/>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ...<br/>
+} **variable-list** ;<br/>
+`struct` name n; <br/>
 以下发言是借用了面向对象的说法<br/>
 你可以省略掉name，variable-list相当于直接定义了一堆对象而没有类名，也就不能用类名来在定义其他的变量了<br/>
 你可以省略掉variable-list，但不要落下类名，可以后面手动定义name n;<br/>
@@ -716,10 +724,11 @@ typedef struct Books
 - typedef 是由编译器执行解释的，#define 语句是由预编译器进行处理的
 :::
 终于整理完C了！！！
-<div align="center"><h1>C++</h1></div>
 
-## C++
-## 还没想好些什么，不如给大家拜个年吧
+## **C++**
+<div align="center"><h1><strong>C++</strong></h1></div>
+
+## 还没想好写什么，不如给大家拜个年吧
 不管元素是简单类型还是复杂类型，delete 掉new[] 申请的内存都会有内存泄漏
 ## 参考资料列表
 - <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define√</a>
@@ -730,3 +739,4 @@ typedef struct Books
 - <a href='https://blog.csdn.net/constantin_/article/details/79575638'>超级详细的指针</a>
 - <a href=''>1</a>
 <Valine></Valine>
+
