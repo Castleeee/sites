@@ -56,6 +56,7 @@ tags:
 在定义中不允许连续赋值，如int a=b=c=5;是不合法的。
 
 ### 类型转换
+`(doubel)a`;<br/>
 字符型变量的值实质上是一个8位的整数值，因此取值范围一般是-128～127，char型变量也可以加修饰符unsigned，则unsigned char 型变量的取值范围是0～255(有些机器把char型当做unsighed char型对待， 取值范围总是0～255)。
 - 浮点数赋给整型，该浮点数小数被舍去；
 - 整数赋给浮点型，数值不变，但是被存储到相应的浮点型变量中； 
@@ -728,7 +729,7 @@ typedef struct Books
 <div align="center"><h1><strong>C++</strong></h1></div>
 
 ## 还没想好写什么，不如给大家拜个年吧
-不管元素是简单类型还是复杂类型，delete 掉new[] 申请的内存都会有内存泄漏
+
 ## 参考资料列表
 - <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define√</a>
 - <a href='http://www.runoob.com/cprogramming/c-tutorial.html'>菜鸟c语言</a>
