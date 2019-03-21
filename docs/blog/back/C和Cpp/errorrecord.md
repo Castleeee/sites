@@ -511,9 +511,8 @@ p2 = (char *)malloc(20);  堆
     - 栈:在函数调用时，第一个进栈的是主函数中函数调用后的下一条指令（函数调用语句的下一条可执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈的，然后是函数中的局部变量。注意静态变量是不入栈的。
           当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地址，也就是主函数中的下一条指令，程序由该点继续运行。
     - 堆:一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容有程序员安排。
-## 数据结构(STL)
-数组是自带的,其他的在STL中可以找到，STL里卖弄还有链表树等等啥都有。
-### 数组list
+## 数组list
+数组是自带的,其他的在STL中可以找到，STL里卖弄还有链表树等等啥都有。<br/>
 数组是一块`连续的`，`大小固定`并且里面的数据`类型一致`的`内存`空间;<br/>
 <strong>
 数据类型 数组名称[长度];<br/>
@@ -572,13 +571,7 @@ int main() {
 :::tip
 另外，C 不支持在函数外返回局部变量的地址会报空指针，除非定义局部变量为 static 变量
 :::
-### 向量vector
-### 队列queue
-### 双向队列list
-### 元组tuple
-### 集合set
-### 映射map
-### 栈stack
+
 ## 指针
 **指针是C语言的灵魂！**<br/>
 <strong>`&`</strong>符号是取<strong>`地址`</strong>，取得地址之后得到的是一个<strong>`指针`</strong>类型<br/>
@@ -738,8 +731,8 @@ typedef struct Books
 - <a href='https://blog.csdn.net/a1232345/article/details/44957191'>C语言堆栈入门</a>
 - <a href='https://blog.csdn.net/constantin_/article/details/79575638'>超级详细的指针</a>
 - <a href='https://www.bilibili.com/video/av40959422'>bilibili hw-dong</a>
-- <a href=''>1</a>
-- <a href=''>1</a>
+- <a href='https://www.cnblogs.com/nzbbody/p/3523064.html'>继承过程中构造析构详解</a>
+- <a href='http://www.runoob.com/cplusplus/cpp-classes-objects.html'>菜鸟C++</a>
 - <a href=''>1</a>
 - <a href=''>1</a>
 <Valine></Valine>
