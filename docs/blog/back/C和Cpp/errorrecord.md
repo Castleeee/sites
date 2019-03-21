@@ -632,10 +632,9 @@ c语言的难点，好在数据结构考试中不那么看重，简单整理一�
 |void free(void *address); |该函数释放 address 所指向的内存块,释放的是动态分配的内存空间。|
 |void *malloc(int num); |在`堆区`分配一块指定大小的内存空间，用来存放数据。这块内存空间在函数执行完成后不会被初始化，它们的值是未知的。|
 |void *realloc(void *address, int newsize); |该函数重新分配内存，把内存扩展到 newsize。|
-一般也是配合数组来使用，一个例子就明白了
-```c
-留坑
-```
+:::danger
+看看就行了，C++中使用new代替了malloc
+:::
 ### memset;memcopy
 C语言需要包含头文件string.h；C++需要包含cstring  或  string.h<br/>
 - void *memset(void *s,int c,size_t n)<br/>
@@ -701,8 +700,8 @@ Sizeof操作符的结果类型是size_t
 你也可以把name 通过typedef放在后面typedef struct{} name;让然需要自己生成对象。<br/>
 访问对象的成员的时候直接用`.`访问<br/>
 关于指针：
-- struct name *p;这是定义了一个指针赋值的时候p=&n;
-- 取值用p->m相当于n.m
+- struct name `*p`;这是定义了一个指针赋值的时候p=&n;
+- 取值用`p->m`相当于`n.m`
 ```c
 
 ```
@@ -737,6 +736,10 @@ typedef struct Books
 - <a href='https://my.oschina.net/jthmath/blog/488462'>开源中国元组</a>
 - <a href='https://blog.csdn.net/a1232345/article/details/44957191'>C语言堆栈入门</a>
 - <a href='https://blog.csdn.net/constantin_/article/details/79575638'>超级详细的指针</a>
+- <a href='https://www.bilibili.com/video/av40959422'>bilibili hw-dong</a>
+- <a href=''>1</a>
+- <a href=''>1</a>
+- <a href=''>1</a>
 - <a href=''>1</a>
 <Valine></Valine>
 
