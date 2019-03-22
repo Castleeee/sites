@@ -1,5 +1,5 @@
 ---
-title: C/C++基础
+title: C基础
 date: 2019-2-16 19:24:45
 categories: backEnd
 tags:
@@ -728,7 +728,13 @@ typedef struct Books
 - <a href='https://www.bilibili.com/video/av40959422'>bilibili hw-dong</a>
 - <a href='https://www.cnblogs.com/nzbbody/p/3523064.html'>继承过程中构造析构详解</a>
 - <a href='http://www.runoob.com/cplusplus/cpp-classes-objects.html'>菜鸟C++</a>
+- <a href='https://blog.csdn.net/zuzhiang/article/details/78155112'>字符和字符串</a>
+- <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091'>字符串操作</a>
+- <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091 '>字符串</a>
 - <a href=''>1</a>
 - <a href=''>1</a>
+- <a href=''>1</a>
+- <a href=''>1</a>
+
 <Valine></Valine>
 

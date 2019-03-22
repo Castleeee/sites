@@ -1,5 +1,5 @@
 ---
-title: C++
+title: C++基础
 date: 2019-3-22 17:19:47
 categories: backEnd
 tags:
@@ -137,9 +137,9 @@ cout<<`this->name`<<""<<`this->score`<<end1;<br/>
 
 |属性|访问|
 |:---:|:-----|
-|private|只能由1.该类中的函数、2.其友元函数访问。不能被任何其他访问，该类的对象也不能访问。|
-|protected|可以被1.该类中的函数、2.子类的函数、以及3.其友元函数访问。但不能被该类的对象访问。|
-|public|可以被1.该类中的函数、2.子类的函数、3.其友元函数访问，也可以由4.该类的对象访问。|
+|private|能由1.该类中的函数2.其友元函数访问 不能被任何其他访问 该类的对象也不能访问|
+|protected|能被1.该类中的函数2.子类的函数 以及3.其友元函数访问 但不能被该类的对象访问|
+|public|可以被1.该类中的函数2.子类的函数3.其友元函数访问 也可以由4.该类的对象访问|
 **友元函数**<br/>
 类的友元函数是定义在类外部，但有权访问类的所有私有（private）成员和保护（protected）成员。<br/>
 设为友元的普通的非成员函数,类内声明<br/>
@@ -182,14 +182,14 @@ class D:public B,public C;
 
 
 ### 类模板 
-C++通过类模板来实现泛型支持。和声明函数模板一样，声明一个类型**`template <class T>`**,在类中使用T类型，声明对象的时候指明类型即可Class**<type>**(a,b)
+C++通过类模板来实现泛型支持。和声明函数模板一样，声明一个类型**`template <class T>`**,在类中使用T类型，声明对象的时候指明类型即可Class**< type >**(a,b)
 ```c
 留坑https://www.jianshu.com/p/70ca94872418
 ```
 
 - 如果父类自定义了构造函数，记得子类要调用父类构造函数来初始化
-- 继承的时候，如果子类不是模板类，则必须指明当前的父类的类型，因为要分配内存空间class ChildOne:public Parent<int>
-- 继承的时候，如果子类是模板类，要么指定父类的类型，要么用子类的泛型来指定父类class ChildTwo:public Parent<T>
+- 继承的时候，如果子类不是模板类，则必须指明当前的父类的类型，因为要分配内存空间class ChildOne:public Parent< int >
+- 继承的时候，如果子类是模板类，要么指定父类的类型，要么用子类的泛型来指定父类class ChildTwo:public Parent< T >
 -----from <a href='http://www.runoob.com/cplusplus/cpp-templates.html'>菜鸟</a>，<a href='https://www.jianshu.com/p/70ca94872418'>一个人的简书</a>
 
 ### 运算符重载
@@ -246,27 +246,58 @@ throw "出错了";
 ### 集合set
 ### 映射map
 ### 栈stack
-## 日常操作
-### 数组
+### 字符串的日常操作
+众所周知C++处理字符串有点难过。不做最好用的库就是`#include <string>`,别带h。<br/>
+**声明:**<br/>
+`string s;string s="abcd";`或者`string s="a  b   cd";string s("xtsy")`这样。（空格也会被算进去的<br/>
+**输入:**<br/>
+`cin>>s; `            不能读入空格，以空格、制表符、回车符作为结束标志<br/>
+`getline(cin,s);`   可以读入空格和制表符，以回车符作为结束标志<br/>
+**长度:**<br/>
+`int len=s.size();`    或者`int len=s.length();`返回一个int<br/>
+`bool=s.empty();`        当前字符串是否为空<br/>
+**下标字符:**<br/>
+`s[i]`或 `char c=s.at(i)`返回的是一个char。<br/>
+**转换:**<br/>
+`s=str;string`类型=char数组;重载了运算符，直接就能转换。<br/>
+`#include "string.h"`<br/>
+`strcpy(str,s.c_str());`<br/>
+**比较:**<br/>
+`if(s1<s2);或s1.compare(s2);`<br/>
+真返回1假返回-1<br/>
+**拼接:**<br/>
+`s1=s1+s2;`或`s1.append(s2);`<br/>
+**查找:**<br/>
+`s.find(s1)     `    查找s中第一次出现s1的位置，并返回（包括0）<br/>
+`s.rfind(s1)     `   查找s中最后次出现s1的位置，并返回（包括0）<br/>
+`s.find_first_of(s1)  `     查找在s1中任意一个字符在s中第一次出现的位置，并返回（包括0）<br/>
+`s.find_last_of(s1)   `    查找在s1中任意一个字符在s中最后一次出现的位置，并返回（包括0）<br/>
+`s.find_first_not_of(s1)   `      查找s中第一个不属于s1中的字符的位置，并返回（包括0）<br/>
+`s.find_last_not_of(s1)    `     查找s中最后一个不属于s1中的字符的位置，并返回（包括0）<br/>
 
-### 字符串
-众所周知C++处理字符串有点难过。不做最好用的库就是`#include <string>`,别带h。
-声明:
-string s;string s="abcd";或者string s="a  b   cd";这样。（空格也会被算进去的
-输入:
-cin>>s;             //不能读入空格，以空格、制表符、回车符作为结束标志
-getline(cin,s);   //可以读入空格和制表符，以回车符作为结束标志
-长度:
-int len=s.size();    或者     int len=s.length();返回一个int
-下标字符:
-s[i]或 char c=s.at(i)返回的是一个char。
-转换
-s=str;string类型=char数组;重载了运算符，直接就能转换。
-#include "string.h"
-strcpy(str,s.c_str());
-比较
-if(s1<s2);       或       s1.compare(s2); 
+**插入:**<br/>
+`s.insert(p,s);`在p0位置插入字符串s<br/>
+`s.insert(p,s,n);`在p0位置插入字符串s的前n个字符<br/>
+`s.insert(p,s);`在p0位置插入字符串s<br/>
+`s.insert(p,s,pos,n);`在p0位置插入字符串s从pos下标(整数)开始的连续n个字符<br/>
+`s.insert(p, n,c);`在p0处插入n个字符c<br/>
+
+
+**截取:**<br/>
+`s=s.substr(pos, n)  `  截取s中从pos开始（包括0）的n个字符的子串，并返回<br/>
+`s=s.substr(pos)  `      截取s中从从pos开始（包括0）到末尾的所有字符的子串，并返回<br/>
+**反转:**<br/>
+`#include<algorithm>`<br/>
+`reverse(s.begin(),s.end());`<br/>
+:::warning
+反转不返回会直接对原来的字符串进行操作
+:::
+
+**替换:**<br/>
+`s.replace(pos, n, s1)  `     用s1替换s中从pos开始（包括0）的n个字符的子串<br/>
+`#include<algorithm>`<br/>
+`replace(str.begin(),str.end(),'a','b');`从开始到结尾a替换成b，也是对原串操作，而且只能对单个字符进行操作<br/>
 
 
 ## 参考资料列表
-整理的时候想整理成一个来着，发现太长了，参考资料列表也在c中。
+整理的时候想整理成一个来着，发现太长了就分成了俩，于是参考资料列表也在c中。
