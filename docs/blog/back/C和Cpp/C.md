@@ -570,6 +570,9 @@ int main() {
 :::tip
 另外，C 不支持在函数外返回局部变量的地址会报空指针，除非定义局部变量为 static 变量
 :::
+### 多维数组的指针
+多维数组会有维的索引数组，第一次取下标取到的是地址而不是值
+<div align=center><img src="./static/arr.png"/></div>
 
 ## 指针
 **指针是C语言的灵魂！**<br/>
@@ -731,7 +734,7 @@ typedef struct Books
 - <a href='https://blog.csdn.net/zuzhiang/article/details/78155112'>字符和字符串</a>
 - <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091'>字符串操作</a>
 - <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091 '>字符串</a>
-- <a href=''>1</a>
+- <a href='https://blog.csdn.net/hyg0811/article/details/10956699'>STL参考</a>
 - <a href=''>1</a>
 - <a href=''>1</a>
 - <a href=''>1</a>

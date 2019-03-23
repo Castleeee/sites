@@ -239,14 +239,108 @@ throw "出错了";
 ```
 自己定义一下出了什么错该怎么办，比如e1被打印了出来，e2就没管。<br/>自己查一下<a href="http://www.runoob.com/cplusplus/cpp-exceptions-handling.html">错误类型</a>。
 ## STL
+<a href='http://c.biancheng.net/stl/'>C语言中文网的STL</a>(多到我不想整理不会的就去查把)我随意整理下
 ### 向量vector
+vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容器相似，不同的是 vector< T > 容器的大小可以自动增长，从而可以包含任意数量的元素；因此类型参数 T 不再需要模板参数 N。只要元素个数超出 vector 当前容量，就会自动分配更多的空间。只能在容器尾部高效地删除或添加元素。
+线性排序，可以下标访问
+**`#include <vector>`**
+- **`vector<DataType>Name(MaxSize,defaultValue);`**
+    - 定义一个vector
+- x=**`Name[i];`**或`**Name.at(i)`**
+    - 取出了第i个元素
+- **`Name.push_back(i);`**
+    - 在数组的最后添加一个数据
+- **`Name.pop_back();`**
+    - 去掉数组的最后一个数据
+- **`Name.begin/end`**
+    - 得到数组头/尾的指针
+- **`Name.front/back`**
+    - 得到数组头/尾的- 引用
+- **`Name.size()`**
+    - 得到数组的长度
+- **`Name.clear()`**
+    - 清空当前的vector
+- **`Name.empty()`**
+    - 是ture否false
 ### 队列queue
-### 双向队列list
+ 先进先出的执的排列 <queue>
+
+定义一个queue的变量     queue<Type> M
+查看是否为空范例        M.empty()   是的话返回1，不是返回0;
+从已有元素后面增加元素M.push()
+输出现有元素的个数        M.size()
+显示第一个元素              M.front()
+显示最后一个元素           M.back()
+清除第一个元素              M.pop()
+### 链表list
+由节点组成的双向链表，每个结点包含着一个元素
+**`list<int> list1(1,2,3)`**
+- **`list.front()`**
+    - 返回第一个元素的引用
+    - int nRet =list1.front()// nRet = 1
+- **`list.back()`**
+    - 返回最后一元素的引用
+    - int nRet =list1.back()// nRet = 3
+- **`list.push_back(x)`**
+    - 增加一元素到链表尾
+    - list1.push_back(4)//list1(1,2,3,4)
+- **`list.push_front(x)`**
+    - 增加一元素到链表头
+    - list1.push_front(4)//list1(4,1,2,3)
+- **`list.pop_back()`**
+    - 删除链表尾的一个元素
+    - list1.pop_back()//list1(1,2)
+- **`list.pop_front()`**
+    - 删除链表头的一元素
+    - list1.pop_front()//list1(2,3)
+- **`list.clear()`**
+    - 删除所有元素
+    - list1.clear();// list1空了,list1.size()=0
+- **`list.sort()`**
+    - 对链表排序，默认升序(可自定义回调函数)
+    - 定义回调函数
+- **`list.insert(指针,[几次],元素)`**
+    - 在指定位置插入一个或多个元素
+    - list1.insert(++list1.begin(),9);  // list1(1,9,2,3);
+    - list1.insert(list1.begin(),2,9);  // list1(9,9,1,2,3);
+- **`list.swap()`**
+    - 交换两个链表(两个重载)
+    - list1.swap(list2);//list1（1，2，3） list2（4，5，6）->list1（4，5，6） list2（1，2，3）
+- **`list1.unique()`**
+    - 删除相邻重复元素L1(1,1,4,3,5,1)->L1(1,4,3,5,1)
+- **`merge()`**
+    - 合并两个有序链表并使之有序
+    - 升序list1.merge(list2);->list1(1,2,3,4,5,6) list2现为空
+    - 降序list1.merge(list2, greater< int >()); //list1(6,5,4,3,2,1) list2现为空
+- **`list.reverse()`**
+    - 反转链表list1（1，2，3）->list1(3,2,1)
+- **`list1.remove(4)`**
+    - 删除链表中匹配值的元素(匹配元素全部删除4)
+- **`bool bRet =L1.empty();`**
+    - 判断是否链表为空true/false
+- **`rbegin()`**
+    - 返回链表最后一元素的后向指针(reverse_iteratoror const)list< int>::reverse_iterator it = list1.rbegin();  //*it = 3
+- **`rend()`**
+    - 返回链表第一元素的下一位置的后向指针list< int>::reverse_iteratorit = list1.rend(); // *(--riter) =
 ### 元组tuple
+
 ### 集合set
+
 ### 映射map
+
 ### 栈stack
-### 字符串的日常操作
+后进先出的值的排列 < stack >
+
+`stack<int> s;`
+- **`s.push(x);`** 入栈
+- **`s.pop();`** 出栈
+:::warning
+注意，出栈操作只是删除栈顶元素，并不返回该元素。
+:::
+- **`s.top()`** 返回栈顶
+- **`s.empty()`** 当栈空时，返回true。
+- **`s.size()`** 访问栈中的元素个数
+### 字符串string
 众所周知C++处理字符串有点难过。不做最好用的库就是`#include <string>`,别带h。<br/>
 **声明:**<br/>
 `string s;string s="abcd";`或者`string s="a  b   cd";string s("xtsy")`这样。（空格也会被算进去的<br/>
