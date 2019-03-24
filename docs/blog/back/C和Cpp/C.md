@@ -1,12 +1,11 @@
 ---
-title: C/C++基础
-date: 2019-2-15 16:26:45
+title: C基础
+date: 2019-2-16 19:24:45
 categories: backEnd
 tags:
 - 语言基础
 - 后端
 - C/C++
-- 错误记录
 ---
 
 
@@ -15,7 +14,7 @@ tags:
 因为不是专精底层，记录错误和踩到的坑
 :::
 <!-- more -->
-## C
+
 <div align="center"><h1><strong>C语言</strong></h1></div>
 
 
@@ -571,6 +570,9 @@ int main() {
 :::tip
 另外，C 不支持在函数外返回局部变量的地址会报空指针，除非定义局部变量为 static 变量
 :::
+### 多维数组的指针
+多维数组会有维的索引数组，第一次取下标取到的是地址而不是值
+<div align=center><img src="./static/arr.png"/></div>
 
 ## 指针
 **指针是C语言的灵魂！**<br/>
@@ -718,224 +720,8 @@ typedef struct Books
 :::
 终于整理完C了！！！
 
-## **C++**
-<div align="center"><h1><strong>C++</strong></h1></div>
-因为很多东西都在C中有，这里就只看看那些没有的
-## 输入输出
-### 一些规则
-<strong>命名空间</strong><br/>
-为了避免函数和变量名混乱我们使用命名空间来隔离开。调用的时候是`std::cout`使用了std空间里的cout函数<br/>
-一般用std就够了。也可以直接using namespace std使用std下的所有东西。<br/>
-<strong>头文件引入</strong><br/>
-`#include < string >` c没有string，c++引入就有了，c中很多库需要加c前缀。 `<>`从系统头文件中寻找，没有则报错，`""`先从非系统头文件找，没有再找系统头文件，不会报错
 
-### 标准IO
-`#include < iostream >`标准输入输出流。在定义流对象时，系统会在内存中开辟一段缓冲区，用来暂存输入输出流的数据<br/>
-cout是标准输出流对象插入到输出流中并输出到屏幕cout<<x<<endl;<br/>
-cin是标准输入流对象，接受控制台输入的东西。cin>>x;<br/>
-endl是尾部换行符（关于这个更多的google去吧，暂时用到这些）
-### 文件IO
-`#include < fstream >`文件输入输出流。
-```c
-ofstream oF("text.txt");//打开一个文件对象
-oF<<333<<"aaaaa\n";//写入一个txt文件里
-oF.close();//记得关掉
-ifstream iF("text.txt");//输入一个文件对象的东西
-double d;
-string str;
-iF>>d>>str;//接收变量
-cout<<d<<""<<str//打印出来看看是啥
-```
-会txt就行了其他的不管了。
-## 函数
-### 默认参数
-**引用变量**
->int a=3;
-int &r=a;//r是a的引用变量
-
-引用变量就是给变量起了个别名，指向同一块内存空间，定义的时候必须进行初始化而且必须保证类型匹配。引用变量定义之后就不能再更改指向其他人了。
-<br/>主要做函数的形参。<br/>
-c++的函数直接放进去是值传递`int f（int a,int b）{...}`调用f（x,y）不会对外部的x,y产生影响，因为函数自己开辟堆栈空间，ab只是复制了xy的值而没有真正拿到xy
-<br/>
-解决方法:
-- 传入俩指针，在函数内部对指针里的值进行修改，直接对内存修改。`int f（int *a,int *b）{...}`调用f（&x,&y）<br/>
-- 传入两个引用，不在函数内分配内存通过引用直接修改值。`int f（int &a,int &b）{...}`调用f（x,y）
-**函数的默认参数**
-参数可以有默认值的，`int f（char r,int x=3）`，**默认形参要靠右！**
-### 函数重载
-c++允许定义两个名字相同的函数，但**形参类型必须不要相同**，编译器会根据你传入的参数什么样子来调用不同的函数。
-函数名和形参列表构成了函数签名，函数重载不能根据返回值来区分。注意歧义的情况。
-```c
-留坑
-```
-### 函数模板
-上例中的两个函数可以用函数模板进行重构。数据类型变为模板类型参数。
-`template <typename T>`定义了一个模板T
-```c
-留坑
-```
-:::warning
-注意调用时给定的数据类型是否支持函数的操作。<br/>
-在重载函数中也可以像函数模板一样指定类型。
-:::
-## 动态内存管理
-C++中使用`new`代替malloc。new除了分配内存外还会对对象进行初始化（new类对象的时候会调用构造函数等）。<br/>
-`new`完了一定要`delete`如果没被delete那么这块被分配的内存会一直存在没有名字，不被回收造成内存泄漏。
-```c
-留坑
-```
-指针指向new出来的新数组的时候实质上是指向数组的首地址
-```c
-留坑
-```
-:::danger
-delete 掉new type[] 申请的内存必须要用**`delete[] p`**如果没有**`[]`**则只会删除数组的第一个元素值后面的元素会泄露
-:::
-## 类和对象
-传统的面向过程编程，C++引入了面向对象编程OOP<a href='https://blog.csdn.net/it_man/article/details/6672964'>随便看一看吧后面再找个好的</a>
-### 类
-面向对象编程：程序是由不同种类的许多对象相互协作完成的。对象之间通过发送/接收消息来协作完成各种任务。由这些对象构成的程序也称为“对象式系统".
-<br/>**`class name{};`** 定义类（你要非要用struct我也管不着）。类可以生成一个对象，类是对事物的特征抽象。通过类可以定义对象
-访问的时候使用**`.`**。**对象**同样具有指针
-看例子**注意后面有分号**
-```c
-留坑
-```
-类对象可以通过指针来访问，访问符号为`->`
-```c
-class_name stu;//生成一个对象
-class_name *object_pointer=&stu;//给指针赋值
-object_pointer->name;//访问了属性
-(*object_pointer).name;//访问了属性
-
-class_name *object_pointer=new class_name;//给指针赋动态对象（存储在堆）
-delete object_pointer//记得删除
-```
-成员可以有函数(行为)和变量(属性)。函数可以先在类中声明在后面实现。
-
-### 构造析构
-<br/>对象在生成的时候实际上是通过一个`构造函数`来生成的，构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回 void，如果不在类中定义，c++会默认给一个空的`默认构造函数`，啥都不执行。
-<br/>构造函数可以用来初始化成员变量。构造函数可以提供参数，在声明对象的时候就要传入对应的参数。
-<br/>类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象(delete a;)时执行。
-<br/>`析构函数`的名称与类的名称是完全相同的，只是在前面加波浪号`~`作为前缀，它不会返回任何值，也不能带有任何参数。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。<a href='https://www.cnblogs.com/nzbbody/p/3523064.html'>构造析构</a>
-
-```c
-留坑
-```
-:::warning
-自定义了构造函数之后不会再分配默认构造函数，也就不能直接声明对象数组。<br/>
-student stu[3];会报错,存储指针或者用for添加进去
-:::
-### this指针
-类中的成员函数自带了一个this指针。比如`stu.print();==>print(&stu);`把类的指针传入。<br/>
-void print(student *this){<br/>
-cout<<`this->name`<<""<<`this->score`<<end1;<br/>
-}<br/>
-## 面向对象
-### 封装
-类中的成员默认为`private`只有本类中的成员才能调用，外部不能访问，声明一个类的时候通常要声明`public`和`private`.
-一般成员不声明设置为private，通过get/set方法进行设置和访问控制。参考java豆(bean)
-```ctypename
-留坑
-```
-封装是为了安全考虑。
-
-|属性|访问|
-|:---:|:-----|
-|private|只能由1.该类中的函数、2.其友元函数访问。不能被任何其他访问，该类的对象也不能访问。|
-|protected|可以被1.该类中的函数、2.子类的函数、以及3.其友元函数访问。但不能被该类的对象访问。|
-|public|可以被1.该类中的函数、2.子类的函数、3.其友元函数访问，也可以由4.该类的对象访问。|
-**友元函数**<br/>
-类的友元函数是定义在类外部，但有权访问类的所有私有（private）成员和保护（protected）成员。<br/>
-设为友元的普通的非成员函数,类内声明<br/>
-**`friend void printWidth( Box box );`**<br/>
-设为友元类中的所有成员函数,在class的public声明另一个类**`friend class ClassOther;`**<br/>
-有缘不会被继承传递
-### 继承
-子类继承父类子类就具有了父类的函数和数据成员。<br/>
-**`class A: public A1, private A2`**<br/>
-在声明类的时候有三种继承方式,我们几乎不使用 protected 或 private 继承
-
-|继承规则       |      public      |       protected    |   private|
-|:----:|:---:|:----:|:----:|
-|public继承|             public      |        protected   |      不可用 |
-|protected继承 |         protected |          protected  |         不可用 |
-|private继承|            private  |           private     |        不可用 |
-下列属性是不能被继承的
-- 基类的构造函数、析构函数和拷贝构造函数。
-- 基类的重载运算符。
-- 基类的友元函数
-
-可以多继承，但是要注意棱形继承问题和多态问题<br/>
-简单的继承关系示例
-```c
-留坑
-```
-### 多态
-
-### 类模板
-
-### 接口(抽象类)
-
-### 运算符重载
-在类内部声明被重载的运算符，可以使用运算符进行操作类对象。<br/>
-**`B operator+(B &b1,B &b2){ ... return B b;}<br/>`**<br/>
-在类内部声明一下这个运算符一样的函数，然后调用的时候就可直接加减了。<br/>
-
-|可重载||
-|:----|:---:|
-|双目算术运算符 |	+ (加)，-(减)，* (乘)，/(除)，% (取模)|
-|关系运算符 |	==(等于)，!= (不等于)，< (小于)，> (大于>，<=(小于等于)，>=(大于等于)|
-|逻辑运算符 |	||(逻辑或)，&&(逻辑与)，!(逻辑非)|
-|单目运算符 |	+ (正)，-(负)，*(指针)，&(取地址)|
-|自增自减运算符 |	++(自增)，--(自减)|
-|位运算符 	|｜(按位或)，& (按位与)，~(按位取反)，^(按位异或),，<< (左移)，>>(右移)|
-|赋值运算符 	|=, +=, -=, *=, /= , % = , &=, ｜=, ^=, <<=, >>=|
-|空间申请与释放 	|new, delete, new[ ] , delete[]|
-|其他运算符 	|()(函数调用)，->(成员访问)，,(逗号)，[](下标)|
-|不可重载||
-|.|成员访问运算符|
-|.*, ->*|成员指针访问运算符|
-|::|域运算符|
-|sizeof|长度运算符|
-|?:|条件运算符|
-|#|预处理符号|
------from 菜鸟<br/>
-原则:
-- 运算重载符不可以改变语法结构。
-- 运算重载符不可以改变操作数的个数。
-- 运算重载符不可以改变优先级。
-- 运算重载符不可以改变结合性。
-```c
-留坑
-```
-## 异常处理
-C++中有了try 和catch<br/>
-用法和py，java中相似。<br/>
-```c
-try{
-...
-}catch( 错误名字 e1 ){
-e1.printf("你出错了")
-...
-}catch(错误 e2){
-throw "出错了";
-}
-```
-自己定义一下出了什么错该怎么办，比如e1被打印了出来，e2就没管。<br/>自己查一下<a href="http://www.runoob.com/cplusplus/cpp-exceptions-handling.html">错误类型</a>。
-## STL
-### 向量vector
-### 队列queue
-### 双向队列list
-### 元组tuple
-### 集合set
-### 映射map
-### 栈stack
-## 日常操作
-### 数组
-### 字符串
-
-## 参考资料列表
+## 参考资料列表包含c++的
 - <a href='https://blog.csdn.net/love_gaohz/article/details/7567856'>const与define√</a>
 - <a href='http://www.runoob.com/cprogramming/c-tutorial.html'>菜鸟c语言</a>
 - <a href='https://www.imooc.com/view/249'>慕课c语言</a>
@@ -945,7 +731,13 @@ throw "出错了";
 - <a href='https://www.bilibili.com/video/av40959422'>bilibili hw-dong</a>
 - <a href='https://www.cnblogs.com/nzbbody/p/3523064.html'>继承过程中构造析构详解</a>
 - <a href='http://www.runoob.com/cplusplus/cpp-classes-objects.html'>菜鸟C++</a>
+- <a href='https://blog.csdn.net/zuzhiang/article/details/78155112'>字符和字符串</a>
+- <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091'>字符串操作</a>
+- <a href='https://blog.csdn.net/ezhou_liukai/article/details/13779091 '>字符串</a>
+- <a href='https://blog.csdn.net/hyg0811/article/details/10956699'>STL参考</a>
 - <a href=''>1</a>
 - <a href=''>1</a>
+- <a href=''>1</a>
+
 <Valine></Valine>
 
