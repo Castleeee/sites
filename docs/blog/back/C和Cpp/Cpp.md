@@ -239,7 +239,8 @@ throw "出错了";
 ```
 自己定义一下出了什么错该怎么办，比如e1被打印了出来，e2就没管。<br/>自己查一下<a href="http://www.runoob.com/cplusplus/cpp-exceptions-handling.html">错误类型</a>。
 ## STL
-<a href='http://c.biancheng.net/stl/'>C语言中文网的STL</a>(多到我不想整理不会的就去查把)我随意整理下
+<a href='http://c.biancheng.net/stl/'>C语言中文网的STL</a>(多到我不想整理不会的就去查把)我随意整理下<br/>
+C++ STL中标准关联容器set, multiset, map, multimap内部采用的就是一种非常高效的平衡检索二叉树：红黑树
 ### 向量vector
 vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容器相似，不同的是 vector< T > 容器的大小可以自动增长，从而可以包含任意数量的元素；因此类型参数 T 不再需要模板参数 N。只要元素个数超出 vector 当前容量，就会自动分配更多的空间。只能在容器尾部高效地删除或添加元素。
 线性排序，可以下标访问
@@ -263,15 +264,59 @@ vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容
 - **`Name.empty()`**
     - 是ture否false
 ### 队列queue
- 先进先出的执的排列 <queue>
+**`#include<queue>`**
+**先进先出队列 < queue >**
+定义`queue<Type> M`
+- 查看是否为空队列**`M.empty()`**是的话返回1，不是返回0;
+- 从已有元素后面增加元素**`M.push(x)`**
+- 输出现有元素的个数**`M.size()`**
+- 清除队顶元素**`M.pop()`**,同样它不返回值
+- 获取队顶元素**`M.front()`**
+- 获取队尾元素**`M.back()`**
 
-定义一个queue的变量     queue<Type> M
-查看是否为空范例        M.empty()   是的话返回1，不是返回0;
-从已有元素后面增加元素M.push()
-输出现有元素的个数        M.size()
-显示第一个元素              M.front()
-显示最后一个元素           M.back()
-清除第一个元素              M.pop()
+**优先级队列 < queue >**
+<a href='https://blog.csdn.net/xiaoquantouer/article/details/52015928'>这个挺详细的</a><br/>
+定义的时候要决定优先值<br/>
+`priority_queue< int >Q;`默认优先输出大的数据(整数)，可以自己定义<br/>
+优先输出小数据 `priority_queue<int, vector<int>, greater<int> > p;`<br/>
+自己重载例子<br/>
+```c
+struct Node{
+	int x,y;
+	Node(int a=0, int b=0):
+		x(a), y(b) {}
+};
+struct cmp{
+	bool operator()(Node a, Node b){
+		if(a.x == b.x)	return a.y>b.y;
+		return a.x>b.x;
+	}
+};
+ 
+int main(){
+	priority_queue<Node, vector<Node>, cmp>p;
+```
+
+玩耍吧
+
+**`Q.empty()`**判断队列是否为空返回ture表示空返回false表示空 bool
+**`Q.top()`**返回顶端元素的值元素还在队列里
+**`Q.pop()`**删除顶端元素 void
+**`Q.push(V)`**把long long型的数V加入到队列里它会制动条件V的位置void
+**`Q.size()`**返回队列里元素个数 unsigned int
+
+**双端队列**
+**`deque<int>c`**
+**`c.pop_back()`**      删除最后一个数据。
+**`c.pop_front()`**      删除头部数据。
+**`c.push_back(elem)`** 在尾部加入一个数据。
+**`c.push_front(elem)`** 在头部插入一个数据。
+**`c.clear()`**          移除容器中所有数据。
+**`c.front()`**          传回地一个数据。
+**`c.back()`**          传回最后一个数据，不检查这个数据是否存在。
+**`c.size()`**           返回容器中实际数据的个数。
+**`c.empty()`**         判断容器是否为空。
+**`c[i]`** 等同于 **`c.at(i)`**;
 ### 链表list
 由节点组成的双向链表，每个结点包含着一个元素
 **`list<int> list1(1,2,3)`**
@@ -325,8 +370,43 @@ vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容
 ### 元组tuple
 
 ### 集合set
+由节点组成的红黑树，每个节点都包含着一个元素，节点之间以某种作用于元素对的谓词排列，没有两个不同的元素能够拥有相同的次序 < set >
+元素不能重复,貌似看到了一个<a href='https://blog.csdn.net/changjiale110/article/details/79108447'>原理解析</a>有兴趣的传送过去看看<br/>
+set< type >: 以less< >为排序法则的set<br/>
+set< type,op >: 以op为排序法则的set<br/>
+ps:我也不知道啥意思，不深究了，拿来即用碰到在查就行<br/>
+
 
 ### 映射map
+根据key值快速查找记录，查找的复杂度基本是Log(N)，如果有1000个记录，最多查找10次，1,000,000个记录，最多查找20次
+`map<int, string> m;`定义了键是整数值是字符串的一个字典
+插入
+- m.insert(pair<int, string>(1, "s1")); 
+- m.insert(map<int, string>::value_type (2, "student_two"));//和上面的插入有啥不一样 
+- m[3] = "student_three";//字符串也可以这样取
+:::warning 
+当map中有这个关键字时，insert插入不了，但是用数组方式可以覆盖以前该关键字对应的值
+:::     
+迭代
+- for(iter = m=.begin(); iter != m=.end(); iter++){...}
+- map.size()
+查找
+- iter = mapStudent.find(1);
+    - iter->second 通过map对象的方法获取的iterator数据类型是一个std::pair对象，包括两个数据 iterator->first和 iterator->second分别代表关键字和存储的数据。
+交换和排序
+- map中的swap不是一个容器中的元素交换，而是两个容器所有元素的交换。
+- map中的元素是自动按Key升序排序，所以不能对map用sort函数；
+函数
+- begin() 返回指向map头部的迭代器
+- clear()删除所有元素
+- count() 返回指定元素出现的次数
+- empty() 如果map为空则返回true
+- end()   返回指向map末尾的迭代器
+- erase()         删除一个元素
+- find()          查找一个元素
+- size()          返回map中元素的个数
+- swap()           交换两个map
+- max_size()      返回可以容纳的最大元素个数
 
 ### 栈stack
 后进先出的值的排列 < stack >
