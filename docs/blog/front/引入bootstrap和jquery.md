@@ -10,14 +10,15 @@ tags:
 sidebar: false
 ---
 
-:::tip
+:::danger
+vue里面强烈不建议使用，在老师的建议下转向iview和vux
+:::
+<!-- more -->
+# vue引入bootstrap和jQuery
 参照着<br/>这个
 <a href='https://segmentfault.com/a/1190000015765805'>这个</a>和
 <a href='https://blog.csdn.net/qq_34200964/article/details/81436449'>这个</a>
 做的<br/>
-:::
-<!-- more -->
-# vue引入bootstrap和jQuery
 先<a href='/blog/front/菜鸡vue.html'>新建一个vue</a>
 
 :::warning
