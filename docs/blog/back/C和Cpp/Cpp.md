@@ -247,7 +247,7 @@ vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容
 **`#include <vector>`**
 - **`vector<DataType>Name(MaxSize,defaultValue);`**
     - 定义一个vector
-- x=**`Name[i];`**或`**Name.at(i)`**
+- x=**`Name[i];`**或**`Name.at(i)`**
     - 取出了第i个元素
 - **`Name.push_back(i);`**
     - 在数组的最后添加一个数据
@@ -264,15 +264,17 @@ vector< T > 容器是包含 T 类型元素的序列容器，和 array<T，N> 容
 - **`Name.empty()`**
     - 是ture否false
 ### 队列queue
-**`#include<queue>`**
-**先进先出队列 < queue >**
-定义`queue<Type> M`
-- 查看是否为空队列**`M.empty()`**是的话返回1，不是返回0;
-- 从已有元素后面增加元素**`M.push(x)`**
-- 输出现有元素的个数**`M.size()`**
-- 清除队顶元素**`M.pop()`**,同样它不返回值
-- 获取队顶元素**`M.front()`**
-- 获取队尾元素**`M.back()`**
+
+**`#include<queue>`**<br/>
+**先进先出队列 < queue >**<br/>
+定义`queue<Type> M`<br/>
+
+- 查看是否为空队列 **`M.empty()`** 是的话返回1，不是返回0;
+- 从已有元素后面增加元素 **`M.push(x)`**
+- 输出现有元素的个数 **`M.size()`** 
+- 清除队顶元素 **`M.pop()`** ,同样它不返回值
+- 获取队顶元素 **`M.front()`** 
+- 获取队尾元素 **`M.back()`** 
 
 **优先级队列 < queue >**
 <a href='https://blog.csdn.net/xiaoquantouer/article/details/52015928'>这个挺详细的</a><br/>
@@ -297,26 +299,26 @@ int main(){
 	priority_queue<Node, vector<Node>, cmp>p;
 ```
 
-玩耍吧
 
-**`Q.empty()`**判断队列是否为空返回ture表示空返回false表示空 bool
-**`Q.top()`**返回顶端元素的值元素还在队列里
-**`Q.pop()`**删除顶端元素 void
-**`Q.push(V)`**把long long型的数V加入到队列里它会制动条件V的位置void
-**`Q.size()`**返回队列里元素个数 unsigned int
+
+- **`Q.empty()`** 判断队列是否为空返回ture表示空返回false表示空 bool
+- **`Q.top()`** 返回顶端元素的值元素还在队列里
+- **`Q.pop()`** 删除顶端元素 void
+- **`Q.push(V)`** 把long long型的数V加入到队列里它会制动条件V的位置void
+- **`Q.size()`** 返回队列里元素个数 unsigned int
 
 **双端队列**
-**`deque<int>c`**
-**`c.pop_back()`**      删除最后一个数据。
-**`c.pop_front()`**      删除头部数据。
-**`c.push_back(elem)`** 在尾部加入一个数据。
-**`c.push_front(elem)`** 在头部插入一个数据。
-**`c.clear()`**          移除容器中所有数据。
-**`c.front()`**          传回地一个数据。
-**`c.back()`**          传回最后一个数据，不检查这个数据是否存在。
-**`c.size()`**           返回容器中实际数据的个数。
-**`c.empty()`**         判断容器是否为空。
-**`c[i]`** 等同于 **`c.at(i)`**;
+- **`deque<int>c`**
+- **`c.pop_back()`**      删除最后一个数据。
+- **`c.pop_front()`**      删除头部数据。
+- **`c.push_back(elem)`**  在尾部加入一个数据。
+- **`c.push_front(elem)`** 在头部插入一个数据。
+- **`c.clear()`**          移除容器中所有数据。
+- **`c.front()`**          传回地一个数据。
+- **`c.back()`**          传回最后一个数据，不检查这个数据是否存在。
+- **`c.size()`**           返回容器中实际数据的个数。
+- **`c.empty()`**         判断容器是否为空。
+- **`c[i]`** 等同于 **`c.at(i)`**;
 ### 链表list
 由节点组成的双向链表，每个结点包含着一个元素
 **`list<int> list1(1,2,3)`**
@@ -381,32 +383,32 @@ ps:我也不知道啥意思，不深究了，拿来即用碰到在查就行<br/>
 根据key值快速查找记录，查找的复杂度基本是Log(N)，如果有1000个记录，最多查找10次，1,000,000个记录，最多查找20次
 `map<int, string> m;`定义了键是整数值是字符串的一个字典
 插入
-- m.insert(pair<int, string>(1, "s1")); 
-- m.insert(map<int, string>::value_type (2, "student_two"));//和上面的插入有啥不一样 
-- m[3] = "student_three";//字符串也可以这样取
+- `m.insert(pair<int, string>(1, "s1"));` 
+- `m.insert(map<int, string>::value_type (2, "student_two"));`//和上面的插入有啥不一样 
+- `m[3] = "student_three";`//字符串也可以这样取
 :::warning 
 当map中有这个关键字时，insert插入不了，但是用数组方式可以覆盖以前该关键字对应的值
 :::     
 迭代
-- for(iter = m=.begin(); iter != m=.end(); iter++){...}
-- map.size()
+- `for(iter = m=.begin(); iter != m=.end(); iter++){...}`
+- `map.size()`
 查找
-- iter = mapStudent.find(1);
-    - iter->second 通过map对象的方法获取的iterator数据类型是一个std::pair对象，包括两个数据 iterator->first和 iterator->second分别代表关键字和存储的数据。
+- `iter = mapStudent.find(1);`
+    - `iter->second` 通过map对象的方法获取的iterator数据类型是一个std::pair对象，包括两个数据 ` iterator->first` 和 ` iterator->second` 分别代表关键字和存储的数据。
 交换和排序
 - map中的swap不是一个容器中的元素交换，而是两个容器所有元素的交换。
 - map中的元素是自动按Key升序排序，所以不能对map用sort函数；
 函数
-- begin() 返回指向map头部的迭代器
-- clear()删除所有元素
-- count() 返回指定元素出现的次数
-- empty() 如果map为空则返回true
-- end()   返回指向map末尾的迭代器
-- erase()         删除一个元素
-- find()          查找一个元素
-- size()          返回map中元素的个数
-- swap()           交换两个map
-- max_size()      返回可以容纳的最大元素个数
+- `begin()` 返回指向map头部的迭代器
+- `clear()`删除所有元素
+- `count()` 返回指定元素出现的次数
+- `empty()` 如果map为空则返回true
+- `end()`   返回指向map末尾的迭代器
+- `erase()`         删除一个元素
+- `find()`          查找一个元素
+- `size()`          返回map中元素的个数
+- `swap()`           交换两个map
+- `max_size()`      返回可以容纳的最大元素个数
 
 ### 栈stack
 后进先出的值的排列 < stack >
