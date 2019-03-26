@@ -16,6 +16,7 @@
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.6.8",
     "vuepress": "0.14.9",
     "vuepress-theme-reco": "^0.2.1",
     "vuex": "^3.0.1"
