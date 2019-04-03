@@ -9,6 +9,9 @@ before_install:
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 47.101.52.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script:
+  - ssh-keygen -t rsa
+  - npm run docs:build
 notifications:
   email:
     recipients:
@@ -17,3 +20,10 @@ notifications:
     on_failure: always  
 after_success:
   - ssh travis@47.101.52.166 -o StrictHostKeyChecking=no '~/buildme.sh'
+  - scp -r  docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog
+#deploy:
+#  provider: script
+#  skip_cleanup: true
+#  script: scp docs/.vuepress/dist travis@47.10152.166:/usr/blog
+#  on:
+#    branch: master
