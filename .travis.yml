@@ -16,4 +16,4 @@ notifications:
     on_success: always
     on_failure: always  
 after_success:
-  - ssh travis@47.101.52.166 -o StrictHostKeyChecking=no '~/ buildme.sh'
+  - ssh travis@47.101.52.166 -o StrictHostKeyChecking=no '~/buildme.sh'
