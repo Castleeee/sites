@@ -18,6 +18,7 @@ notifications:
     on_success: always
     on_failure: always
 after_success:
+  - chmod 600 ~/.ssh/id_rsa
   - ssh travis@47.101.52.166 -o StrictHostKeyChecking=no '~/buildme.sh'
   - scp -r  docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog
 #deploy:
