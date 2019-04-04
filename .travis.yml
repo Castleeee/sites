@@ -10,7 +10,7 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 47.101.52.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
-  - npm run docs:build
+- npm run docs:build
 notifications:
   email:
     recipients:
@@ -18,14 +18,6 @@ notifications:
     on_success: always
     on_failure: always
 after_success:
-  - chmod 600 ~/.ssh/id_rsa
-  - ls docs/.vuepress/dist/*
-  #- ssh  travis@47.101.52.166 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa
-  #- scp -i ~/.ssh/id_rsa -r docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog #-i ~/.ssh/id_rsa
-  - scp -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog #-i ~/.ssh/id_rsa
-#deploy:
-#  provider: script
-#  skip_cleanup: true
-#  script: scp docs/.vuepress/dist travis@47.10152.166:/usr/blog
-#  on:
-#    branch: master
+- chmod 600 ~/.ssh/id_rsa
+- ls docs/.vuepress/dist/*
+- scp -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog
