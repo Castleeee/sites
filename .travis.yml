@@ -19,9 +19,10 @@ notifications:
     on_failure: always
 after_success:
   - chmod 600 ~/.ssh/id_rsa
+  - ls docs/.vuepress/dist/*
   #- ssh  travis@47.101.52.166 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa
   #- scp -i ~/.ssh/id_rsa -r docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog #-i ~/.ssh/id_rsa
-  - scp -v -r docs/.vuepress/dist travis@47.101.52.166:/usr/blog #-i ~/.ssh/id_rsa
+  - scp -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog #-i ~/.ssh/id_rsa
 #deploy:
 #  provider: script
 #  skip_cleanup: true
