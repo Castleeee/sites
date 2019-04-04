@@ -20,7 +20,7 @@ notifications:
 after_success:
   - chmod 600 ~/.ssh/id_rsa
   - ssh  travis@47.101.52.166 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa
-  - scp -r -i ~/.ssh/id_rsa docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog
+  - scp  -i ~/.ssh/id_rsa -r docs/.vuepress/dist/ travis@47.101.52.166:/usr/blog
 #deploy:
 #  provider: script
 #  skip_cleanup: true
