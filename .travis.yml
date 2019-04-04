@@ -7,8 +7,7 @@ branchs:
 before_install:
 - openssl aes-256-cbc -K $encrypted_39d39f4899b9_key -iv $encrypted_39d39f4899b9_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host 47.101.52.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- chmod -R 600 ~/.ssh/id_rsa
 script:
 - npm run docs:build
 notifications:
@@ -18,6 +17,6 @@ notifications:
     on_success: always
     on_failure: always
 after_success:
-- chmod 600 ~/.ssh/id_rsa
-- ls docs/.vuepress/dist/*
+- chmod -R 600 ~/.ssh/id_rsa
+- cat ~/.ssh/id_rsa
 - scp -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog
