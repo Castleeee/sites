@@ -104,7 +104,7 @@ after_success:
 - ls docs/.vuepress/dist
 
 ```
-把这个复制到你的yyy里，过几分钟（监听有延迟）刷新travisCI那个页面应该就出日志了，最后应该给passing了就可以了。
+把这个复制到你的`.travis.yml`里，过几分钟（监听有延迟）刷新travisCI那个页面应该就出日志了，最后应该给passing了就可以了。
 <div align=center ><img src="./static/125C7BB7-A457-4DA1-877C-9932BB4BA520.jpeg" style="height: 300px"/></div> 
 
 现在我们已经可以提交到git之后自己build了，但是我们需要上传到自己服务器。前面可能很好做，下面会有坑。
