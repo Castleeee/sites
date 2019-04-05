@@ -340,19 +340,34 @@ ssh命令别忘了删掉，我在做的时候先ssh然后scp一块用发现scp�
 <div align=center ><img src="./static/QQ20190405-0.png" style="height: 150px"/></div> 
 
 遇到这种情况就再重新生成密钥对。
+
 :::warning 
 nginx读取文件夹内的静态文件，如果该文件夹被删除，然后重新上传了一个同名文件夹，有时会报403，最好不要动。
 <br/>替换掉文件夹里的静态文件就可以了。
 :::
+
 ### 奖励
-自动构建真的爽到，写完提交就完事了。不用管环境自己给配好，不用管发布。<br/>
-忙了一下午加一晚上，当然会有奖励啦!
+打开`travis这个工程的页面`，有个小绿标，点一下复制`那个网址`
+
+<div align=center ><img src="./static/屏幕快照 2019-04-05 上午11.01.57.png" style="height: 350px"/></div> 
+
 在你的项目的（不是vuepress的）`README.md`里面第一行最加入
+
 ```markdown
-[![](https://travis-ci.org/Castleeee/sites.svg?branch=master)](https://travis-ci.org/Castleeee/sites)
+[![](那个网址)](travis这个工程的页面地址)
 ```
+
 之后你的repo上会出现一个passing的小绿标
 像这样:
+
+<div align=center ><img src="./static/屏幕快照 2019-04-05 上午10.57.34.png" style="height: 200px"/></div> 
+
+爽到～
+
+
+## GitLabCI
+
+### 有时间再看
 
 ## 参考资料
 - travis-ci的
