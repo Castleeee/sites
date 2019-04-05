@@ -268,7 +268,7 @@ travis
 进入你刚下载的repo里面(现在你的目录应该是～/你的repo)
 
 ```shell
-ravis login
+travis login
 # We need your GitHub login to identify you.
 # This information will not be sent to Travis CI, only to api.github.com.
 # The password will not be displayed.
