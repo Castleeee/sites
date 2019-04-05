@@ -1,0 +1,35 @@
+---
+sidebar: false
+---
+换行:</br>
+图片:
+
+字体：**`加粗灰底`**
+
+     <small>小号字体</small>
+
+颜色：<font color=#00ffff size=72>color=#00ffff</font>
+
+链接：<a href='xxx'>链接</a>
+
+图片：<div align=center ><img src="./static/x.png" style="height: 350px"/></div>
+
+表格：
+
+<div align= center>
+
+|col  |  col|
+|:----|----:|
+|COL  |  col|
+|COL  |  col|
+
+</div>
+
+评论框：
+
+<Valine></Valine>
+
+## 参考资料
+- travis-ci
+    - <a href='xxx'>1</a>
+    - <a href='xxx'>2</a>
