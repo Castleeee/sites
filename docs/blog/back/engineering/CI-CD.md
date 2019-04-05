@@ -29,6 +29,7 @@ travisCI已经完全满足我的需求，对公有仓库免费，私有收费。
 - 注册一个<a href="https://github.com/">Github</a>账号,并使用账号登录<a href='https://travis-ci.org/'>travisCI</a>
 - 通过webstorm在Github创建你的工程
 - 添加文件，让travisCI监听该repo
+
 在这里点击右上角登陆，按照提示注册一个账号，登进来应该是这样的。
 <div align=center ><img src="./static/截图2019-04-04_21-02-03.png" style="height: 250px"/></div> 
 然后进入CircleCI再sing in with Github
@@ -105,9 +106,9 @@ after_success:
 把这个复制到你的yyy里，过几分钟（监听有延迟）刷新travisCI那个页面应该就出日志了，最后应该给passing了就可以了。
 <div align=center ><img src="./static/125C7BB7-A457-4DA1-877C-9932BB4BA520.jpeg" style="height: 300px"/></div> 
 
-
 现在我们已经可以提交到git之后自己build了，但是我们需要上传到自己服务器。前面可能很好做，下面会有坑。
 ### 上传到服务器指定目录
+
 <h3>登陆原理</h3>
 
 mv和cp是在本机上操作文件，scp是用ssh连接远程传输文件，上传必定要登陆，但是在自动化构建过程中不允许交互，
@@ -125,15 +126,234 @@ ssh和scp都需要<a href='https://blog.csdn.net/mmd0308/article/details/7382595
 - 新建用户，改权限
 - 服务器生成公钥和私钥
 - 将公钥添加进`authorized_keys` 中
-- 私钥用`两个特殊字符串`加密放到`reponsity`的`id_rsa.enc`中让travis可以通过保存在网站后台的`两个特殊字符串`拿到私钥
+- 私钥用`两个特殊字符串`加密放到`repository`的`id_rsa.enc`中让travis可以通过保存在网站后台的`两个特殊字符串`拿到私钥
 - 在脚本中测试能不能免密登陆
 - 上传文件
 
 1. 新建用户，修改权限
-```js
-先看
+```shell
+#新建用户
+useradd travis
+#修改密码,按照提示设置密码。
+passwd travis
+#为用户添加添加权限
+vim /etc/sudoers
+#找到#Allow root to run any commands anywhere这一段注释，在下面新增一行：
+
+travis  ALL=(ALL)   ALL
+#切换到travis用户
+su travis
 ```
-2. b
+
+2. 在travis用户下，～目录生成rsa密钥对，passphase留空
+<div align=center ><img src="./static/屏幕快照 2019-04-05 上午9.18.07.png" style="height: 360px"/></div> 
+更改ssh文件夹的权限，.ssh目录设置为700权限，.ssh目录下面的所有文件设置为600权限
+
+```shell
+chmod -R 700 ~/.ssh/
+
+chmod 600 ~/.ssh/*
+
+#看一下改成功了没
+ls -al
+
+ls ~/.ssh/ -al
+
+总用量 28
+drwx------  2 travis travis 4096 4月   4 16:15 .
+drwx------ 11 travis travis 4096 4月   4 16:21 ..
+-rw-------  1 travis travis  412 4月   4 16:12 authorized_keys
+-rw-------  1 travis travis  135 4月   3 18:41 config
+-rw-------  1 travis travis 1679 4月   3 18:28 id_rsa
+-rw-------  1 travis travis  412 4月   3 18:28 id_rsa.pub
+-rw-------  1 travis travis 1372 4月   3 20:11 known_hosts
+
+```
+
+3. 在～/.ssh目录下把公钥添加进信任列表`authorized_keys`里面
+
+```shell
+cd .ssh/
+#将公钥内容输出到authorized_keys中
+cat id_rsa.pub >> authorized_keys
+cat authorized_keys 
+```
+这样我们就能以travis用户身份用私钥登陆服务器了<br/>
+测试一下能否免密登陆
+```shell
+cd ~/.ssh
+
+vim config
+
+#config文件中的内容
+
+Host test
+HostName 你的.服务.器的.地址
+#登陆的用户名
+User travis
+IdentitiesOnly yes
+#登陆使用的密钥
+IdentityFile ~/.ssh/id_rsa
+
+#config文件中的内容结束，下面回到shell
+
+#一定要更该权限
+chmod -R 600 config 
+chmod -R 600 authorized_keys 
+
+#测试
+ssh test
+```
+
+<div align=center ><img src="./static/屏幕快照 2019-04-05 上午9.39.41.png" style="height: 360px"/></div> 
+
+
+接下来我们要把加密的私钥`id_rsa.enc`放到`repository`
+
+4. 安装rvm->ruby->gem->travis客户端工具，真够麻烦的，为了用这个工具必须用gem和ruby
+```
+#安装rvm
+curl -sSL https://get.rvm.io | bash -s stable
+#测试一下
+rvm version
+#rvm 1.29.3 (master) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
+
+#安装ruby，我看的博客上不成功换了root，我的成功了
+rvm install ruby
+#测试一下
+
+ruby --version
+#ruby 2.6.0p0 (2018-12-25 revision 66547) [x86_64-linux]
+
+gem
+#RubyGems is a sophisticated package manager for Ruby.  This is a
+#basic help message containing pointers to more information.
+#
+#  Usage:
+#    gem -h/--help
+#    gem -v/--version
+#    gem comma....(输出太长了不写
+
+#查看gem的源
+gem sources -l
+# *** CURRENT SOURCES ***
+
+
+# 啥也没有，添加一个国内源
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem sources -l
+
+# *** CURRENT SOURCES ***
+# https://rubygems.org/
+
+```
+
+rvm安完了我们来安装和配置travis客户端，客户端走的git服务，不用担心泄露
+```
+# 安装客户端，没权限就用root
+gem install travis
+
+# 完事看一下能用吗
+travis
+# Usage: travis COMMAND ...
+# 
+# Available commands:
+#   accoout....
+```
+
+
+5. 在travis用户下从git拉下你的`repository`，放在～目录下 `git clone xxxx.git`<br/>
+
+进入你刚下载的repo里面(现在你的目录应该是～/你的repo)
+
+```shell
+ravis login
+# We need your GitHub login to identify you.
+# This information will not be sent to Travis CI, only to api.github.com.
+# The password will not be displayed.
+# 
+# Try running with --github-token or --auto if you dont want to enter your password anyway.
+# 
+# Username: 241****18@qq.com
+# Password for 241****18@qq.com: ******
+# Successfully logged in as Ca****le
+
+travis encrypt-file ~/.ssh/id_rsa --add
+
+# 让你填yes你就填，不要乱按以免生成一些奇怪的文件
+
+```
+
+运行完就已经生成好了id_rsa.enc，并且你的`.travis.yml`已经被更改了
+它会自动添上,手动chmod一下，然后把 *自动添加的2* 前面的`\` 去掉，`~\/.ssh/id_rsa -d`->`~/.ssh/id_rsa -d`(不去掉可能会找不到目录等等的奇怪问题)
+```yaml
+...
+
+before_install: 
+- openssl aes-256-cbc -K $encrypted_xxxxxxxx_key -iv $encrypted_xxxxxxxx_iv # 自动添加的1
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d # 自动添加的2
+- chmod -R 600 ~/.ssh/id_rsa # 注意改权限
+
+...
+```
+
+解释下解密命令中 -in 和 -out 参数:
+
+- -in 参数指定待解密的文件，位于仓库的根目录(Travis执行任务时会先把代码拉到Travis自己的服务器上，并进入仓库更目录)
+- -out 参数指定解密后的密钥存放在Travis服务器的~/.ssh/id_rsa，如果你的后面需要的话可以取这个路径，我看到网上有的SSH登陆方式用到了这个文件
+
+<small>-----from掘金listener</small>
+
+<br/>之后把这两个文件添加进git，commit，push。
+:::tip
+git提交信息最好每次都不同，这样travis容易检测会更快构建
+:::
+
+6. 使用<a href='http://www.runoob.com/linux/linux-comm-scp.html'>scp命令</a>免密登陆传输文件。先测试下密钥对能正常使用不<br/>
+构建成功后先使用ssh看能登陆不
+```yaml
+...
+after_success: #构建成功后的动作
+- chmod -R 600 ~/.ssh/id_rsa#权限
+- ssh travis@你的.服务.器的.地址 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa
+...
+```
+等待自动构建一次，这时候ssh应该不会输出任何日志才对，如果要你输入密码，说明密钥没登陆成功
+
+<div align=center ><img src="./static/屏幕快照 2019-04-05 上午10.26.27.png" style="height: 150px"/></div> 
+
+
+如果要求输入密码的话那么你需要重新生成密钥对，重新加密，然后添加到git commit push<br/>
+如果ssh登陆成功了，将ssh替换成scp命令，你可以在本机上先把scp命令写好，确保这条命令能从目录A传送文件到远程目录B，中间输入密码没关系，因为没有私钥。<br/>
+然后将`.travis.yaml`的ssh替换成scp。
+
+```yaml
+...
+after_success: #构建成功后的动作
+- chmod -R 600 ~/.ssh/id_rsa#权限
+- scp -o StrictHostKeyChecking=no -v -r docs/.vuepress/dist/* travis@你的.服务.器的.地址:/你的/博客目录 #一会着重讲解scp命令，先不说
+...
+```
+提交上去试试就可以了。,**千万别忘了加`chmod -R 600 ~/.ssh/id_rsa`**<br/>
+ssh命令别忘了删掉，我在做的时候先ssh然后scp一块用发现scp需要输入密码，ssh不需要。
+
+<div align=center ><img src="./static/QQ20190405-0.png" style="height: 150px"/></div> 
+
+遇到这种情况就再重新生成密钥对。
+:::warning 
+nginx读取文件夹内的静态文件，如果该文件夹被删除，然后重新上传了一个同名文件夹，有时会报403，最好不要动。
+<br/>替换掉文件夹里的静态文件就可以了。
+:::
+### 奖励
+自动构建真的爽到，写完提交就完事了。不用管环境自己给配好，不用管发布。<br/>
+忙了一下午加一晚上，当然会有奖励啦!
+在你的项目的（不是vuepress的）`README.md`里面第一行最加入
+```markdown
+[![](https://travis-ci.org/Castleeee/sites.svg?branch=master)](https://travis-ci.org/Castleeee/sites)
+```
+之后你的repo上会出现一个passing的小绿标
+像这样:
+
 ## 参考资料
 - travis-ci的
   - <a href='https://blog.csdn.net/nahancy/article/details/79059135'>Linux安全之SSH 密钥创建及密钥登录</a>
