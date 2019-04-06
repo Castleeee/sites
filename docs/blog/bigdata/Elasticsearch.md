@@ -1,6 +1,6 @@
 ---
 title: ElasticSearch
-date: 2019/2/10
+date: 2019-2-10
 categories: bigData
 tags:
 - 全文检索引擎

@@ -16,6 +16,7 @@ module.exports = {
           { text: '传送门', link: '/categories/article' }
           ],icon: 'reco-category' },
       { text: 'Tags', link: '/tags/',icon: 'reco-tag'},
+      { text: 'TimeLine', link: '/timeLine/', icon: 'reco-date'},
       { text: 'about me', link: '/about',icon: 'reco-up' },
       { text: '简书', link: 'https://www.jianshu.com/u/04777e91e2ef',icon: 'reco-jianshu' },
       { text: 'GitHub', link: 'https://github.com/Castleeee',icon: 'reco-github' },
