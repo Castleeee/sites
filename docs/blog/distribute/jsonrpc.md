@@ -1,6 +1,6 @@
 ---
 title: RPC
-date: 2019/2/13
+date: 2019-2-13
 categories: Distributed
 tags:
 - RPC
