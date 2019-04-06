@@ -6,7 +6,8 @@ module.exports = {
   base:'/',
   themeConfig: {
 
-    nav: [
+
+  nav: [
       { text: '分类', items: [
         { text: '后端', link: '/categories/backEnd' },
           { text: '前端', link: '/categories/frontEnd' },
@@ -23,13 +24,21 @@ module.exports = {
 
     ],
 
+    keyPage: {
+      keys: ['1118'],
+      color: '#54eaff', // 登录页动画球的颜色
+      lineColor: '#43bdfb' // 登录页动画线的颜色
+    }
+  ,
     sidebar:'auto',
     logo: '/head.png',
     lastUpdated:'Last Updated',
   },
 
 head: [
-    ['link', { rel: 'icon', href: '/logo.ico',type:"image/x-icon" }]
+    ['link', { rel: 'icon', href: '/logo.ico',type:"image/x-icon" }],
+  ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
+
   searchMaxSuggestions:5
 };
