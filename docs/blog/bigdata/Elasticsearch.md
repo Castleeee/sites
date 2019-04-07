@@ -133,7 +133,7 @@ body里面 {"index":{"_index":"test_index"，"_type":"doc"，"_id":"3"}{"usernam
 body里面{"docs":[<br/>
       {"index":"test_index"，<br/>
       "_type":"doc"，<br/>
-      "id":"1"<br/>
+      "id":"1"  
       }，<br/>
       {"index":"test_index"，<br/>
       "type":"doc"，<br/>

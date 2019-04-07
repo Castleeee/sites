@@ -24,12 +24,12 @@ module.exports = {
 
     ],
 
-    keyPage: {
-      keys: ['1118'],
-      color: '#54eaff', // 登录页动画球的颜色
-      lineColor: '#43bdfb' // 登录页动画线的颜
-    }
-  ,
+  //   keyPage: {
+  //     keys: ['1118'],
+  //     color: '#54eaff', // 登录页动画球的颜色
+  //     lineColor: '#43bdfb' // 登录页动画线的颜
+  //   }
+  // ,
     sidebar:'auto',
     logo: '/head.png',
     lastUpdated:'Last Updated',
