@@ -1,6 +1,8 @@
 ---
 title: Scrapy
 date: 2018-1-13 14:40:45
+prev: ./基础爬虫.md
+next: false
 categories: backEnd
 tags:
 - python

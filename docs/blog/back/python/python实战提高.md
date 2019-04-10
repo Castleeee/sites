@@ -1,6 +1,8 @@
 ---
 title: python实战提高
 date: 2018-1-1 20:38:45
+prev: ./python进阶.md
+next: false
 categories: backEnd
 tags:
 - python

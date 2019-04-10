@@ -1,6 +1,8 @@
 ---
 title: python进阶
 date: 2018-12-28 23:39:45
+prev: false
+next: ./python实战提高.md
 categories: backEnd
 tags:
 - 语言进阶
