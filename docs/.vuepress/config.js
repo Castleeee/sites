@@ -31,12 +31,12 @@ module.exports = {
   //   }
   // ,
     sidebar:'auto',
-    logo: '/head.png',
+    logo: '/head3.png',
     lastUpdated:'Last Updated',
   },
 
 head: [
-    ['link', { rel: 'icon', href: '/logo.ico',type:"image/x-icon" }],
+    ['link', { rel: 'icon', href: '/logo1.ico',type:"image/x-icon" }],
   ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
 
