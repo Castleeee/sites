@@ -1,6 +1,8 @@
 ---
 title: C基础
 date: 2019-2-16 19:24:45
+prev: false
+next: ./Cpp.md
 categories: backEnd
 tags:
 - 语言基础

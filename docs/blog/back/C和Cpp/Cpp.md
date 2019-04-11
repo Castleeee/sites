@@ -1,6 +1,8 @@
 ---
 title: C++基础
 date: 2019-3-22 17:19:47
+prev: ./C.md
+next: ./数据结构1.md
 categories: backEnd
 tags:
 - 后端
