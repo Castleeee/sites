@@ -32,3 +32,16 @@
 - travis-ci
     - <a href='xxx'>1</a>
     - <a href='xxx'>2</a>
+
+图片并列
+<div align=center >
+
+<table border="0">
+  <tr>
+    <th><img src="./static/index.png" style="height: 250px;"/></th>
+    <th><img src="./static/index2.png" style="height: 250px;"/></th>
+  </tr>
+
+</table>
+
+</div>
