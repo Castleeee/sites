@@ -16,20 +16,14 @@ VUX 适配手机端
 :::
 <!-- more -->
 ## iview
-管他3 7 21 直接vue add iview然后自己就安好了，美滋滋。  
+直接vue add iview然后自己就安好了，美滋滋。  
 
 
 
 ## iview admin
-啊啊
-## VUX
-### 安装
-vux需要配置一堆东西，但是本着不求甚解的原则在github上找到了一个<a href="https://github.com/hookszhang/vue-cli-plugin-vux">插件</a>（脚本？）直接命令行<br/>`vue add vux`自动配好.不过有几个问题要注意下
-- 建议新项目直接安装，issue里面说老项目会把原来的配置都干掉（淦）。
-- 如果TypeScript会出错js不会，我已经提交了issue。
 
-## 使用
-鸽了
+## VUX
+直接vue add vux然后自己就安好了，美滋滋。  
 
 ## cordova打包vue
 需要安卓SDK环境，顺带就安了个Android Studio+SDK+Gradle，java东西真的多（虽然我还没开始研究。<br/>

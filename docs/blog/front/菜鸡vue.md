@@ -31,7 +31,7 @@ cnpm -g cnpm 升级cnpm<br/>
 - npm install -g @vue/cli&nbsp;&nbsp;&nbsp;&nbsp;//全局安装 vue/cli3<br/>
 - vue create hello-world  项目名，最后三个选项选no不启用严格模式<br/>
 - cnpm install<br/>
-- cnpm run dev<br/>
+- cnpm run serve<br/>
 ### 开始使用VUE webpack训练习得基本结构<br/>
 cd 进目录文件夹，cnpm init 创建了一个node项目生成package.json<br/>
 cnpm i vue vue-router webpack<br/>
@@ -103,7 +103,9 @@ beforeCreate:function(){
 });
 ```
 :::danger 不要使用=>
-官网上说不要使用=>会有奇怪错误
+官网上说不要使用=>会有奇怪错误  
+上面写得有点乱，稍微有点前端基础了之后直接去看vue搭建helloworld新建一个脚手架来玩，转向vuecli3  
+下面看看组件再说
 :::
 
 <h4>实例和标签属性去看文档吧都找得到</h4>
