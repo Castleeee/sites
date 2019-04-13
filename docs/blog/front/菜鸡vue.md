@@ -28,9 +28,8 @@ cnpm update#升级所有模块<br/>
 cnpm  run dev #独立运行前端项目<br/>
 cnpm -g cnpm 升级cnpm<br/>
 ### 安装vue脚手架
-- cnpm install vue-cli -g&nbsp;&nbsp;&nbsp;&nbsp;//全局安装 vue-cli<br/>
-- cd 进文件夹<br/>
-- vue init webpack  项目名，最后三个选项选no不启用严格模式<br/>
+- npm install -g @vue/cli&nbsp;&nbsp;&nbsp;&nbsp;//全局安装 vue/cli3<br/>
+- vue create hello-world  项目名，最后三个选项选no不启用严格模式<br/>
 - cnpm install<br/>
 - cnpm run dev<br/>
 ### 开始使用VUE webpack训练习得基本结构<br/>

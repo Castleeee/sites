@@ -11,11 +11,15 @@ tags:
 ---
 
 :::tip 前端UI套件
-VUX 适配手机端
+VUX 适配手机端  
+可以先看上一篇搭建helloworld
 :::
 <!-- more -->
 ## iview
-嗷嗷
+管他3 7 21 直接vue add iview然后自己就安好了，美滋滋。  
+
+
+
 ## iview admin
 啊啊
 ## VUX
