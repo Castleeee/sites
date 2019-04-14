@@ -9,7 +9,7 @@
     props: ['path', 'name'],
     methods: {
       getbook: function () {
-        var IpAddr = document.location.hostname
+        var IpAddr = window.document.location.hostname
         console.log(IpAddr + this.path)
         return 'http://'+ IpAddr+ ":8888" + this.path
       }
