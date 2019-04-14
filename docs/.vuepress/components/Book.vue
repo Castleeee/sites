@@ -9,14 +9,15 @@
     props: ['path', 'name'],
     mounted: function () {
       this.$nextTick(function () {
-        return window.document.location.hostname
+        this.IpAddr = window.document.location.hostname
+
       })
     },
     methods: {
       getbook: function () {
-        var IpAddr = this.$nextTick
+
         //console.log(IpAddr + this.path)
-        return 'http://'+ IpAddr+ ":8888" + this.path
+        return 'http://'+ this.IpAddr+ ":8888" + this.path
       }
     }
   }
