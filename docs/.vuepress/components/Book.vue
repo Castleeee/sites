@@ -7,11 +7,8 @@
   export default {
     name: 'Book',
     props: ['path', 'name'],
-    mounted: function () {
-      this.$nextTick(function () {
+    beforeMount: function () {
         this.IpAddr = window.document.location.hostname
-
-      })
     },
     data(){
       return{
