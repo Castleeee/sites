@@ -13,6 +13,11 @@
 
       })
     },
+    data(){
+      return{
+        IpAddr:''
+      }
+    },
     methods: {
       getbook: function () {
 
