@@ -53,4 +53,39 @@ sidebar: false
 - <a href="https://gocn.vip/question/1999">go微服务实战案例总汇</a><br/>
 
 
+<div align="center"><h1>书和资源</h1></div>  
+
+<h2>python</h2><br/>
+    <Book name='' path='' ></Book>
+    <Book name='' path='' ></Book>
+<h2>java</h2><br/>
+    <Book name='java进阶' path='/java/java%E8%BF%9B%E9%98%B6.pdf' ></Book>
+    <Book name='阿里巴巴java开发手册' path='/java/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C.pdf' ></Book>
+<h2>mysql</h2><br/>
+    <Book name='MySQL基础知识' path='/back/MySQL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.pdf' ></Book>
+    <Book name='mysql必知必会' path='/back/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A.pdf' ></Book>
+    <Book name='' path='' ></Book>
+<h2>linux</h2><br/>
+    <Book name='鸟哥linux私房菜' path='/back/%E9%B8%9F%E5%93%A5linux%E7%A7%81%E6%88%BF%E8%8F%9C.pdf' ></Book>
+<h2>C/C++</h2><br/>
+    <Book name='C Primer plus' path='/back/C%20Primer%20plus.pdf' ></Book>
+<h2>大数据</h2><br/>
+Null;
+<h2>机器学习</h2><br/>
+    <Book name='南大周志华机器学习' path='' ></Book> 
+    <Book name='解析卷积神经网络-魏秀参' path='' ></Book>
+    <Book name='邱锡鹏-神经网络与深度学习' path='' ></Book>
+<h2>查询手册</h2><br/> 
+    <Book name='tensorflow手册' path='/handbook/tensorflow%E6%89%8B%E5%86%8C.pdf' ></Book>
+    <Book name='selenium手册' path='/handbook/selenium%E6%89%8B%E5%86%8C.pdf' ></Book>
+    <Book name='pythonC API手册' path='/handbook/pythonC%20API%E6%89%8B%E5%86%8C.pdf' ></Book>
+<h2>论文</h2><br/>
+    <Book name='Google map reduce' path='' ></Book>
+    <Book name='hadoop异构集群调度策略' path='' ></Book>
+<h2>其他</h2><br/>
+    <Book name='数学建模基础' path='/Other/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80.pdf' ></Book>
+    <Book name='网络协议大全' path='/Other/%E7%BD%91%E7%BB%9C%E5%A4%A7%E5%85%A8.pdf' ></Book>
+    <Book name='阿里巴巴中台战略' path='/Other/%E9%98%BF%E9%87%8C%E4%B8%AD%E5%8F%B0%E6%88%98%E7%95%A5.pdf' ></Book>
+    <Book name='阿里双十一' path='/Other/%E9%98%BF%E9%87%8C%E5%8F%8C%E5%8D%81%E4%B8%80.pdf' ></Book>
+ 
 

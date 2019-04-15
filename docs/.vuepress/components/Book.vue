@@ -1,5 +1,5 @@
 <template>
-  <div id="books"><a :href='getbook()'>{{ name }}</a></div>
+  <div id="books"><a :href='getbook()'>{{ name }}</a><br/></div>
 
 </template>
 

@@ -14,16 +14,16 @@ module.exports = {
           { text: '大数据', link: '/categories/bigData' },
           { text: '分布式', link: '/categories/Distributed' },
           { text: '日记', link: '/categories/life' },
-          { text: '传送门', link: '/categories/article' }
           ],icon: 'reco-category' },
       { text: 'Tags', link: '/tags/',icon: 'reco-tag'},
       { text: 'TimeLine', link: '/timeLine/', icon: 'reco-date'},
-      { text: 'about me', link: '/about',icon: 'reco-up' },
+      { text: 'Library', link: '/categories/article',icon: 'reco-up'},
+      { text: 'about me', link: '/about',icon: 'reco-account' },
       { text: '简书', link: 'https://www.jianshu.com/u/04777e91e2ef',icon: 'reco-jianshu' },
       { text: 'GitHub', link: 'https://github.com/Castleeee',icon: 'reco-github' },
 
     ],
-
+  // //是否使用密码
   //   keyPage: {
   //     keys: ['1118'],
   //     color: '#54eaff', // 登录页动画球的颜色
