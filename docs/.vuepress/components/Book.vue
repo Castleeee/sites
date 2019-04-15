@@ -7,7 +7,7 @@
   export default {
     name: 'Book',
     props: ['path', 'name'],
-    beforeMount: function () {
+    mounted: function () {
         this.IpAddr = window.document.location.hostname
     },
     beforeUpdate: function () {
@@ -15,7 +15,7 @@
     },
     data(){
       return{
-        IpAddr:''
+        IpAddr:'47.101.52.166'
       }
     },
     methods: {
