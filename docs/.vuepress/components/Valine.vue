@@ -11,7 +11,6 @@
       if (typeof window !== 'undefined') {
         this.window = window
         window.AV = require('leancloud-storage')
-
       }
 
       new Valine({

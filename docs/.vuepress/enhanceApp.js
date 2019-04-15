@@ -6,8 +6,10 @@ export default
   router, // 当前应用的路由实例
   siteData // 站点元数据
   }) => {
+
   require('video.js/dist/video-js.css')
   require('vue-video-player/src/custom-theme.css')
+
   Vue.use(VideoPlayer)
 
 }

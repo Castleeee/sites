@@ -25,7 +25,7 @@
     name: "Video",
     data () {
       return {
-        IpAddr:'47.101.52.166',
+        IpAddr:"",
         dwidth:1216,
         playerOptions: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
@@ -41,7 +41,7 @@
             type: "video/ogg",
             type: "video/webm",
             type: "video/mp4",
-            src:'http://'+ this.IpAddr+ ":8888" +this.vsrc//地址（必填）,
+            src:'http://'+"47.101.52.166"+ ":8888" +this.vsrc//地址（必填）,
 
           }],
           poster: "poster.jpg", //你的封面地址
@@ -60,11 +60,11 @@
       videoPlayer
     },
     mounted: function () {
-      this.IpAddr = window.document.location.hostname
+      //this.IpAddr = window.document.location.hostname
       this.dwidth=window.document.documentElement.clientWidth
     },
     beforeUpdate: function () {
-      this.IpAddr = window.document.location.hostname
+      //this.IpAddr = window.document.location.hostname
       this.dwidth=window.document.documentElement.clientWidth
     },
     methods: {
