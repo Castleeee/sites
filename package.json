@@ -17,6 +17,7 @@
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.6.8",
+    "vue-video-player": "^5.0.2",
     "vuepress": "^0.14.10",
     "vuepress-theme-reco": "^0.3.9",
     "vuex": "^3.0.1"
