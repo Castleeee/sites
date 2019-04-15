@@ -10,6 +10,9 @@
     beforeMount: function () {
         this.IpAddr = window.document.location.hostname
     },
+    beforeUpdate: function () {
+      this.IpAddr = window.document.location.hostname
+    },
     data(){
       return{
         IpAddr:''
