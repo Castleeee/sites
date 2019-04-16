@@ -56,15 +56,15 @@ sidebar: false
 <div align="center"><h1>书和资源</h1></div>  
 
 <h2>python</h2><br/>
-    <Book name='' path='' ></Book>
-    <Book name='' path='' ></Book>
+    <Book name='改善python的91个建议' path='/python/%E6%94%B9%E5%96%84python%E7%9A%8491%E4%B8%AA%E5%BB%BA%E8%AE%AE.pdf' ></Book>
+    <Book name='数据处理三剑客' path='/python/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2.pdf' ></Book>
 <h2>java</h2><br/>
     <Book name='java进阶' path='/java/java%E8%BF%9B%E9%98%B6.pdf' ></Book>
     <Book name='阿里巴巴java开发手册' path='/java/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C.pdf' ></Book>
 <h2>mysql</h2><br/>
     <Book name='MySQL基础知识' path='/back/MySQL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.pdf' ></Book>
     <Book name='mysql必知必会' path='/back/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A.pdf' ></Book>
-    <Book name='' path='' ></Book>
+    <Book name='高性能Mysql' path='/back/%E9%AB%98%E6%80%A7%E8%83%BDmysql.pdf' ></Book>
 <h2>linux</h2><br/>
     <Book name='鸟哥linux私房菜' path='/back/%E9%B8%9F%E5%93%A5linux%E7%A7%81%E6%88%BF%E8%8F%9C.pdf' ></Book>
 <h2>C/C++</h2><br/>
@@ -72,16 +72,16 @@ sidebar: false
 <h2>大数据</h2><br/>
 Null;
 <h2>机器学习</h2><br/>
-    <Book name='南大周志华机器学习' path='' ></Book> 
-    <Book name='解析卷积神经网络-魏秀参' path='' ></Book>
-    <Book name='邱锡鹏-神经网络与深度学习' path='' ></Book>
+    <Book name='南大周志华机器学习' path='/python/MechineLearning/%E5%8D%97%E5%A4%A7%E5%91%A8%E5%BF%97%E5%8D%8E-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.pdf' ></Book> 
+    <Book name='解析卷积神经网络-魏秀参' path='/python/MechineLearning/%E8%A7%A3%E6%9E%90%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E9%AD%8F%E7%A7%80%E5%8F%82.pdf' ></Book>
+    <Book name='邱锡鹏-神经网络与深度学习' path='/python/MechineLearning/%E9%82%B1%E9%94%A1%E9%B9%8F-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0.pdf' ></Book>
 <h2>查询手册</h2><br/> 
     <Book name='tensorflow手册' path='/handbook/tensorflow%E6%89%8B%E5%86%8C.pdf' ></Book>
     <Book name='selenium手册' path='/handbook/selenium%E6%89%8B%E5%86%8C.pdf' ></Book>
     <Book name='pythonC API手册' path='/handbook/pythonC%20API%E6%89%8B%E5%86%8C.pdf' ></Book>
 <h2>论文</h2><br/>
-    <Book name='Google map reduce' path='' ></Book>
-    <Book name='hadoop异构集群调度策略' path='' ></Book>
+    <Book name='Google map reduce' path='/paper/mapreduce-google%E8%AE%BA%E6%96%87.pdf' ></Book>
+    <Book name='hadoop异构集群调度策略' path='/paper/%E5%BC%82%E6%9E%84hadoop%E9%9B%86%E7%BE%A4%E4%B8%8B%E7%9A%84%E8%B4%9F%E8%BD%BD%E8%87%AA%E9%80%82%E5%BA%94%E5%8F%8D%E9%A6%88%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5.pdf' ></Book>
 <h2>其他</h2><br/>
     <Book name='数学建模基础' path='/Other/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80.pdf' ></Book>
     <Book name='网络协议大全' path='/Other/%E7%BD%91%E7%BB%9C%E5%A4%A7%E5%85%A8.pdf' ></Book>
