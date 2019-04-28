@@ -88,4 +88,100 @@ Null;
     <Book name='阿里巴巴中台战略' path='/Other/%E9%98%BF%E9%87%8C%E4%B8%AD%E5%8F%B0%E6%88%98%E7%95%A5.pdf' ></Book>
     <Book name='阿里双十一' path='/Other/%E9%98%BF%E9%87%8C%E5%8F%8C%E5%8D%81%E4%B8%80.pdf' ></Book>
  
+ 
+ 这些书大部分不是工具书，基本上是有一定代码量之后再去看比较好，很多也是经典，不用太着急读
+<div align="left">
 
+ 科学哲学和管理哲学
+ 
+- 程序开发心理学（The Psychology of Computer Programming ： Silver Anniversary Edition）
+- 系统化思维导论（An Introduction to Systems Thinking， Silver Anniversary Edition）
+- 系统设计的一般原理（ General Principles of Systems Design）
+- 质量·软件·管理（第1卷）—— 系统思维（Quality Software Management：Systems Thinking）
+- 成为技术领导者——解决问题的有机方法(Becoming A Technical Leader：An Organic Problem-Solving Approach)
+- 你的灯亮着吗？－发现问题的真正所在（ Are Your Lights On? How to Figure Out What the Problem Really Is）
+- 程序员修炼之道（The Pragmatic Programmer）
+- 与熊共舞：软件项目风险管理 (Waltzing With Bears： Managing Risk on Software Projects)
+- 第五项修炼： 学习型组织的艺术与实务( The Fifth Discipline)
+
+计算机科学基础
+
+- 计算机程序设计艺术(The Art of Computer Programming)
+- 计算机操作系统 <B style="color:red;">√</B>
+- 算法导论
+- 数据结构与算法分析 —— C语言描述（原书第2版）  <B style="color:red;">√</B>
+- 信息论基础（美）Thomas M.Cover，（美）Joy A.Thomas著；阮吉寿，张华译
+- 离散数学及其应用（原书第四版）(Discrete Mathematics and Its Applications，Fourth Edition)
+- 计算机网络（第4版）(Computer Networks) <B style="color:red;">√</B>
+- 数据库系统导论（第7版）(An Introduction to Database Systems(Seventh Edition)) <B style="color:red;">√</B>
+
+软件工程思想
+
+- 软件工程导论
+- 面向对象软件工程
+- 软件项目管理(原书第5版) 平装 – 休斯(Bob Hughes) (作者), 考特莱尔(Mike Cotterell) 
+- 人件（Peopleware ： Productive Projects and Teams， 2nd Ed.）
+- 人件集 —— 人性化的软件开发( The Peopleware Papers： Notes on the Human Side of Software)
+- 人月神话（The Mythical Man-Month）
+- 软件工程 — 实践者的研究方法（原书第5版）（Software Engineering： A Practitioner's Approach， Fifth Edition）
+- 敏捷软件开发-原则、模式与实践(Agile Software Development： Principles， Patterns， and Practices)
+- 规划极限编程( Planning Extreme Programming)
+- RUP导论（原书第3版）(The Rational Unified Process：An Introduction，Third Edition )
+- 统一软件开发过程(The Unified Software Development Process)
+
+软件需求
+
+- 探索需求－设计前的质量（ Exploring Requirements： Quality Before Design）
+- 编写有效用例（Writing Effective Use Cases ）
+
+软件设计和建模
+
+- 面向对象方法原理与实践
+- 面向对象软件构造（英文版.第2版）(Object-Oriented Software Construction，Second Edition )
+- 面向对象分析与设计（原书第2版）(Object-Oriented Analysis and Design with Applications,2E )
+- UML面向对象设计基础（Fundamentals of Object-Oriented Design in UML）
+- UML精粹 —— 标准对象建模语言简明指南（第2版）（ UML Distilled： A Brief Guide to the Standard Object Modeling Language (2nd Edition)）
+- UML和模式应用（原书第2版）（Applying UML and Patterns： An Introduction to Object-Oriented Analysis and Design and the Unified Process， Second Edition ）
+- 设计模式精解(Design Patterns Explained)
+- 设计模式：可复用面向对象软件的基础（ Design Patterns：Elements of Reusable Object-Oriented software）
+- 面向模式的软件体系结构 卷1：模式系统（ Pattern-Oriented Software Architecture， Volume 1： A System of Patterns）
+- 软件设计的艺术(Bringing Design to Software)
+- 领域驱动设计
+- 大型分布式网站架构设计与实践
+- 渐近式结构设计
+
+程序设计这个因人而异，术业有专攻不过java四大名著还是要看的  
+（人生苦短我选python,要不是为了hadoop我才不看呢
+
+- 编程珠矶（Programming Pearls Second Edition ）
+
+- 数据挖掘基础 <B style="color:red;">√</B>
+- 周志华机器学习西瓜书
+- 矩阵分析 Roger Horn
+- Convex Optimization 作者Boyd
+- Numerical Optimization 第二版，Nocedal著
+- Mining of Massive Datasets(大数据)作者Anand Rajaraman[3]、Jeffrey DavidUllman，Anand是Stanford的PhD
+- AI, Modern Approach 2nd--Peter Norvig
+- Foundations of Statistical Natural Language Processing自然语言处理领域公认经典
+- Information Theory：Inference and Learning Algorithms
+- Managing Gigabytes(深入搜索引擎)
+- Statistical Learning Theory和The Nature ofStatistical Learning Theory--Vapnik的大作这两本书都比较深入适合有一定基础的读者。
+- Java多线程编程
+- Java 编程思想：第3版( Thinking in Java， Third Edition)
+- Effective Java
+- java核心技术
+- java编程语言  JamesGosling
+
+软件维护和重构
+
+- 重构－改善既有代码的设计（Refactoring： Improving the Design of Existing Code）
+
+
+领域专题（网络、平台、数据库相关）
+
+- TCP/IP详解（ TCP/IP Illustracted）
+- 数据访问模式 —— 面向对象应用中的数据库交互
+- mysql必知必会
+- mysql基础 <B style="color:red;">√</B>
+
+</div>
