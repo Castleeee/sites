@@ -47,7 +47,16 @@
 </div>
 
 折叠：
+
+```py
+
+```
+
 <details>
   <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More Results</I></B></summary>
-This text will be hidden if your browser supports it.
+
+```json
+
+```
+
 </details>
