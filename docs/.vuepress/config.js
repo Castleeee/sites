@@ -3,7 +3,7 @@ module.exports = {
   port:9999,
   title: '会走路的三百块',
   description: '年轻人的博客',
-  base:'/',
+  base:'/bingo/',
   themeConfig: {
 
 
