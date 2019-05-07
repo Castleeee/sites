@@ -13,9 +13,6 @@ before_install:
 - chmod -R 600 ~/.ssh/id_rsa
 script:
 - npm run docs:build
-env:
-  global:
-  - GH_REF: github.com/Castleeee/bingo.git
 notifications:
   email:
     recipients:
@@ -31,7 +28,7 @@ deploy:
   github_token: ${page_token} # provide the encrypted token
   on:
     branch: master
-  repo: Castleeee/bingo # optional, defaults to current repo
+  repo: Castleeee/Castleeee.github.io # optional, defaults to current repo
   local_dir: docs/.vuepress/dist # optional, defaults to the current directory
   target_branch: master # optional, defaults to "gh-pages"
 
