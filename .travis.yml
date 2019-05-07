@@ -13,6 +13,9 @@ before_install:
 - chmod -R 600 ~/.ssh/id_rsa
 script:
 - npm run docs:build
+env:
+  global:
+  - GH_REF: github.com/Castleeee/bingo.git
 notifications:
   email:
     recipients:
@@ -22,3 +25,15 @@ notifications:
 after_success:
 - chmod -R 600 ~/.ssh/id_rsa
 - scp -o StrictHostKeyChecking=no -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog
+after_script:
+- git clone https://${GH_REF} .deploy_git
+- cd .deploy_git
+- git checkout master
+- cd ../
+- mv .deploy_git/.git/ ./public/
+- cd ./public
+- git config user.name "castle"
+- git config user.email "2411708618@qq.com"
+- git add .
+- git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
+- git push --force --quiet "https://${page_token}@${GH_REF}" master:master
