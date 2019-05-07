@@ -110,6 +110,7 @@ beforeCreate:function(){
 
 <h4>实例和标签属性去看文档吧都找得到</h4>
 
-## 组件
+## 资源
+<a href='https://github.com/rumengkai/awesome-vue'>awesome-vue</a>
 
 <Valine></Valine>

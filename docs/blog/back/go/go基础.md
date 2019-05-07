@@ -602,6 +602,8 @@ go最小化了并发的开销，只有goroutine，一个轻量级的线程+协�
 ### select
 ### 锁
 
+## 资源
+<a href='https://github.com/avelino/awesome-go'>awesome-go</a>
 <a href="">PPT</a>挺全的，我直接贴一下吧
 
 
