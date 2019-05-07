@@ -16,5 +16,5 @@ orange：
 - <a href='https://www.youtube.com/watch?v=HXjnDIgGDuI&list=PLmNPvQr9Tf-ZSDLwOzxpvY-HrE0yv-8Fy&index=1'>油管原版</a>
 <br/>
 
-Glueviz:(这个目前不好找，有时间可以翻译一下文档搞个大新闻🤔，也有可能是我的信息渠道不对没找到
+Glueviz:(这个目前中文的不好找，有时间可以翻译一下文档搞个大新闻🤔，也有可能是我的信息渠道不对没找到
 - <a href='http://docs.glueviz.org/en/stable/index.html'>文档</a>
