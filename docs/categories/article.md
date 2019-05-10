@@ -92,7 +92,7 @@ Null;
  这些书大部分不是工具书，基本上是有一定代码量之后再去看比较好，很多也是经典，不用太着急读
 <div align="left">
 
- **科学哲学和管理哲学**
+## 科学哲学和管理哲学
  
 - 程序开发心理学（The Psychology of Computer Programming ： Silver Anniversary Edition）
 - 系统化思维导论（An Introduction to Systems Thinking， Silver Anniversary Edition）
@@ -104,7 +104,7 @@ Null;
 - 与熊共舞：软件项目风险管理 (Waltzing With Bears： Managing Risk on Software Projects)
 - 第五项修炼： 学习型组织的艺术与实务( The Fifth Discipline)
 
-**计算机科学基础**
+## 计算机科学基础
 
 - 计算机程序设计艺术(The Art of Computer Programming)
 - 计算机操作系统 <B style="color:red;">√</B>
@@ -115,7 +115,7 @@ Null;
 - 计算机网络（第4版）(Computer Networks) <B style="color:red;">√</B>
 - 数据库系统导论（第7版）(An Introduction to Database Systems(Seventh Edition)) <B style="color:red;">√</B>
 
-**软件工程思想**
+## 软件工程思想
 
 - 软件工程导论
 - 面向对象软件工程
@@ -134,7 +134,7 @@ Null;
 - 探索需求－设计前的质量（ Exploring Requirements： Quality Before Design）
 - 编写有效用例（Writing Effective Use Cases ）
 
-**软件设计和建模**
+## 软件设计和建模
 
 - 面向对象方法原理与实践
 - 面向对象软件构造（英文版.第2版）(Object-Oriented Software Construction，Second Edition )
@@ -150,8 +150,8 @@ Null;
 - 大型分布式网站架构设计与实践
 - 渐近式结构设计
 
-**程序设计** 这个因人而异，术业有专攻不过java四大名著还是要看的  
-（人生苦短我选python,要不是为了hadoop我才不看呢
+## 程序设计 
+这个因人而异，术业有专攻不过java四大名著还是要看的.人生苦短,我选python,要不是为了hadoop我才不看呢
 
 - 编程珠矶（Programming Pearls Second Edition ）
 
@@ -172,12 +172,12 @@ Null;
 - java核心技术
 - java编程语言  JamesGosling
 
-**软件维护和重构**
+## 软件维护和重构
 
 - 重构－改善既有代码的设计（Refactoring： Improving the Design of Existing Code）
 
 
-**领域专题（网络、平台、数据库相关）**
+## 领域专题（网络、平台、数据库相关）
 
 - TCP/IP详解（ TCP/IP Illustracted）
 - 数据访问模式 —— 面向对象应用中的数据库交互
