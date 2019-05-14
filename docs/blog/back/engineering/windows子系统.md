@@ -19,7 +19,7 @@ su passwd
 ## 配置ssh
 设置完用户名和密码之后我们来设置ssh，windows的cmd很难用而且还有不停的提示音耳朵简直爆炸  
 设置ssh之后就可以使用外部的Termius，xshell，putty连接啦。  
-- 顺手更新下阿里云软件源  
+- **顺手更新下阿里云软件源**  
 备份
 ```
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -62,14 +62,14 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-- 重装自带的ssh  
+- **重装自带的ssh**  
 自带的可能不稳定，重新装一下就好了
 
 ```
 sudo apt-get remove openssh-server
 sudo apt-get install openssh-server
 ```
-- 编辑sshd_config文件,允许用户连接  
+- **编辑sshd_config文件,允许用户连接** 
 ```
 sudo vim /etc/ssh/sshd_config
 ```
@@ -77,19 +77,19 @@ sudo vim /etc/ssh/sshd_config
 `PasswordAuthentication yes`允许用户名密码登录  
 `PermitRootLogin yes`允许root登录  
 `PubkeyAuthentication no`不校验公钥
-- 重启ssh服务
+- **重启ssh服务**
 不能用systemctl,因为init进程pid并不是1
 ```
 sudo service ssh restart
 ```
-- 测试一下  
+- **测试一下**  
 cmd输入命令
 ```
 ssh  -o StrictHostKeyChecking=no root@127.0.0.1
 ```
 然后会让你输入密码，能登陆进去就成功了。ssh配置就完了    
 在xshell中和termius中设置好就可以用了🎉
-- 开机启动
+- **开机启动**
 每次开机都要先启动一下Ubuntu才能进行ssh，作为一个懒人，当然要用脚本了。  
 WSL貌似很早就支持后台驻留进程，非常方便，只有一个init和sshd进程占资源也很少  
 root编辑
