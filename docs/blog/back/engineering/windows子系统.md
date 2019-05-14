@@ -146,6 +146,10 @@ Docker无法在win10家庭版运行，使用toolbox可以试试不过我一个su
 <br/>
 密钥和Windows中的密钥匙不互通的，ssh-keygen会生成一个新的存储在WSL的~/.ssh里面。  
 软件使用密钥的时候(git)要注意。
+<br/>
+
+<div align=center ><img src="./static/截图2019-05-14_15-51-38.png" style="height: 550px"/><br/>完成之后</div>
+
 ## 参考
 
 <a href='https://unix.stackexchange.com/questions/229124/how-do-i-run-the-ssh-command-to-set-stricthostkeychecking-no'>ssh登录免验证</a>  
