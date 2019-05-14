@@ -74,8 +74,8 @@ sudo apt-get install openssh-server
 sudo vim /etc/ssh/sshd_config
 ```
 `Port 23`端口最好不要用22，可能和windows冲突  
-`PasswordAuthentication yes`允许用户名密码登录
-`PermitRootLogin yes`允许root登录
+`PasswordAuthentication yes`允许用户名密码登录  
+`PermitRootLogin yes`允许root登录  
 `PubkeyAuthentication no`不校验公钥
 - 重启ssh服务
 不能用systemctl,因为init进程pid并不是1
@@ -103,7 +103,7 @@ sudo vim /etc/init.wsl
 /etc/init.d/ssh $1
 /etc/init.d/supervisor $1
 ```
-之后我们就可以通过sudo /etc/init.wsl [start|stop|restart]停止启动我们的服务，但是还需要root密码  
+之后我们就可以通过`sudo /etc/init.wsl [start|stop|restart]`停止启动我们的服务，但是还需要root密码  
 编辑`sudo vim /etc/sudoers`添加
 ```
 %sudo ALL=NOPASSWD: /etc/init.wsl
@@ -115,7 +115,8 @@ Set ws = CreateObject("Wscript.Shell")
 ws.run "ubuntu1804 run sudo /etc/init.wsl start", vbhide
 ```
 扔到开机自启文件夹   
-`[C:\Users\你当前的用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup]`里就会开机自启   
+`[C:\Users\你当前的用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup]`  
+里就会开机自启，
 重启开机直接连接试试。
 :::tip
 可以在windows控制面板->程序->更改或关闭windows设置->适用于windows的最小linux子系统  
