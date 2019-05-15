@@ -183,7 +183,7 @@ cd autojump
 需要把`[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh`添加到`~/.zshrc`文件尾。  
 一定要添加到文件尾，不要在中间！之后就可以用 ***j*** 直接跳转了  
 **编辑文件`~/.zshrc`**
-- 添加 export DEFAULT_USER=`whoami`
+- 添加 export DEFAULT_USER="whoami"
 - 添加 export TERM="xterm-256color"
 - 修改 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 - 修改 ZSH_THEME="powerlevel9k/powerlevel9k"
