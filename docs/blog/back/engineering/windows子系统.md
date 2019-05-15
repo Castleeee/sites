@@ -128,22 +128,22 @@ ws.run "ubuntu1804 run sudo /etc/init.wsl start", vbhide
 这是一个好用的shell命令行有很多插件。（确定不是因为好看才装的？  
 ### 安装ZHS和oh my zhs
 ssh连接以后是这样的，但是很丑啊。。。自动补全跳转啥的都不好用。
+<div align=center ><img src="./static/截图2019-05-15_18-24-39.png" style="height: 500px"/></div>
 
-截图2019-05-15_18-24-39.png
 
-ubuntu使用
+**ubuntu使用**
 
 ```
 sudo apt update
 sudo apt install zsh
 chsh -s /bin/zsh
 ```
-centos（也就是阿里云）
+**centos**（也就是阿里云）
 ```
 yum install zsh -y
 chsh -s /bin/zsh
 ```
-然后执行
+**然后执行**
 ```
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
@@ -153,27 +153,28 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 ### 安装插件和主题
 所有的设置都存放在`~/.zshrc`文件里`ZSH_THEME=""`切换你的主题  
 
-ubuntu
+**ubuntu**
 ```
 sudo apt install zsh-theme-powerlevel9k
 ```
-centos
+**centos**
 ```
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 ```
 然后切换`ZSH_THEME="powerlevel9k/powerlevel9k"`  
-插件
+
+**插件**
 
 ```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
-ubuntu安装autojump
+**ubuntu安装autojump**
 ```
 sudo apt-get install autojump
 ```
 需要把`. /usr/share/autojump/autojump.sh`添加到`~/.zshrc`文件尾。  
-centos安装autojump
+**centos安装autojump**
 ```
 git clone git://github.com/joelthelion/autojump.git
 cd autojump
@@ -181,7 +182,7 @@ cd autojump
 ```
 需要把`[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh`添加到`~/.zshrc`文件尾。  
 一定要添加到文件尾，不要在中间！之后就可以用 ***j*** 直接跳转了  
-编辑文件`~/.zshrc`
+**编辑文件`~/.zshrc`**
 - 添加 export DEFAULT_USER=`whoami`
 - 添加 export TERM="xterm-256color"
 - 修改 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
