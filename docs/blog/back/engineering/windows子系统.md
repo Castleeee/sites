@@ -123,6 +123,77 @@ ws.run "ubuntu1804 run sudo /etc/init.wsl start", vbhide
 控制是否启用系统中的该功能，如果不启用就不会开始init进程也不会耗电。
 :::
 
+## OhMyZHS
+
+这是一个好用的shell命令行有很多插件。（确定不是因为好看才装的？  
+### 安装ZHS和oh my zhs
+ssh连接以后是这样的，但是很丑啊。。。自动补全跳转啥的都不好用。
+
+截图2019-05-15_18-24-39.png
+
+ubuntu使用
+
+```
+sudo apt update
+sudo apt install zsh
+chsh -s /bin/zsh
+```
+centos（也就是阿里云）
+```
+yum install zsh -y
+chsh -s /bin/zsh
+```
+然后执行
+```
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+安完之后`ls ~/.oh-my-zsh/themes`可以查看主题，不过最好看的在下面。  
+现在新开一个tab，如果主题没更换，就重启一次，如果还没更换，就是安装失败了
+
+### 安装插件和主题
+所有的设置都存放在`~/.zshrc`文件里`ZSH_THEME=""`切换你的主题  
+
+ubuntu
+```
+sudo apt install zsh-theme-powerlevel9k
+```
+centos
+```
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+```
+然后切换`ZSH_THEME="powerlevel9k/powerlevel9k"`  
+插件
+
+```
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+ubuntu安装autojump
+```
+sudo apt-get install autojump
+```
+需要把`. /usr/share/autojump/autojump.sh`添加到`~/.zshrc`文件尾。  
+centos安装autojump
+```
+git clone git://github.com/joelthelion/autojump.git
+cd autojump
+./install.py
+```
+需要把`[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh`添加到`~/.zshrc`文件尾。  
+一定要添加到文件尾，不要在中间！之后就可以用 ***j*** 直接跳转了  
+编辑文件`~/.zshrc`
+- 添加 export DEFAULT_USER=`whoami`
+- 添加 export TERM="xterm-256color"
+- 修改 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+- 修改 ZSH_THEME="powerlevel9k/powerlevel9k"
+- 最后一行添加 POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
+    - 这个是用来去掉阿里云前面又臭又长的主机名的，留下了用户名。其他的不用动就很帅
+重启或者新开选项卡或`source ~/.zshrc`就有作用了。  
+安完之后敲shell就舒服多了
+<div align=center ><img src="./static/截图2019-05-15_19-07-42.png" style="height: 500px"/></div>
+
+
+
 ## 注意事项
 
 **文件读写**  
