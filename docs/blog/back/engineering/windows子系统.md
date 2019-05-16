@@ -188,7 +188,8 @@ cd autojump
 - 修改 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 - 修改 ZSH_THEME="powerlevel9k/powerlevel9k"
 - 最后一行添加 POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
-    - 这个是用来去掉阿里云前面又臭又长的主机名的，留下了用户名。其他的不用动就很帅
+    - 这个是用来去掉阿里云前面又臭又长的主机名的，留下了用户名。其他的不用动就很帅  
+    <br/>
 重启或者新开选项卡或`source ~/.zshrc`就有作用了。  
 安完之后敲shell就舒服多了
 <div align=center ><img src="./static/截图2019-05-15_19-07-42.png" style="height: 500px"/></div>
