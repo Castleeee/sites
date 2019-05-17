@@ -29,11 +29,14 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 - ctrl+p/n 上一条命令↑/下一条命令↓  
 - ctrl+f/b →后←前移动光标  
 - ctrl+h/d  backspace删除前面的字符/del删除后面的字符
-- **ctrl+u 删除光标前面的**
+- **ctrl+u/K 删除光标前/后面的**
 - **ctrl+a 命令头部**
 - **ctrl+e 命令尾部**  
 - **ctrl+l 清屏**
-
+- Ctrl+c 终止当前执行程序
+- Ctrl+d 相当于exit命令，退出当前shell
+- Ctrl+s 挂起当前shell，你可以理解为冻结
+- Ctrl+q 解冻挂起的shell，解不开就重新连接打开一个终端，reboot linux 或 kill 相关进程。
 <h3>命令</h3>
 
 - history历史
@@ -43,7 +46,7 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 - pwd查看当前目录  
 - 直接用-可以在两个相邻的目录切换
 - 安了autojump之后可使用j跳转。 
-
+- tree树结构贼好用(apt-get install tree)
 
 
 </details>
@@ -115,6 +118,31 @@ linux文件系统是树状结构，每个磁盘，文件，文件夹，驱动全
 
 </details>
 
+## 文件
+
+### 类型
+
+<div align= center>
+
+默认的终端颜色，更改过的终端可能不一样
+
+|颜色|类型|
+|:------:|:----:|
+|白色|普通文件|
+|蓝色|目录文件|
+|绿色|可执行文|
+|红色|压缩文件|
+|浅蓝色|链接文件(软硬连接)|
+|黄色|设备文件{块(硬盘)，字符(键盘)，管道}|
+|灰色|其他文件|
+|.开头|隐藏文件目录，ls/tree的时候需要 -a|
+
+
+</div>
+
+ls -al查看所有文件(-a)详细信息(-l)
+
+
 ## 用户
 ### sudo和su
 使用su +用户名字可以切换用户，不填就是root用户。  
@@ -125,6 +153,7 @@ sudo是使用root的身份运行，让你输入当前用户的密码，sudo 默�
 `Defaults env_reset`改为`Defaults env_reset,timestamp_timeout=[new-value]`控制在几分钟内不用输密码
 - 0每次输入都要输
 - -1会永久维持会话（sudo -s之后本次会话就一直sudo了，和su一样）。  
+
 `Defaults env_reset`改为,`Defaults env_reset,pwfeedback`在输密码的时候会有星号。
 
 
