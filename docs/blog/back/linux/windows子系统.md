@@ -130,10 +130,10 @@ ws.run "ubuntu1804 run sudo /etc/init.wsl start", vbhide
 控制是否启用系统中的该功能，如果不启用就不会开始init进程也不会耗电。
 :::
 
-## OhMyZHS
+## OhMyZSH
 
 这是一个好用的shell命令行有很多插件。（确定不是因为好看才装的？  
-### 安装ZHS和oh my zhs
+### 安装ZHS和oh my zsh
 ssh连接以后是这样的，但是很丑啊。。。自动补全跳转啥的都不好用。
 <div align=center ><img src="./static/截图2019-05-15_18-24-39.png" style="height: 500px"/></div>
 
@@ -222,13 +222,13 @@ windows下的磁盘文件都挂载到了/mnt，盘符对应win的盘符，不过
 <br/>
 docker本身是深入系统服务的软件，开启docker必须要访问windows上面的docker进程。  
 但是既然这样为什么不直接使用windows上的docker呢？还不会有性能损耗。  
-Docker无法在win10家庭版运行，使用toolbox可以试试不过我一个surface可以，但没必要。  
+Docker无法在win10家庭版运行，使用toolbox可以试试.不过对于surface的性能来说，可以，但没必要。  
 <br/>
 **服务管理**   
 <br/>
 
 :::danger
-不能使用systemctl,因为init进程pid并不是1。这个本质上是windows开起了一个进程通过MINGW64运行linux命令，所以系统的最高进程和普通的linux不一样，无法电泳systemctl。  
+不能使用systemctl,因为init进程pid并不是1。这个本质上是windows开起了一个进程通过MINGW64运行linux命令，所以系统的最高进程和普通的linux不一样，无法调用systemctl。  
 建议使用service
 :::
 
