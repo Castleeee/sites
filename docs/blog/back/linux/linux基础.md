@@ -29,7 +29,7 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 - ctrl+p/n 上一条命令↑/下一条命令↓  
 - ctrl+f/b →后←前移动光标  
 - ctrl+h/d  backspace删除前面的字符/del删除后面的字符
-- **ctrl+u/K 删除光标前/后面的**
+- **ctrl+u/k 删除光标前/后面的**u失效了🙃
 - **ctrl+a 命令头部**
 - **ctrl+e 命令尾部**  
 - **ctrl+l 清屏**
@@ -37,6 +37,11 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 - Ctrl+d 相当于exit命令，退出当前shell
 - Ctrl+s 挂起当前shell，你可以理解为冻结
 - Ctrl+q 解冻挂起的shell，解不开就重新连接打开一个终端，reboot linux 或 kill 相关进程。
+
+<br/>
+<br/>
+
+
 <h3>命令</h3>
 
 - history历史
@@ -47,8 +52,26 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 - 直接用-可以在两个相邻的目录切换
 - 安了autojump之后可使用j跳转。 
 - tree树结构贼好用(apt-get install tree)
-
-
+- mkdir -p aa/bb/cc 递归的创建嵌套目录
+- rmdir 删除一个 **空**目录！
+- rm 删除一个文件或非空目录
+    - -r 是递归遍历，就能删除非空的目录和下面所有的东西了
+    - -i 向你确认每个要删除的文件
+    - -f 强制删除
+    - -d 直接把欲删除的目录的硬连接数据删除成0，删除该目录；
+    - -v 详细执行日志
+- touch xxx.xx如果不存在就创建一个文件，存在则会更新修改时间(已存在的目录只会更新时间)
+- cp a b copy一份a名字为b，**如果b已存在则会覆盖b**
+    - -r 递归copy目录，目录不存在就相当于复制了一个文件夹。如果已经存在相当于复制a文件夹到b文件夹里面    
+- 查看文件
+    - cat xxx 查看xxx的内容，太长了显示不全。
+    - head/tail -n xxx 产看头/尾的前n行内容，默认10 
+    - more xxx 查看更多的内容，回车下一行，空格翻页 ，Q或Ctrl+C退出
+    - less xxx 查看更少内容，回车下一行，空格翻页 ，Q或Ctrl+C退出。ctrl+B↑向上翻页和ctrl+F↓向下翻页  
+    
+<br/>    
+    
+    
 </details>
 
 ## 目录结构
@@ -154,9 +177,10 @@ ls -al查看所有文件(-a)详细信息(-l)
 
 sudo由`/etc/sudoer`控制，只有在这里允许了用户才能使用sudo，在sudoer文件中添加(最好和自带的放一块且对齐)`[user]    ALL=(ALL:ALL) ALL`.sudoer只能同时被一个用户编辑。  
 sudo是使用root的身份运行，让你输入当前用户的密码，sudo 默认在输入一次密码后 15 分钟内不会再次要求密码。    
-`Defaults env_reset`改为`Defaults env_reset,timestamp_timeout=[new-value]`控制在几分钟内不用输密码
-- 0每次输入都要输
-- -1会永久维持会话（sudo -s之后本次会话就一直sudo了，和su一样）。  
+`Defaults env_reset`改为`Defaults env_reset,timestamp_timeout=[new-value]`
+- 控制在几分钟内不用输密码
+    - 0每次输入都要输
+    - -1会永久维持会话（sudo -s之后本次会话就一直sudo了，和su一样）。  
 
 `Defaults env_reset`改为,`Defaults env_reset,pwfeedback`在输密码的时候会有星号。
 
