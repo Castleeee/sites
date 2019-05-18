@@ -8,9 +8,10 @@ tags:
 - linux
 ---
 :::tip 思考
-拿到linux一般要干嘛：apt换源，ssh允许远程登陆，装上docker🤔还有呢？
+拿到linux一般要干嘛: <br/>
+apt换源，ssh允许远程登陆，装上docker oh my zsh🤔还有呢？
 :::
-
+<!-- more -->
 ## 快捷键&命令
 不全，用哪算哪，最熟的肯定是最常用的，学了又不是为了考试，用得顺手为准。   
 命令行有很多种unix用的shell，linux的bash林纳斯·本纳第克特·托瓦兹Linus Benedict Torvalds这吊人发明的。本质上是找到对应的程序去执行。
