@@ -8,6 +8,13 @@ tags:
 - 后端
 - linux
 ---
+
+:::warning zsh真香
+linux 配置 oh my zsh和zsh  
+到处安利~
+:::
+
+<!-- more -->
 ## 安装
 MS商店直接就能安装，简单无脑。  
 安装完之后第一次使用会等待一段时间，有长有短根据你机器配置来的。等待足够长时间之后就会让你设置用户名和密码，先填写一个，记住这个不要忘了。  
@@ -185,7 +192,12 @@ cd autojump
 **编辑文件`~/.zshrc`**
 - 添加 export DEFAULT_USER="whoami"
 - 添加 export TERM="xterm-256color"
-- 修改 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+- 修改插件(放心修改不会变卡😂
+
+```
+plugins=(git extract ruby gem rails rvm python pip django npm node scala docker ant gradle golang redis-cli colored-man-pages zsh-syntax-highlighting zsh-autosuggestions)
+```  
+
 - 修改 ZSH_THEME="powerlevel9k/powerlevel9k"
 - 最后一行添加 POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
     - 这个是用来去掉阿里云前面又臭又长的主机名的，留下了用户名。其他的不用动就很帅  
