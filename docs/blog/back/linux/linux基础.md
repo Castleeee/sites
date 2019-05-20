@@ -407,8 +407,51 @@ linux 下的环境变量是键值对形式的，可以多个，K=V1:V2:V3..
 `PATH=/root/.autojump/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin`
 :::
 
+### 用户管理
+- adduser xxx
+    - 实际上是个内置的脚本，里面是useradd，useradd超麻烦用不到就不要碰了吧。
+    - 一般要sudo权限
+    - 填完信息就完事了简单无脑
+- useradd 
+    - s /bin/bash 使用啥shell
+    - g xxx 所属的组，组必须提前存在，groupadd xxx 
+    - d /home/xxx 用户目录
+    - m home下要没有用户目录就创建一个
+    - xxx 最后加上用户名   
+- su xxx可以切换用户    
+- su passwd xxx 修改用户xxx密码
+- deluser xxx 不会删除/home/xxx的
+- userdel -r xxx会把home下的用户目录也一起删掉  
+
+:::tip
+在/etc/passwd中存储着linux所有用户
+:::
+
 
 ## 网络
+
+- ifconfig  本机的mac，ip，gateway网关等等
+- ping -c 4 IP or Address
+    - windows 下ping4条结束
+    - linux 不按Ctrl+c不退出-c参数可以让他ping几条之后结束
+- nslookup Address 会返回这个网关所对应的所有IP
+
+### ftp服务器
+一般使用vsftpd，文件上传下载功能，`apt-get install vsftpd`    
+编辑配置文件`vim /etc/vsftpd.conf`  
+```
+listen=NO
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+write_enable=YES
+local_umask=022
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+```
+**service vsftpd restart**重启服务完成，端口21。<a href='https://blog.csdn.net/qq_24038207/article/details/68489791'>这里</a>有详细配置，官网也能查。
+阿里云的失败了...屮，后面再说背单词去
+
 
 ## 进程
 
