@@ -46,7 +46,10 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 <h3>命令</h3>
 
 ### 文件和目录
-
+- 查看linux版本和内核
+    - **cat /etc/issue** 配置文件中存储的版本号
+    - **uname -a** 使用命令从proc获得版本号，-a输出详细信息
+    - **cat /proc/version** 直接查看proc里面的文件获得版本号
 - **history**历史
 - **date**当前日期
     - Fri May 17 15:10:45 CST 2019   
@@ -450,8 +453,24 @@ anon_upload_enable=YES
 anon_mkdir_write_enable=YES
 ```
 **service vsftpd restart**重启服务完成，端口21。<a href='https://blog.csdn.net/qq_24038207/article/details/68489791'>这里</a>有详细配置，官网也能查。
-阿里云的失败了...屮，后面再说背单词去
+失败了...屮，后面再说背单词去
 
+### ssh服务器
+终端操作`apt-get install openssh-server`   
+`ssh 用户名@IP`之后就会让你填写密码,确认登陆填写yes，退出logout   
+ssh命令有一些参数。 
+
+
+<h3>scp远程拷贝</h3>  
+
+super copy -> scp,必须要openssh-server  
+命令:`scp -r username@IP:远程机器的绝对路径 本机文件的绝对路径`  
+-r 递归，有时候会让你确认填yes。需要密码，其实就是基于ssh跨主机传输。
+
+<h3>免密登陆</h3>   
+
+scp和ssh的免密登陆在CI中部署的时候常用  
+鸽了
 
 ## 进程
 

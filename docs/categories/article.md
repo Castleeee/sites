@@ -11,6 +11,9 @@ sidebar: false
 
 <h2>后端相关</h2>
 
+- <a href="https://github.com/justjavac/free-programming-books-zh_CN#nosql?tdsourcetag=s_pctim_aiomsg">git编程书单</a>
+- <a href="https://github.com/nusr/hacker-laws-zh?tdsourcetag=s_pctim_aiomsg">常用的定律通俗解释</a> <a href="https://github.com/dwmkerr/hacker-laws?tdsourcetag=s_pctim_aiomsg">英文版</a>
+- <a href="https://github.com/jackfrued/Python-100-Days?tdsourcetag=s_pctim_aiomsg">python百日复习</a>
 - <a href="https://mp.weixin.qq.com/s/87BoE2-0mW_3qALyNSpiTw">mysql命令速查</a>
 - <a href="https://mp.weixin.qq.com/s/dBfHp2N7WYhTz-MyzG-Gwg?tdsourcetag=s_pctim_aiomsg">数据库脏数据幻读相关</a><br/>
 - <a href="https://www.cnblogs.com/zfxJava/p/5295957.html">安全和加密相关的基础概念</a>一个朋友推给我的
