@@ -73,7 +73,11 @@ sidebar: false
 <h2>C/C++</h2><br/>
     <Book name='C Primer plus' path='/back/C%20Primer%20plus.pdf' ></Book>
 <h2>大数据</h2><br/>
-Null;
+<Book name='Hadoop权威指南第四版' path='/bigdata/Hadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E7%AC%AC4%E7%89%88.pdf' ></Book>
+<Book name='分布式文件系统一致性探究' path='/bigdata/Hadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E7%AC%AC4%E7%89%88.pdf' ></Book>
+<Book name='数据挖掘ppt' path='/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98ppt/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AF%BC%E8%AE%BAPPT%E4%B8%AD%E6%96%87.rar' ></Book>
+<Book name='数据仓库与数据挖掘提纲' path='/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98ppt/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%8F%90%E7%BA%B2.pdf' ></Book>
+<Book name='数据仓库与数据挖掘讲义' path='/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98ppt/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E8%AE%B2%E4%B9%89.pdf' ></Book>
 <h2>机器学习</h2><br/>
     <Book name='南大周志华机器学习' path='/python/MechineLearning/%E5%8D%97%E5%A4%A7%E5%91%A8%E5%BF%97%E5%8D%8E-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.pdf' ></Book> 
     <Book name='解析卷积神经网络-魏秀参' path='/python/MechineLearning/%E8%A7%A3%E6%9E%90%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E9%AD%8F%E7%A7%80%E5%8F%82.pdf' ></Book>
