@@ -5,7 +5,7 @@ admin_path: "/admin"
 webhook_url: ie. post_import, post_publish
 sections:
 - type: directory
-  path: blog
+  path: docs
   label: blog
   create: all
   match: "**/*"
