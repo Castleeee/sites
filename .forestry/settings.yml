@@ -42,7 +42,7 @@ build:
   publish_command: vuepress build -d .vuepress/dist
   preview_output_directory: ".vuepress/dist"
   output_directory: ".vuepress/dist"
-  instant_preview_command: npm run docs:dev
+  instant_preview_command: npm run docs:build
   install_dependencies_command: npm install
   preview_docker_image: node:10
   mount_path: "/srv"
