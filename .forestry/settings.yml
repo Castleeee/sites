@@ -5,20 +5,45 @@ admin_path: "/admin"
 webhook_url: ie. post_import, post_publish
 sections:
 - type: directory
-  path: blog
-  label: blog
+  path: docs
+  label: ALL
   create: all
   match: "**/*"
   exclude: md
   new_doc_ext: md
+- type: directory
+  path: docs/blog/back
+  label: 后端
+  create: all
+  match: "**/*"
+- type: directory
+  path: docs/blog/bigdata
+  label: 大数据
+  create: all
+  match: "**/*"
+- type: directory
+  path: docs/blog/front
+  label: 前端
+  create: all
+  match: "**/*"
+- type: directory
+  path: docs/blog/distribute
+  label: 分布式
+  create: all
+  match: "**/*"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
 use_front_matter_path: false
-file_template: ":filename:"
+file_template: ":filename: -:year:-:month:-:day:"
+instant_preview: true
 build:
   preview_command: vuepress build -d .vuepress/dist
   publish_command: vuepress build -d .vuepress/dist
   preview_output_directory: ".vuepress/dist"
   output_directory: ".vuepress/dist"
-  instant_preview_command: vuepress dev -p 8080 -h 0.0.0.0
+  instant_preview_command: npm run docs:build
+  install_dependencies_command: npm install
+  preview_docker_image: node:10
+  mount_path: "/srv"
+  working_dir: "/srv"
