@@ -367,9 +367,75 @@ ssh命令别忘了删掉，我在做的时候先ssh然后scp一块用发现scp�
 爽到～
 
 
+## gitea
+
+### 安装
+直接docker省时省力简单。  
+```
+docker run -d --name=gitea -p 2222:22 -p 8000:3000 -v $PWD/giteastore:/data gitea/gitea:latest
+```
+我在~目录下运行的，所以直接把/data映射到了~/giteastore。8000是外部访问端口，相当于访问内部的3000，就是主要页面，2222是ssh，用作ssh传输repo的。  
+按完之后访问public address:8000 就可以看到首页了  
+
+<div align=center ><img src="./static/截图2019-07-28_09-43-35.png" style="height: 450px"/></div>
+
+点登陆或者注册第一次会有个设置向导，能设置的设置一下，集的smtp要带端口号465，QQ邮箱的密码在网页版qq邮箱账户中开启smtp和pop3之后获取授权码作为密码而不是单纯用密码，推荐sqlite备份好备份  
+
+### 自定义  
+
+<br/>
+自定义包括自定义配置->自定义html页面->在idea中使用。  <br/>
+
+我只放我改动的配置,目录在`~/giteastore/gitea/conf/app.ini`。  <br/>
+
+`APP_NAME = 年轻人的代码库`<br/>
+这是显示在首页上最大的文字和html标签上面的文字<br/>
+`SSH_DOMAIN       = 47.101.52.xxx`<br/>
+显示在ssh的地址 *ssh://git@47.101.52.xxx:2222/root/wbooks.git* <br/>
+`ROOT_URL         = http://git.ooowl.fun/`<br/>
+HTTP传输的域名或地址，我直接分了个二级域名所以没加端口 *http://git.ooowl.fun/root/wbooks.git* <br/>
+`SSH_PORT         = 2222`<br/>
+ssh传输时的端口<br/>
+`DOMAIN           = git.ooowl.fun`<br/>
+主域名<br/>
+`HOST    = smtp.qq.com:465`<br/>
+qq的smtp地址，别忘了端口<br/>
+
+-------------------
+
+其实不仅能自定义html页面，啥都可以自定义。  
+- 进入容器中，输入 $GITEA_CUSTOM一般没被脚本改动的就指向/data被映射到外面(/giteastore)去了.
+- 这个目录/gitea文件夹下面有些文件,自带的不用管。
+- 文件使用的是<a href="https://github.com/go-gitea/gitea">gitea的repo</a>里默认的.比如我想改动首页(在templates/home.tmpl)，我就在这repo下载templates文件夹，改动完home.tmpl把这个文件夹放到gitea文件夹下，读取的时候就优先读取本地的templates，就生效了
+- 不用全下载整个repo想改哪个改完对应的放到目录下重启docker就生效
+- <a href="https://docs.gitea.io/zh-cn/">官方文档</a>给出了支持的UI以及更多信息
+<br/>
+放一张我的首页
+<div align=center ><img src="./static/截图2019-07-28_10-13-14.png" style="height: 450px"/></div>
+
+---------------------
+在idea中，使用这个东西要先设置。顶上的工具栏->VCS->git->remotes添加。然后add，commit，push不能直接githubshare，也不能添加账户，只能在push的时候输入账号密码。
+<div align=center ><img src="./static/截图2019-07-28_10-17-49.png" style="height: 250px"/></div>
+:::tip
+一开始总是验证失败 ，后来发现除了pycharm其他的海龟或者gitbash都可以。  
+把时设置->git里的ssh从native改为build-in就好了，应该是pycharm自带的ssh问题。
+:::
+应该能正常push，pull，clone了，简单的团队协作应该还不错，除了CI没有之外其他的没什么了。
+### 备份
+备份非常见简单，昨天一个群里讨论这个事来着，我拿这个做了个实验。  
+- 首先把正在运行的gitea容器停下(因为两个容器不能同时写一个文件夹)
+- ***docker run -d --name=gitea -p 2300:22 -p 8100:3000 -v $PWD/giteastore/code:/data --name TEST  gitea/gitea***
+	- 重新运行了一个容器，挂载已有的外部data文件夹，访问8100
+	- 完整的还原了回来数据也没丢，如果重新改了端口记得改配置和域名。
+<br/>
+这样只要这个文件夹不丢所有东西就都有，可以写个shell备份。
+
 ## GitLabCI
 
 ### 有时间再看
+Gitlab吃内存太疯狂了8G才够看，工具又重，不是很想弄。最近找到了一个Gitea。一个开源的github项目，原先有个类似的项目Gogs，但是作者不想让别人维护，只允许自己管控整个项目，导致处理速度太慢然后一些人不满意又创立了gitea  
+
+
 
 ## 参考资料
 - travis-ci的
