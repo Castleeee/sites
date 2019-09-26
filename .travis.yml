@@ -21,7 +21,7 @@ notifications:
     on_failure: always
 after_success:
 - chmod -R 600 ~/.ssh/id_rsa
-- scp -o StrictHostKeyChecking=no -v -r docs/.vuepress/dist/* travis@47.101.52.166:/usr/blog
+- scp -o StrictHostKeyChecking=no -v -r docs/.vuepress/dist/* travis@47.101.52.166:~/.blog
 deploy:
   provider: pages # deploy to GitHub Pages
   skip_cleanup: true # don't clean generated site
