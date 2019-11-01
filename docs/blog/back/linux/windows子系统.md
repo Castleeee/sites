@@ -20,7 +20,7 @@ MS商店直接就能安装，简单无脑。
 安装完之后第一次使用会等待一段时间，有长有短根据你机器配置来的。等待足够长时间之后就会让你设置用户名和密码，先填写一个，记住这个不要忘了。  
 在你没有动root用户名之前，这个最小子系统的root密码每次开机都会重置一个随机密码，直到你输入命令
 ```
-su passwd
+sudo passwd
 ```
 然后就会让你输入一次当前用户名密码，两次root(UNIX)密码,这样就成功的设置了root密码，别给忘了，很麻烦。
 ## 配置ssh
@@ -109,6 +109,11 @@ sudo vim /etc/init.wsl
 /etc/init.d/cron $1
 /etc/init.d/ssh $1
 /etc/init.d/supervisor $1
+```
+安装supervisor赋予脚本执行权限
+```
+sudo apt-get install supervisor
+sudo chmod +x /etc/init.wsl
 ```
 之后我们就可以通过`sudo /etc/init.wsl [start|stop|restart]`停止启动我们的服务，但是还需要root密码  
 编辑`sudo vim /etc/sudoers`添加
