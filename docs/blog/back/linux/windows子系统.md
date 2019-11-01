@@ -120,6 +120,10 @@ sudo chmod +x /etc/init.wsl
 ```
 %sudo ALL=NOPASSWD: /etc/init.wsl
 ```
+:::danger
+一定要在所有东西做完之后在文本最后添加！！！  
+不然会失败
+:::
 linux部分大功告成！  
 在windows下新建一个文本文档，写入下面内容，保存为随便一个名字后缀 **.vbs**文件
 ```
