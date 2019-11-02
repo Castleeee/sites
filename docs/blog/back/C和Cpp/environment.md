@@ -1,6 +1,7 @@
 ---
 title: C环境配置
 date: 2019-11-2 17:19:47
+prev: false
 next: ./C.md
 categories: backEnd
 sidebar: false
@@ -28,7 +29,7 @@ gcc-core，gcc-g++，make，gdb，binutils，cmake。详细操作看下图。
 - 进入设置 Build, Execution, Deployment -> Toolchians
 - 点击添加， Environment处选择Cygwin，然后选择刚才安装的路径
 <div align=center ><img src="./static/dsfgdhsf.png" style="height: 450px"/></div>  
-大功告成~
-参考资料:
-- - <a href='https://blog.csdn.net/amoscn/article/details/88656010'>
-clion以及cygwin的安装与配置</a>
+大功告成~  
+参考资料
+
+- <a href="https://blog.csdn.net/amoscn/article/details/88656010">clion以及cygwin的安装与配置</a>
