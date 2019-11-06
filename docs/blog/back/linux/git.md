@@ -32,15 +32,17 @@ git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&s
 进入到你想建立的目录下，用git init就会在该目录下生成一个.git文件夹，想知道这个文件夹里面是什么就自己去搜。  
 ### 查看
 git status 看看自己目前仓库里未跟踪的文件，修改未提交的文件  
-git log (--oneline) 查看所有的提交记录
+git log (--oneline) 查看所有的提交记录，回滚需要至少7位id，-p查看提交具体干了啥
 ### 基本的操作
-git add .
-git push
-git fetch
-git pull
+git add (.) 把文件添加到暂存区，未跟踪的文件可以直接添加为跟踪
+git push 推送到分支
+git fetch 从分支获取
+git pull 获取分支
 git commit -m "你的提交信息"
-git checkout 
-git tag 
+git checkout (id or -) 回到(某个or上一个)提交点，可以直接用tag名
+git tag (-a 标签名 -m "标签信息") (id) 默认加在最近的commit上，如果想加其他commit 后面跟上id
+ 
+
 ### 分支和合并
 git merge
 git rebase
