@@ -48,6 +48,27 @@ tags:
 :::tip
 https是无状态的，使用https提交每次都要输入用户名和密码，SSH url克隆需要在克隆之前先配置和添加好SSH key，ssh默认是每次fetch和push代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和push也可以另外进行设置。
 :::
+**`git rm --cached 文件名`** 停止对git已跟踪的文件跟踪，但保留之前该文件的跟踪状态
+> 在一个分支下开发，这种做法是没有问题的。即在 master 分支里，使用如上操作之后，config.js 就从 git 管理中剔除了，但是仍然存在于硬盘上。并不会影响到本地开发环境的正常调试。<br/>
+>如果同时满足以下条件的情况下就会出问题<br/>
+>&nbsp;&nbsp;&nbsp;&nbsp;1 多分支同时存在 config.php 文件。例如，master 分支，dev 分支都有 config.php 文件<br/>
+>&nbsp;&nbsp;&nbsp;&nbsp;2 一个分支删除了该文件，然后在另一个分支，merge 了该提交<br/>
+>这时候dev和master分支的config.js就全消失了。  
+
+
+**`git update-index --assume-unchanged 文件名`** 暂时让git忽略已跟踪的文件,具体看<a href='https://segmentfault.com/q/1010000000430426'>这一篇</a>  
+
+> 虽然能达到（暂时的）目的，但并非最正确的做法，这样做是误解了 git update-index 的含义，而且这样做带来的最直接（不良）后果是这样的：  
+> <br/>
+>&nbsp;&nbsp;&nbsp;&nbsp;1 所有的团队成员都必须对目标文件执行：git update-index --assume-unchanged PATH。这是因为即使你让 Git 假装看不见目标文件的改变，但文件本身还是在 Git 的历史记录里的，所以团队的每个人在 fetch 的时候都会拉到目标文件的变更。（但实际上目标文件是根本不想被 Git 记录的，而不是假装看不见它发生了改变）  
+> <br/>
+>&nbsp;&nbsp;&nbsp;&nbsp;2 一旦有人改变目标文件之后没有 git update-index --assume-unchanged PATH 就直接 push 了，那么接下来所有拉取了最新代码的成员必须重新执行 update-index，否则 Git 又会开始记录目标文件的变化。这一点实际上很常见的，比如说某成员换了机器或者硬盘，重新 clone 了一份代码库，由于目标文件还在 Git 的历史记录里，所以他／她很可能会忘记 update-index。
+
+> **git update-index --assume-unchanged** 的真正用法是这样的：  
+> &nbsp;&nbsp;&nbsp;&nbsp;1 你正在修改一个巨大的文件，你先对其 `git update-index --assume-unchanged`，这样 Git 暂时不会理睬你对文件做的修改；  
+> &nbsp;&nbsp;&nbsp;&nbsp;2 当你的工作告一段落决定可以提交的时候，重置改标识：  
+> `git update-index --no-assume-unchanged`，于是 Git 只需要做一次更新，这是完全可以接受的了；  
+> &nbsp;&nbsp;&nbsp;&nbsp;3 提交＋推送。
 
 ### 分支和合并
 **`git branch xxx`**  产生一个新分支，想回到某个点获取分支可以先checkout  
@@ -66,12 +87,33 @@ rebase会在分支根提交点处接着提交，之后再跟上master该节点�
 
 ### ignore语法
 史上最全的<a href='https://github.com/github/gitignore'>gitignore语法</a>模板  
-
+1：`#` 此为注释  
+2：`*.a` 忽略所有.a结尾的文件  
+3：`!lib.a` 但lib.a除外  
+4：`/todo` 仅仅忽略项目根目录下的todo文件，不包括subdir/todo  
+5：`build/*` 忽略build/目录下的所有文件  
+6：`doc/*.txt`忽略doc/notes.txt(只忽略doc下本身的文件)，但不包括doc/server/arch.txt(子目录下的文件)  
+7：原来已经被跟踪的文件是无效的，必须先取消跟踪git rm --cache，下次提交就不会生效了  
+8：`.idea/**/*` 忽略某个(idea)文件夹下所有的文件和子文件夹(递归忽略所有)  
 ## 服务器部署
+常见的几种方案  
+- 带宽足够人少的时候建立一个文件共享，然后挂载目录，一块开发(人多不好用，坏了风险高)
+- 建立Git服务器，首先你需要一个能ssh的服务器主机，安装git  
+### 申请用户
+
+### 添加公钥
+
+### 建立空的Git仓库
+
+### 推送到远端
 
 ## 工作流
 git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&signature=9yr-go0D6Rd9S1BhlQjlIHpIwVDRvoDp2-mOQxtSUxhwlroJBP2rAN-pqEeUcdp4TfuRwbNh9ogCZ8jsHOniwvuwbI1zt4n5uk*Byc9LEOzR6nmXwK8RlHmI-6IljzKk&new=1">工作流</a>，团队开发的范例。
 
-## 参考
+## 参考资料
 
+<a href='https://www.cnblogs.com/dee0912/p/5815267.html#_label8'>1</a>
+<a href='https://segmentfault.com/q/1010000000430426'>2</a>
+<a href='https://biaoyansu.com'>3表严肃的课程</a>
 
+<Valine></Valine>
