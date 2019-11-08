@@ -112,6 +112,7 @@ passwd git
 git:x:502:504::/home/git:/bin/bash //找到这一行
 git:x:502:504::/home/git:/bin/git-shell//改为这个
 ```
+<div align=center ><img src="./static/Snipaste_2019-11-08_11-49-07.png" style="height: 350px"/></div>
 
 ### 添加公钥
 你也可以不添加直接ssh克隆,但是这样会每次都让你输入密码,只把开发记得公钥添加就行了  
@@ -121,6 +122,7 @@ ssh-keygen -t rsa -C "xxxxx@mail.com"
 //最后的又像是公钥里面显示的名字,自己开心就行
 ```
 这样在下就得到了一对公钥和私钥  
+<div align=center ><img src="./static/Snipaste_2019-11-07_23-36-04.png" style="height: 150px"/></div>
 
 编辑`id_rsa.pub`里面就是你的公钥复制下来  
 
@@ -140,8 +142,8 @@ touch /home/git/.ssh/authorized_keys //新建了信任公钥
 sudo git init --bare /home/git/project1/test.git
 ```
 
-**一定要修改权限!!!**
-
+**一定要修改权限!!!**  
+免密登录也是这个权限,本身就是免密登录ssh传送的文件.  
 :::warning
 修改 .ssh 目录的权限为 700  
 修改 .ssh/authorized_keys 文件的权限为 600  
@@ -159,9 +161,13 @@ chown -R git:git /home/git/project1/test.git  //chown -R 所有者:组
 
 这时候应该可以clone了,url有两种写法(推荐ssh)
 ```
-git clone git@192.168.0.100:/home/git/project1/test.git //SCP写法
-git clone ssh://git@192.168.0.100/home/git/project1/test.git //SSH写法
+git@192.168.0.100:/home/git/project1/test.git //SCP写法
+ssh://git@192.168.0.100/home/git/project1/test.git //SSH写法
+//Https的写法没有配置,而且每次都要输密码,团队协作不好用
 ```
+<div align=center ><img src="./static/Snipaste_2019-11-08_00-27-17.png" style="height: 350px"/></div>
+
+
 ## 工作流
 git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&signature=9yr-go0D6Rd9S1BhlQjlIHpIwVDRvoDp2-mOQxtSUxhwlroJBP2rAN-pqEeUcdp4TfuRwbNh9ogCZ8jsHOniwvuwbI1zt4n5uk*Byc9LEOzR6nmXwK8RlHmI-6IljzKk&new=1">工作流</a>，团队开发的范例。
 
