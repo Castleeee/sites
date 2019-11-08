@@ -134,31 +134,33 @@ mkdir -p /home/git/.ssh
 touch /home/git/.ssh/authorized_keys //新建了信任公钥
 ```
 然后将客户机们的公钥`id_rsa.pub`里面的内容复制到git用户的`authorized_keys`里面  
+### 修改权限并创建仓库
+在home下建立对应的工程最好,每个用管理自己的工程  
+```
+sudo git init --bare /home/git/project1/test.git
+```
+
+**一定要修改权限!!!**
+
 :::warning
 修改 .ssh 目录的权限为 700  
 修改 .ssh/authorized_keys 文件的权限为 600  
+仓库,.ssh目录和authorized_keys都要修改所有者
 :::
 ```
 chmod 700  /home/git/.ssh
 chmod 600  /home/git/.ssh/authorized_keys 
+chown -R git:git /home/git/.ssh 
+chown -R git:git /home/git/.ssh/authorized_keys 
+chown -R git:git /home/git/project1/test.git  //chown -R 所有者:组
 ```
-
-### 建立空的Git仓库
-在home下建立对应的工程最好,每个用管理自己的工程  
-```
-sudo mkdir -p /home/git/repo
-sudo git init --bare /home/git/repo/test.git
-chown -R git:git /home/git/repo/test.git //chown -R 所有者:组
-```
-
-**一定要修改权限!!!**
 
 ### 推送到远端
 
 这时候应该可以clone了,url有两种写法(推荐ssh)
 ```
-git clone git@192.168.0.100:/home/git/test.git //SCP写法
-git clone ssh://git@192.168.0.100/home/git/test.git //SSH写法
+git clone git@192.168.0.100:/home/git/project1/test.git //SCP写法
+git clone ssh://git@192.168.0.100/home/git/project1/test.git //SSH写法
 ```
 ## 工作流
 git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&signature=9yr-go0D6Rd9S1BhlQjlIHpIwVDRvoDp2-mOQxtSUxhwlroJBP2rAN-pqEeUcdp4TfuRwbNh9ogCZ8jsHOniwvuwbI1zt4n5uk*Byc9LEOzR6nmXwK8RlHmI-6IljzKk&new=1">工作流</a>，团队开发的范例。
