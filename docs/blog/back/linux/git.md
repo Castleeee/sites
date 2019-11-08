@@ -2,6 +2,8 @@
 title: git
 date: 2019-11-5 15:16:35
 categories: backEnd
+prev: false
+next: ../engineering/CI-CD.md
 tags:
 - 代码之外
 - 后端
@@ -34,6 +36,8 @@ tags:
 **`git log (--oneline --all --graph ) `** 查看所有的提交记录，回滚需要至少7位id，-p查看提交具体干了啥,--all查看所有的分支，--graph 尽可能用图形表示。  
 **`git reflog `** 查看命令历史，以便确定要回到未来的哪个版本  
 **`git remote -v`** 查看你的远程仓库的路径  
+<div align=center ><img src="./static/截图 2019-11-06_17-33-14.png" style="height: 250px"/></div>
+
 ### 基本的操作
 **`git clone Address `** 克隆项目  
 **`git add (.) `** 把文件添加到暂存区，未跟踪的文件可以直接添加为跟踪  
@@ -169,12 +173,42 @@ ssh://git@192.168.0.100/home/git/project1/test.git //SSH写法
 
 
 ## 工作流
-git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&signature=9yr-go0D6Rd9S1BhlQjlIHpIwVDRvoDp2-mOQxtSUxhwlroJBP2rAN-pqEeUcdp4TfuRwbNh9ogCZ8jsHOniwvuwbI1zt4n5uk*Byc9LEOzR6nmXwK8RlHmI-6IljzKk&new=1">工作流</a>，团队开发的范例。
+### gitflow
+gitflow<a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">工作流</a>，团队开发的范例。  
+<div align=center ><img src="./static/截图 2019-11-08_13-59-35.png" style="height: 350px"/></div>  
+
+中小型团队协作时候很重要  
+**大致注意下面这么几点**  
+鸽了鸽了  
+
+bitbucket提供免费私人5人无限制的私有仓库，gitlab和bitbucket提供精确到分支的权限控制,但bitbucket仍然是云托管，Gitlab占资源太大需要一个好服务器才行。
+### github工作流
+
+<div align=center ><img src="./static/截图 2019-11-08_14-48-57.png" style="height: 280px"/></div>
+
+主要流程为:
+- 新建分支（Create a branch）
+- 提交修改（Add commits）
+- 创建PR（Open a Pull Request）
+- 代码评审（Discuss and review your code）
+- 部署（Deploy）
+- 合并（Merge）   
+ 
+部署（Deploy）发生在合并（Merge）之前，这就是 GitHub flow 的核心，非阻塞式集成----在产生任何副作用之前得知当前修改的所有集成效果，达到真正的持续集成  
+体验一下Github开源软件如何PR和fork的工作模式<a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo">链接1</a> <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">链接2</a>
+### gitolite
+这个是用来管理的，可以精确控制分支读写权限，各种粒度都可以  
+不进行身份验证，仅是授权(官方原话)。  
+
+先鸽了
 
 ## 参考资料
 
-- <a href='https://www.cnblogs.com/dee0912/p/5815267.html#_label8'>1</a>
-- <a href='https://segmentfault.com/q/1010000000430426'>2</a>
-- <a href='https://biaoyansu.com'>3表严肃的课程</a>
+- <a href='https://www.cnblogs.com/dee0912/p/5815267.html#_label8'>1 参 考</a>
+- <a href='https://segmentfault.com/q/1010000000430426'>2 参 考</a>
+- <a href='https://biaoyansu.com'>3 表严肃的课程</a>
+- <a href='https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitolite'>4 参 考</a>
+- <a href='https://www.jianshu.com/p/5aa4123b2322'>5 参 考</a>
+
 
 <Valine></Valine>

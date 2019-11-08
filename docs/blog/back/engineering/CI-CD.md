@@ -2,6 +2,8 @@
 title: CI/CD
 date: 2019-3-10 14:38:00
 categories: backEnd
+prev: ../linux/git.md
+next: ./Gitlab.md
 tags:
 - CI/CD
 - 软件工程
@@ -435,7 +437,8 @@ qq的smtp地址，别忘了端口<br/>
 ### 有时间再看
 Gitlab吃内存太疯狂了8G才够看，工具又重，不是很想弄。最近找到了一个Gitea。一个开源的github项目，原先有个类似的项目Gogs，但是作者不想让别人维护，只允许自己管控整个项目，导致处理速度太慢然后一些人不满意又创立了gitea  
 
-
+## Jenkins
+鸽了
 
 ## 参考资料
 - travis-ci的
