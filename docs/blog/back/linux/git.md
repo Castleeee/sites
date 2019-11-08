@@ -100,20 +100,73 @@ rebase会在分支根提交点处接着提交，之后再跟上master该节点�
 - 带宽足够人少的时候建立一个文件共享，然后挂载目录，一块开发(人多不好用，坏了风险高)
 - 建立Git服务器，首先你需要一个能ssh的服务器主机，安装git  
 ### 申请用户
+申请用户并设置密码
+```shell
+groupadd git //申请组,把用到的用户都啊计入到这个组里
+useradd git -g git
+passwd git
+``` 
+每个用户单独的ssh K,这样就可以一个用户对应一个工程互不影响,多个工程只要申请多个用户,放到git用户组更管理就可以了.  
+设置用户只能使用git禁止登陆ssh,编辑`/etc/passwd`
+```
+git:x:502:504::/home/git:/bin/bash //找到这一行
+git:x:502:504::/home/git:/bin/git-shell//改为这个
+```
 
 ### 添加公钥
+你也可以不添加直接ssh克隆,但是这样会每次都让你输入密码,只把开发记得公钥添加就行了  
+首先在你的客户机上cmd运行
+```
+ssh-keygen -t rsa -C "xxxxx@mail.com" 
+//最后的又像是公钥里面显示的名字,自己开心就行
+```
+这样在下就得到了一对公钥和私钥  
+
+编辑`id_rsa.pub`里面就是你的公钥复制下来  
+
+在服务器上进入`/etc/ssh` 目录，编辑 `sshd_config`，打开以下三个配置的注释：
+```
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+/etc/rc.d/init.d/sshd restart //重启ssh
+mkdir -p /home/git/.ssh
+touch /home/git/.ssh/authorized_keys //新建了信任公钥
+```
+然后将客户机们的公钥`id_rsa.pub`里面的内容复制到git用户的`authorized_keys`里面  
+:::warning
+修改 .ssh 目录的权限为 700  
+修改 .ssh/authorized_keys 文件的权限为 600  
+:::
+```
+chmod 700  /home/git/.ssh
+chmod 600  /home/git/.ssh/authorized_keys 
+```
 
 ### 建立空的Git仓库
+在home下建立对应的工程最好,每个用管理自己的工程  
+```
+sudo mkdir -p /home/git/repo
+sudo git init --bare /home/git/repo/test.git
+chown -R git:git /home/git/repo/test.git //chown -R 所有者:组
+```
+
+**一定要修改权限!!!**
 
 ### 推送到远端
 
+这时候应该可以clone了,url有两种写法(推荐ssh)
+```
+git clone git@192.168.0.100:/home/git/test.git //SCP写法
+git clone ssh://git@192.168.0.100/home/git/test.git //SSH写法
+```
 ## 工作流
 git的<a href="https://mp.weixin.qq.com/s?src=11&timestamp=1573019956&ver=1957&signature=9yr-go0D6Rd9S1BhlQjlIHpIwVDRvoDp2-mOQxtSUxhwlroJBP2rAN-pqEeUcdp4TfuRwbNh9ogCZ8jsHOniwvuwbI1zt4n5uk*Byc9LEOzR6nmXwK8RlHmI-6IljzKk&new=1">工作流</a>，团队开发的范例。
 
 ## 参考资料
 
-<a href='https://www.cnblogs.com/dee0912/p/5815267.html#_label8'>1</a>
-<a href='https://segmentfault.com/q/1010000000430426'>2</a>
-<a href='https://biaoyansu.com'>3表严肃的课程</a>
+- <a href='https://www.cnblogs.com/dee0912/p/5815267.html#_label8'>1</a>
+- <a href='https://segmentfault.com/q/1010000000430426'>2</a>
+- <a href='https://biaoyansu.com'>3表严肃的课程</a>
 
 <Valine></Valine>
