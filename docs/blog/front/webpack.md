@@ -25,4 +25,15 @@ node 自带npm
 关联文件package.json和yarn.lock  
   
 实在不行删node_modules,重新安  
+  
+修改全局包的存放位置  
+查看配置：  
+`npm config ls`  
+修改目录：  
+`npm config set prefix "E:\nodejs\npm"`  
+`npm config set cache "E:\nodejs\npm\cache"`  
+添加环境变量：  
+`E:\nodejs\`  
+`E:\nodejs\npm`  
+
 ## 正餐webpack4

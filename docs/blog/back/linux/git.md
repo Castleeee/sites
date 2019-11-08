@@ -193,7 +193,10 @@ bitbucket提供免费私人5人无限制的私有仓库，gitlab和bitbucket提�
 - 代码评审（Discuss and review your code）
 - 部署（Deploy）
 - 合并（Merge）   
- 
+:::tip
+保持自己的fork最新 鸽了🕊
+:::
+
 部署（Deploy）发生在合并（Merge）之前，这就是 GitHub flow 的核心，非阻塞式集成----在产生任何副作用之前得知当前修改的所有集成效果，达到真正的持续集成  
 体验一下Github开源软件如何PR和fork的工作模式<a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo">链接1</a> <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">链接2</a>
 ### gitolite
