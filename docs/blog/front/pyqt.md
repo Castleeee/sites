@@ -3,6 +3,7 @@ title: 使用PyQt5
 date: 2019-1-1 20:38:45
 categories: frontEnd
 tags:
+- 所有文章
 - python
 - 前端
 - 可视化

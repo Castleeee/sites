@@ -5,6 +5,7 @@ categories: bigData
 tags:
 - hadoop
 - 大数据
+- 所有文章
 ---
 ## 介绍
 鸽了

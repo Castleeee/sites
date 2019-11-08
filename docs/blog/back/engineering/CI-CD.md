@@ -7,6 +7,7 @@ next: ./Gitlab.md
 tags:
 - CI/CD
 - 软件工程
+- 所有文章
 - 后端
 ---
 

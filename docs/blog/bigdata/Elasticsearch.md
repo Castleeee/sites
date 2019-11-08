@@ -8,6 +8,7 @@ tags:
 - 分布式
 - ELK
 - 数据挖掘
+- 所有文章
 ---
 :::warning 大数据分析处理流行技术栈
 E(elasticsearch)L(logstash)K(Kibana)技术栈

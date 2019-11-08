@@ -5,6 +5,7 @@ categories: Other
 sidebar: false
 tags:
 - 日记
+- 所有文章
 ---
 搬家啦，我会在简书上同步更新的[我可真是勤劳<br/>
 (｡･∀･)ﾉﾞ

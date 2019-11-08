@@ -6,6 +6,7 @@ tags:
 - 分布式
 - 大数据
 - hadoop
+- 所有文章
 ---
 <div align=center><h1>Zookeeper</h1></div>
 

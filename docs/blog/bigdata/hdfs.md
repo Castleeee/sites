@@ -6,6 +6,7 @@ tags:
 - hadoop
 - 数据层
 - 分布式
+- 所有文章
 - 大数据
 ---
 ## java操作hdfs

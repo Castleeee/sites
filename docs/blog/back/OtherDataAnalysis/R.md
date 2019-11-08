@@ -5,6 +5,7 @@ categories: backEnd
 tags:
 - 数据挖掘
 - R语言
+- 所有文章
 - 语言基础
 - 后端
 ---
