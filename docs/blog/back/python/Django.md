@@ -2,6 +2,8 @@
 title: Django的基础知识
 date: 2019-1-1 20:38:45
 categories: backEnd
+prev: ./flask.md
+next: false
 tags:
 - 后端
 - web
