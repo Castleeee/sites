@@ -48,7 +48,7 @@ tags:
 **`git pull`** 获取分支  
 **`git commit -m "你的提交信息"`**  
 **`git checkout (id or -)(/path/file)`** 回到(某个or上一个)提交点，可以直接用tag名,跟文件名可以直接修改单独某个文件  
-**`git tag (-a 标签名 -m "标签信息") (id)`** 默认加在最近的commit上，如果想加其他commit 后面跟上id  
+**`git tag (-a 标签名 -m "标签信息" -d 标签or id删除 ) (id)`** 默认加在最近的commit上，如果想加其他commit 后面跟上id  
 **`git remote add Name RemoteAddress.git`** 添加一个远程仓库地址。  
 :::tip
 https是无状态的，使用https提交每次都要输入用户名和密码，SSH url克隆需要在克隆之前先配置和添加好SSH key，ssh默认是每次fetch和push代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和push也可以另外进行设置。
@@ -77,6 +77,8 @@ https是无状态的，使用https提交每次都要输入用户名和密码，S
 
 ### 分支和合并
 **`git branch xxx`**  产生一个新分支，想回到某个点获取分支可以先checkout  
+- 产生新分支 git checkout -b xxx
+- 删除分支 git branch -d xxx
 **`git merge  xxx`** 将xxx合并到master，出现confilct的时候，大于号小于号和等号之间分别是两个分支不同的内容，最后需要在commit一次  
 **`it rebase `** 和mrege的作用是一样的，不过结果不同。  
 
