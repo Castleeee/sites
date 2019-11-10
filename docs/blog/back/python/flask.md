@@ -33,7 +33,7 @@ if __name__ == '__main__':
 ```
 返回值可以直接写html,不过不推荐你这样做因为很蠢.  
 Debug模式只有在develop环境才能使用,默认应该是develop,如果不是,在你的环境变量里面添加"FLASK_ENV".  
-Debug可以`app.debug=Bool` or `app.run(debug=False/True)` or 环境变量"".我的现在好像只有环境变量才管用,不知道为啥.
+Debug可以`app.debug=Bool` or `app.run(debug=False/True)` or 环境变量"FLASK_DEBUG".我的现在好像只有环境变量才管用,不知道为啥.
 
 :::tip Linux环境变量   
 - 系统级
