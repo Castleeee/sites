@@ -61,6 +61,35 @@ flask可以直接在网页控制台控制调试,但是需要输入pin码
 用这个可以把app拆分,渐渐的从一个微型文件变成了django.  
 首先pip安装这个拓展,<a href="https://flask-script.readthedocs.io/en/latest/">官网</a>  
 
+```py
+from flask import Flask
+from flask_script import Manager
+
+app = Flask(__name__)
+
+manager = Manager(app)
+@app.route('/') # 规定路由
+def hello_world(): # 处理函数
+    return 'hello world'
+
+if __name__ == '__main__':
+    #app.run() # 运行
+    manager.run()
+```
+文件名改名为manage.py,使用cmd中python manage.py runserver 可django一样  
+参数如下  
+>  -?, --help  show this help message and exit
+>  -h HOST, --host HOST 指定主机
+>  -p PORT, --port PORT 指定端口
+>  --threaded 是否启用多线程
+>  --processes PROCESSES 是否启用多进程 
+>  --passthrough-errors 忽略错误不报告
+>  -d, --debug   调试模式  enable the Werkzeug debugger (DO NOT use in production code)
+>  -D, --no-debug  不调试模式  disable the Werkzeug debugger
+>  -r, --reload 自动重新加载 monitor Python files for changes (not 100% safe for production use)
+>  -R, --no-reload       do not monitor Python files for changes
+>  --ssl-crt SSL_CRT     Path to ssl certificate
+>  --ssl-key SSL_KEY     Path to ssl key
 ## jinja2模板
 
 
