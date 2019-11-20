@@ -298,6 +298,9 @@ def redirectx():
 ```  
 
 request对象由flask自己生成(需要引入),携带了各种各样的信息,看不懂的去补HTTP的知识  
+
+<div align=center ><img src="./static/Snipaste_2019-11-19_18-01-557.png" style="height: 450px"/></div>
+
 常用参数
 
 <div align= center>
@@ -320,7 +323,7 @@ request对象由flask自己生成(需要引入),携带了各种各样的信息,�
 ### 响应Response
 - return "xxx",状态码-直接返回响应字符串
 - return render_template("testfile.html")-直接渲染html
-- return make_response("<h1>sdsadasd</h1>")-调用函数构建
+- return make_response(" &lt;h1&gt; sdsadasd &lt;/h1&gt; ")-调用函数构建
 - return Response()-自己构建,debug去看具体参数
 - abort(404)/abort(Response("xxx"))-返回**错误** 响应码并终止响应  
 - return redirect(url_for('first.a',xxx = "事实上")) 函数带参反向解析
@@ -341,8 +344,11 @@ def handle_401(error):
 ```  
 blueprint的处理机制和原生的flask不大一样,原生也有要用原生地去查  
 
+### 会话
+session cookie 持久化
 
 ## jinja2模板
-官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅
-
+官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅  
+### flask-bootstrap
+### 
 <Valine></Valine>
