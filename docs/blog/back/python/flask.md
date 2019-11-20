@@ -91,6 +91,67 @@ if __name__ == '__main__':
 >  --ssl-crt SSL_CRT     Path to ssl certificate
 >  --ssl-key SSL_KEY     Path to ssl key
 ## jinja2模板
+### A
+拆分view的基本思路是
+每个文件是一组view，然后在每一个view.py文件里面初始化一个blueprint
+```py
+from flask import Blueprint
 
+first= Blueprint("first",__name__)
+@first.route("/")
+def index():
+    return "我是主页"
+```
+在views的__init__里引入其他文件的blueprint，声明函数init_view，然后函数接收app，注册blueprint
+```py
+from .first import first
+from .second import second
 
+def init_view(app):
+    app.register_blueprint(first)
+    app.register_blueprint(second)
+```
+App中包含views(文件夹)，models，先把这三个引入，ext。在App的__init__中主要任务是生成app，引入view的init_view，ext的init_ext。
+```py
+from flask import Flask
+from App.views import init_view
+from App.ext import init_ext
+def create_app():
+    app=Flask(__name__)
+
+    app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///sqlite.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
+    init_view(app)
+    init_ext(app)
+    return app
+```
+ext的思路也是一样的，用函数接收app初始化，因为整个app是以一个对象的形式传递的
+```py
+from flask_sqlalchemy import SQLAlchemy
+#your class&function here
+models=SQLAlchemy()
+def init_ext(app):
+    models.init_app(app)
+```
+数据库url写法`数据库+驱动://用户名:密码@主机:端口/具体哪一个库`  
+最后在`manage.py`里面引入这个app，然后运行就可以了
+```py
+from flask_script import Manager
+
+from App import create_app
+
+app = create_app()
+
+manager = Manager(app)
+
+if __name__ == '__main__':
+    #App.run() # 运行
+    manager.run()
+```
+组后工程结构图
+<div align=center ><img src="./static/Snipaste_2019-11-20_16-50-47.png" style="height: 350px"/></div>
+
+### B配置不同环境
+建立`settings.py`,或者直接改ini为py
+测试，开发，演示，生产四个环境
 <Valine></Valine>
