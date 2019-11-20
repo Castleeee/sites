@@ -59,7 +59,8 @@ flask可以直接在网页控制台控制调试,但是需要输入pin码
 
 ### Flask-script拆分
 用这个可以把app拆分,渐渐的从一个微型文件变成了django.  
-首先pip安装这个拓展,<a href="https://flask-script.readthedocs.io/en/latest/">官网</a>  
+首先pip安装这个拓
+展,<a href="https://flask-script.readthedocs.io/en/latest/">官网</a>  
 
 ```py
 from flask import Flask
@@ -90,7 +91,7 @@ if __name__ == '__main__':
 >  -R, --no-reload       do not monitor Python files for changes
 >  --ssl-crt SSL_CRT     Path to ssl certificate
 >  --ssl-key SSL_KEY     Path to ssl key
+
+
 ## jinja2模板
-
-
 <Valine></Valine>
