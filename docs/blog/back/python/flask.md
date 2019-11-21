@@ -321,12 +321,12 @@ request对象由flask自己生成(需要引入),携带了各种各样的信息,�
 </div>
 
 ### 响应Response
-- return "xxx",状态码-直接返回响应字符串
-- return render_template("testfile.html")-直接渲染html
-- return make_response(" &lt;h1&gt; sdsadasd &lt;/h1&gt; ")-调用函数构建
-- return Response()-自己构建,debug去看具体参数
-- abort(404)/abort(Response("xxx"))-返回**错误** 响应码并终止响应  
-- return redirect(url_for('first.a',xxx = "事实上")) 函数带参反向解析
+- `return "xxx",状态码`直接返回响应字符串
+- `return render_template("testfile.html")`直接渲染html
+- `return make_response(" <h1>sdsadasd</h1>")`调用函数构建
+- `return Response()`自己构建,debug去看具体参数
+- `abort(404)/abort(Response("xxx"))`返回**错误** 响应码并终止响应  
+- `return redirect(url_for('first.a',xxx = "事实上"))` 函数带参反向解析
 
 可以使用装饰器直接拦截错误响应,最常用的是5xx和4xx的   
 ```py
@@ -345,10 +345,54 @@ def handle_401(error):
 blueprint的处理机制和原生的flask不大一样,原生也有要用原生地去查  
 
 ### 会话
-session cookie 持久化
+session cookie 持久化  
+需要一个加密Key，在settings.py->Config类中添加`SECRET_KEY="mykey"`用作混淆
+```py
+@second.route("/login/",methods=["GET","POST"])
+def login_action():
+    if request.method=="GET":
+        return render_template("loginpage.html")
+    elif request.method=="POST":
+        username=request.form.get("username")
+        response=Response("登陆成功%s" %username)
+        response.set_cookie("username",username)#使用cookie
+        session["username"]=username#使用session
+        return response
+
+@second.route("/my/")
+def home():
+    username=request.cookies.get("username")#获取cookie
+    username=session.get("username")#获取session
+    return "biss %s"%username
+```  
+  
+  对数据进行序列化，进行了base64，进行了zlib压缩，传递了hash
+  
+:::tip
+需要注意的是flask存储session的做法不同于django，django是直接存储到服务器端，cookie存储一个sessionid，按照这个id获取session。flask直接把session存储在cookie放在了客户端
+:::  
+
+<h3>session持久化到数据库</h3>
+
+`pip install flask-session`,官网<a href='https://pythonhosted.org/Flask-Session/'>链接</a>  
+`SESSION_TYPE = 'redis'`加入到settings.py->Config类中,ext.py`from flask_session import Session`初始化`Session(app)`  
+这个插件支持 redis memcached filesystem mongodb sqlalchmey。  
+<h3>redis </h3>
+在Config中配置
+<h3>memcached </h3>
+
+<h3>filesystem </h3>
+
+<h3>mongodb </h3>
+
+<h3>sqlalchmey</h3>
+
+
 
 ## jinja2模板
 官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅  
 ### flask-bootstrap
-### 
+## 参考引用
+- https://www.cnblogs.com/52forjie/p/8282453.html
+- 千峰flask视频
 <Valine></Valine>
