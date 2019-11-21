@@ -387,7 +387,7 @@ def home():
 
 <h3>sqlalchmey</h3>
 
-
+持久化session留坑
 
 ## jinja2模板
 官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅  
