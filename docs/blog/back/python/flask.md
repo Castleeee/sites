@@ -391,7 +391,87 @@ def home():
 
 ## jinja2模板
 官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅  
+使用:render_template('template1.html',key=value)  
+
+- 获取变量值: 
+```py
+    <h1>整数:{{ number }}</h1>
+    <h1>元祖:{{ tuple[0] }}</h1>
+    <h1>列表:{{ list[0] }}</h1>
+    <h1>字典:{{ dict['key'] }}</h1>
+```
+- 分支语句if
+```py
+{ % if a==b % }
+    语句1
+ { % else % }    
+    语句2
+{ % endif % }
+```
+- for循环
+```py
+{% for i  in value %}
+    语句
+{% endfor%}
+```
+留坑loop的使用
+
+- 注释
+```
+{# 注释内容 #}
+```
+- block,extends  
+    父模板挖坑子模板填.   
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;/>
+    <title>{{ tittle }}</title>
+</head>
+<body>
+
+{% block header %}
+{% endblock %}
+this is base content
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+</body>
+</html>
+```
+
+继承之后
+
+
+```html
+{% extends "base.html" %}
+{% block header %}
+<hr size=5>
+{% endblock %}
+{% block content %}
+    <ul>
+    {% for i in students %}
+        <li>i am students {{ i }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+{% block footer %}
+<hr size=5>
+{% endblock %}
+```
+如果有又继承了子模板之后,重写的块内容会被覆盖,在块头加入 `{ { super() } }` 就可以,没重写的block会显示
+  
+- include,marco  
+  
+宏定义留坑
+
 ### flask-bootstrap
+注册拓展之后直接就可以用bootstrap了,无需引入css之类的,<a href="https://pythonhosted.org/Flask-Bootstrap/">官网</a>例子  
+结构留坑
 ## 参考引用
 - https://www.cnblogs.com/52forjie/p/8282453.html
 - 千峰flask视频
