@@ -254,7 +254,8 @@ envs={
 ```py
 这里是以后拿笔画结构图的地方
 ```
-flask可以通过各种插件拓展功能,你可以把她变得和django一样,也可以一个文件搭建很小的服务,真正大小可变轻量级,想拆成社么规模都行.
+flask可以通过各种插件拓展功能,你可以把她变得和django一样,也可以一个文件搭建很小的服务,真正大小可变轻量级,想拆成什么规模都行. 
+通常是 init,生成python文件,upgrade生成sql的migrate表,migrate生成数据库
 ## 路由
 ### 获取参数
 **限定方法**  
@@ -377,17 +378,76 @@ def home():
 `pip install flask-session`,官网<a href='https://pythonhosted.org/Flask-Session/'>链接</a>  
 `SESSION_TYPE = 'redis'`加入到settings.py->Config类中,ext.py`from flask_session import Session`初始化`Session(app)`  
 这个插件支持 redis memcached filesystem mongodb sqlalchmey。  
+在settings->Config类中配置
+公共前缀
+```py
+SESSION_PERMANENT = True # 如果设置为True，则关闭浏览器session就失效。
+SESSION_USE_SIGNER = False # 是否对发送到浏览器上session的cookie值进行加密
+SESSION_KEY_PREFIX = 'session:' # 保存到session中的值的前缀
+```
+
 <h3>redis </h3>
-在Config中配置
+<details>
+
+  <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More </I></B></summary>
+
+```py
+SESSION_TYPE = 'redis'  # session类型为redis
+SESSION_REDIS = redis.Redis(host='127.0.0.1', port='6379', password='123123')  
+# 用于连接redis的配置
+```
+
+</details>
 <h3>memcached </h3>
 
+<details>
+  <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More </I></B></summary>
+
+```py
+SESSION_TYPE = 'memcached' # session类型为memcached
+SESSION_MEMCACHED = memcache.Client(['10.211.55.4:12000'])
+```
+</details>
 <h3>filesystem </h3>
 
+<details>
+  <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More </I></B></summary>
+
+```py
+SESSION_TYPE = 'filesystem'  # session类型为redis
+SESSION_FILE_DIR = '/session/dir'  # 存储session文件夹
+SESSION_FILE_THRESHOLD = 500  # 存储session的个数如果大于这个值时，就要开始进行删除了
+SESSION_FILE_MODE = 384  # 文件权限类型
+```
+
+</details>
 <h3>mongodb </h3>
 
+<details>
+  <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More </I></B></summary>
+
+```py
+SESSION_TYPE = 'mongodb'  # session类型为redis
+SESSION_MONGODB = pymongo.MongoClient()
+SESSION_MONGODB_DB = 'mongo的db名称（数据库名称）'
+SESSION_MONGODB_COLLECT = 'mongo的collect名称（表名称）'
+```
+
+</details>
 <h3>sqlalchmey</h3>
 
-持久化session留坑
+<details>
+  <summary><B><I style="cursor:pointer; color: #0e5870">Click to See More </I></B></summary>
+
+```py
+SESSION_TYPE = 'sqlalchemy'  # session类型为sqlalchemy
+SESSION_SQLALCHEMY = models # SQLAlchemy对象,记得前面要注册models=SQLAlchemy()
+SESSION_SQLALCHEMY_TABLE = 'session' # session要保存的表名称
+```
+
+</details>
+
+
 
 ## jinja2模板
 官网<a href="http://docs.jinkan.org/docs/jinja2/">在这</a>,记不住了去瞅瞅  
@@ -472,6 +532,47 @@ this is base content
 ### flask-bootstrap
 注册拓展之后直接就可以用bootstrap了,无需引入css之类的,<a href="https://pythonhosted.org/Flask-Bootstrap/">官网</a>例子  
 结构留坑
+## Model
+删除表
+添加表
+清除表
+字段类型
+Integer
+Smallinteger
+BigInteger
+Float
+Numeric
+String
+Text
+Unicode
+Unicode Text
+Boolean
+Date
+Time
+DateTime
+Interval
+LargeBinary
+引用方式在
+常用约束
+primary key
+autoincrement
+unique
+index
+oullable
+default
+Foreignkey()
+
+db.create.all（）
+db.drop all（）
+数据操作
+在事务中处理，数据插入
+db.session addfobfect）
+db.session.add all（list[object]）
+d业.session.delete（object）
+db.session.commit（）
+修改和删除基于查询
+
+
 ## 参考引用
 - https://www.cnblogs.com/52forjie/p/8282453.html
 - 千峰flask视频
