@@ -125,7 +125,7 @@ centos                     latest              0f3e07c0138f        2 months ago 
 大部分人用的都是pipework建立bridge,但是WSL好像不能用,所以我们选择docker的网络  
 首先创建一个网络覆盖192.168.2.10网段,默认bridge模式可以内外访问,名称就是hadoop就好  
 `docker network ls`查看网络,`docker network create --subnet 192.168.2.0/24 hadoop`
-然后我们创建三个镜像,先创建下面这样的目录,映射到里面传输数据用(文件是乱七八糟创建的,看看挂载是否成功),留坑:升级使用docker-compose  
+然后我们创建1个镜像然后将配置好的镜像提交一个新镜像,直接创建两个一模一样的,先创建下面这样的目录,映射到里面传输数据用(文件是乱七八糟创建的,看看挂载是否成功)
 ```
 root>~$tree hadoopdata
 
@@ -177,27 +177,7 @@ centos-hadoop
 :::tip
 我是在WSL上跑的,所以需要映射的目录是从win下能访问到的根目录,直接`$HOME`和`$PWD`都不行
 :::
-### 免密登录
-1 现在我们有了三个处在同一子网下的镜像,我们下面要做的是配置ssh和免密登录  <br/>  
 
-2 `docker exec -it hadoop0  bin/bash`进入  <br/>  
-
-3 `ping 192.168.2.11 -c 4`ping另外两个ip和百度,能通就行了  <br/>  
-
-4 安装vim和which`yum install vim which`   <br/>  
-
-5 编辑`/etc/ssh/sshd_config`,保证
-RSAAuthentication和PubkeyAuthentication,PermitRootLogin是yes没有就添加,Port 22  <br/>  
-
-6 `ssh-keygen -t rsa`一路回车,`cat ~/.ssh/id_rsa.pub `拿到公钥  <br/>  
-
-7 在docker镜像外面hadoopdata下创建`authorized_keys`,添加进去  <br/>  
-
-8在三个镜像重复一遍操作,之后最好能添加宿主机的公钥,不加也行.  
-最后三个镜像中执行`cp /data/authorized_keys ~/.ssh`  
-之后测试一下ssh`ssh root@192.168.2.11 -p22 `每个镜像都试试.
-
-<div align=center ><img src="./static/Snipaste_2019-12-24_16-32-35.png" style="height: 400px"/></div>
 
 这样配置免密登录就完成了,而且暴露了外网20022,其他机器外网也可以连接  
 
@@ -208,11 +188,33 @@ RSAAuthentication和PubkeyAuthentication,PermitRootLogin是yes没有就添加,Po
 
 hadoop的目录在`/usr/local/hadoop/`,进入  
 之后进入`/usr/local/hadoop/etc/hadoop`  
-[1] `vim hadoop-env.sh`
+[1] `vim hadoop-env.sh`,指定运行用户hadoophome等等,如果加进去无效,就加到`~/.bashrc`里面
 ```
 export JAVA_HOME=/usr/local/jdk1.8
+export HDFS_NAMENODE_USER="root"
+export HDFS_DATANODE_USER="root"
+export HDFS_SECONDARYNAMENODE_USER="root"
+export YARN_RESOURCEMANAGER_USER="root"
+export YARN_NODEMANAGER_USER="root"
+export HADOOP_INSTALL=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_INSTALL/bin
+export PATH=$PATH:$HADOOP_INSTALL/sbin
+export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+export YARN_HOME=$HADOOP_INSTALL
 ```
-
+不添加会报错
+```
+ERROR: Attempting to launch hdfs namenode as root
+ERROR: but there is no HDFS_NAMENODE_USER defined. Aborting launch.
+Starting datanodes
+ERROR: Attempting to launch hdfs datanode as root
+ERROR: but there is no HDFS_DATANODE_USER defined. Aborting launch.
+Starting secondary namenodes [localhost.localdomain]
+ERROR: Attempting to launch hdfs secondarynamenode as root
+ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.
+```
 [2] vim core-site.xml
 ```
 <configuration>
@@ -242,6 +244,10 @@ export JAVA_HOME=/usr/local/jdk1.8
         <name>dfs.permissions</name>
         <value>false</value>
     </property>
+    <property> 
+        <name>dfs.http.address</name>
+        <value>0.0.0.0:50070</value>
+    </property>
 </configuration>
 ```
 
@@ -265,6 +271,18 @@ export JAVA_HOME=/usr/local/jdk1.8
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
+    </property>
+    <property>
+        <name>yarn.app.mapreduce.am.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+    </property>
+    <property>
+        <name>mapreduce.map.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
     </property>
 </configuration>
 ```
@@ -362,16 +380,6 @@ SHUTDOWN_MSG: Shutting down NameNode at hadoop0/192.168.2.10
 ```
 </details>
 
-<h3>修改环境变量</h3>
-
-需要指定运行用户,`vim .bashrc   `在后面添加
-```
-export HDFS_NAMENODE_USER="root"
-export HDFS_DATANODE_USER="root"
-export HDFS_SECONDARYNAMENODE_USER="root"
-export YARN_RESOURCEMANAGER_USER="root"
-export YARN_NODEMANAGER_USER="root"
-```
 
 最后执行`sbin/start-all.sh`
 
@@ -386,8 +394,122 @@ export YARN_NODEMANAGER_USER="root"
 699 NameNode
 ```
 停止的时候执行`sbin/stop-all.sh`  
-windows外访问`127.0.0.1:50070`
+windows外访问`127.0.0.1:50070`,`127.0.0.1:8088`  
+<div align=center ><img src="./static/Snipaste_2019-12-24_20-05-06.png" style="height: 250px"/></div>
+<div align=center ><img src="./static/Snipaste_2019-12-24_20-08-30.png" style="height: 450px"/></div>
+
+
 ### 集群配置
-## 监控集群
+[1] 指定nodemanager的地址，修改文件`yarn-site.xml`
+```
+  <property>
+    <description>The hostname of the RM.</description>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>hadoop0</value>
+  </property>
+```
+[2] 修改`/usr/local/hadoop/etc/hadoop/works`
+```
+localhost #不加这个hadoop0就不会被用作DataNode
+hadoop1
+hadoop2
+```
+<br/>
+
+停止镜像`docker stop hadoop0`  
+提交新镜像`docker commit -a "ooowl" -m "ConfiguredHadoop" Hadoop0的id centos-hadoop-confd`  
+`docker images `
+```
+REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
+centos-hadoop-confd        latest              f4d641b36c39        4 minutes ago       2.86GB
+centos-hadoop              latest              0775d9e8e35f        32 hours ago        2.79GB
+centos-jdk                 latest              1fb53b406bea        32 hours ago        1.1GB
+centos-ssh                 latest              636c9d7f103e        32 hours ago        297MB
+mongo                      latest              a0e2e64ac939        5 days ago          364MB
+redis                      latest              dcf9ec9265e0        4 weeks ago         98.2MB
+mysql                      5.7                 1e4405fe1ea9        4 weeks ago         437MB
+nginx                      latest              231d40e811cd        4 weeks ago         126MB
+centos                     latest              0f3e07c0138f        2 months ago        220MB
+docker4w/nsenter-dockerd   latest              2f1c802f322f        14 months ago       187kB
+```
+
+### 创建从节点
+*命令*  
+hadoop1
+```
+docker run -v /C/Users/ooowl/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs/root/hadoopdata/:/data 
+--name hadoop1 --hostname hadoop1 
+--net hadoop --ip 192.168.2.11 -d -P -p 20023:22 -p 50071:50070 -p 8089:8088 -p 9001:9000 
+centos-hadoop-confd
+```
+hadoop2
+```
+docker run -v /C/Users/ooowl/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs/root/hadoopdata:/data 
+--name hadoop2 --hostname hadoop2 
+--net hadoop --ip 192.168.2.12 -d -P -p 20024:22 -p 50072:50070 -p 8090:8088 -p 9002:9000 
+centos-hadoop-confd
+```
+
+### 免密登录
+1 现在我们有了三个处在同一子网下的完全一样的镜像,我们下面要做的是配置ssh和免密登录  <br/>  
+
+2 `docker exec -it hadoop0  bin/bash`进入  <br/>  
+
+3 `ping 192.168.2.11 -c 4`ping另外两个ip和百度,能通就行了  <br/>  
+
+4 安装vim和which`yum install vim which`   <br/>  
+
+5 编辑`/etc/ssh/sshd_config`,保证
+RSAAuthentication和PubkeyAuthentication,PermitRootLogin是yes没有就添加,Port 22  <br/>  
+
+6 `ssh-keygen -t rsa`一路回车,`cat ~/.ssh/id_rsa.pub `拿到公钥  <br/>  
+
+7 在docker镜像外面hadoopdata下创建`authorized_keys`,添加进去  <br/>  
+
+8 在三个镜像重复一遍操作,之后最好能添加宿主机的公钥,不加也行.  
+最后三个镜像中执行`cp /data/authorized_keys ~/.ssh`  
+之后测试一下ssh`ssh root@192.168.2.11 -p22 `每个镜像都试试.
+
+<div align=center ><img src="./static/Snipaste_2019-12-24_16-32-35.png" style="height: 400px"/></div>
+
+### 启动集群
+进入hadoop0`docker exec -it hadoop0 /bin/bash`  
+进入`/usr/local/hadoop/`,`sbin/start-all.sh`  
+分别在三个容器里运行`jps`
+hadoop0
+```
+228 NameNode
+1048 NodeManager
+890 ResourceManager
+378 DataNode
+573 SecondaryNameNode
+1247 Jps
+```
+hadoop1 hadoop2
+```
+164 NodeManager
+309 Jps
+58 DataNode
+```
+就成功了
+### 验证一下
+在50070应该是这样
+8088应该是这样
+在hadoop0的~中跑个wordcount试试
+```
+vi a.txt
+hello you
+hello me
+```
+上传a.txt到hdfs上
+```
+hdfs dfs -put a.txt /
+```
+执行wordcount程序
+```
+
+```
+
 ## 引用参考
+https://blog.csdn.net/xu470438000/article/details/50512442
 <Valine></Valine>
