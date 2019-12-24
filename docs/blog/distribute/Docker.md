@@ -172,7 +172,22 @@ docker daemon 管着container 和images，images是从Registry拉取的，默认
 - docker search xxx搜索
 - docker pull xxx拉取
 - docker push xxx 推送到Registry
-- docker tag aaa bbb改掉aaa的tags产生一个bbb
+- docker tag aaa bbb改掉aaa的tags产生一个bbb  
+
+:::tip
+docker容器的主线程（dockfile中CMD执行的命令）结束，容器会退出  
+:::
+
+可以使用交互式启动  
+`docker run -i [CONTAINER_NAME or CONTAINER_ID]`  
+使用后台模式和tty选项  
+`docker run -dit [CONTAINER_NAME or CONTAINER_ID]`  
+docker调出后台容器  
+`docker attach [CONTAINER_NAME or CONTAINER_ID]`  
+退出时，使用[ctrl + D]和exit，这样会结束docker当前线程，容器结束，可以使用[ctrl + P][ctrl + Q]退出而不终止容器运行  
+如下命令，会在指定容器中执行指定命令，[ctrl+D]退出后不会终止容器运行  
+`docker exec -it [CONTAINER_NAME or CONTAINER_ID] /bin/bash`  
+
 
 ### 持久化
 ## ⚓

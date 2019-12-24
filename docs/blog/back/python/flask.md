@@ -566,11 +566,27 @@ db.create.all（）
 db.drop all（）
 数据操作
 在事务中处理，数据插入
-db.session addfobfect）
-db.session.add all（list[object]）
-d业.session.delete（object）
-db.session.commit（）
+db.session.add(object)
+db.session.add_all(list[object])
+d业.session.delete(object)
+db.session.commit()
 修改和删除基于查询
+User.query.all()拿到所有的对象
+User.query.get(id)只支持主键
+User.query.first()拿到第一条记录
+User.query.filter()查询条件
+
+blueprint("blue",__name__,template_folder="xxx",urlprefi="/db")url前缀
+
+`pip install flask-debugtoolbar` 在ext中引入,DebugToolbarExtension(app)  
+config中的变量都可以在Config中配置,每一项具体作用自己百度  
+
+静态资源也是有路由的
+endpoint是static 
+参数有一个filename
+```
+{{url_for('static,filename=xxx)}}
+```
 
 
 ## 参考引用

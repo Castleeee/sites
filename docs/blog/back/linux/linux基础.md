@@ -46,6 +46,18 @@ linux光标很宽，光标盖住的那个字符就是后面的字符
 
 <h3>命令</h3>
 
+
+:::tip 
+查看内核  
+`cat /proc/version` 
+`uname -a` 
+`lsb_release -a` 
+`cat /etc/issue` 
+`cat /etc/redhat-release` 
+
+:::
+
+
 ### 文件和目录
 - 查看linux版本和内核
     - **cat /etc/issue** 配置文件中存储的版本号
