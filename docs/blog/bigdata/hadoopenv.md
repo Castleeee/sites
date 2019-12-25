@@ -595,7 +595,7 @@ hdfs在单节点上传之后,在开启多节点之前要把文件删除再重新
 任务正常运行没有任何报错,8088正常三个节点,50070只有一个节点且每次启动节点都会随机变化  
 根据网上有一个克隆虚拟机的帖子,猜测可能是datanodeuuid的问题.
 三个节点都进入`/usr/local/hadoop/tmp/dfs/name/current`,然后`cat VERSION `  
-发现uuid一样.
+发现uuid一样.  
 hadoop0
 ```
 [root@hadoop0 hadoop]# cd /usr/local/hadoop/tmp/dfs/name/current
