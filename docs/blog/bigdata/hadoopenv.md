@@ -75,6 +75,10 @@ RUN yum install -y openssh-server sudo
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config  
 #安装openssh-clients
 RUN yum  install -y openssh-clients
+RUN yum  install -y net-tools
+RUN yum  install -y vim
+RUN yum  install -y tree
+RUN yum  install -y git
    
 # 添加测试用户root，密码root，并且将此用户添加到sudoers里  
 RUN echo "root:root" | chpasswd
@@ -157,20 +161,6 @@ docker run -v /C/Users/ooowl/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu
 --net hadoop --ip 192.168.2.10 -d -p 20022:22 -p 50070:50070 -p 8088:8088 -p 9000:9000  
 centos-hadoop
 ```
-hadoop1
-```
-docker run -v /C/Users/ooowl/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs/root/hadoopdata/:/data 
---name hadoop1 --hostname hadoop1 
---net hadoop --ip 192.168.2.11 -d -P -p 20023:22 -p 50071:50070 -p 8089:8088 -p 9001:9000 
-centos-hadoop
-```
-hadoop2
-```
-docker run -v /C/Users/ooowl/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs/root/hadoopdata:/data 
---name hadoop2 --hostname hadoop2 
---net hadoop --ip 192.168.2.12 -d -P -p 20024:22 -p 50072:50070 -p 8090:8088 -p 9002:9000 
-centos-hadoop
-```
 
 注意hostname设置好,相当于给本机预设了DNS,能用名称查询到(为了好看我加了换行记得去掉
 
@@ -215,7 +205,7 @@ Starting secondary namenodes [localhost.localdomain]
 ERROR: Attempting to launch hdfs secondarynamenode as root
 ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.
 ```
-[2] vim core-site.xml
+[2] `vim core-site.xml`
 ```
 <configuration>
         <property>
@@ -265,7 +255,7 @@ ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.
 </configuration>
 ```
 
-[5] vim mapred-site.xml
+[5] `vim mapred-site.xml`
 ```
 <configuration>
     <property>
@@ -284,6 +274,22 @@ ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.
         <name>mapreduce.reduce.env</name>
         <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
     </property>
+    <property>
+    <name>mapreduce.map.memory.mb</name>
+    <value>2048</value>
+    </property>
+    <property>
+        <name>mapreduce.map.java.opts</name>
+        <value>-Xmx2048M</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.memory.mb</name>
+        <value>4096</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.java.opts</name>
+        <value>-Xmx4096M</value>
+    </property>
 </configuration>
 ```
 
@@ -292,7 +298,8 @@ ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting launch.
  
 之后进入`cd /usr/local/hadoop`,初始化`bin/hdfs namenode -format`
 :::tip
-格式化操作不能重复执行。如果一定要重复格式化，带参数-force即可
+格式化操作不能重复执行。如果一定要重复格式化，带参数-force即可  
+格式化必须要进行,否则hdfs模块无法指定.
 :::
 
 出现这个就应该成功了  
@@ -399,7 +406,7 @@ windows外访问`127.0.0.1:50070`,`127.0.0.1:8088`
 <div align=center ><img src="./static/Snipaste_2019-12-24_20-08-30.png" style="height: 450px"/></div>
 
 
-### 集群配置
+### 集群镜像配置
 [1] 指定nodemanager的地址，修改文件`yarn-site.xml`
 ```
   <property>
@@ -472,6 +479,11 @@ RSAAuthentication和PubkeyAuthentication,PermitRootLogin是yes没有就添加,Po
 
 <div align=center ><img src="./static/Snipaste_2019-12-24_16-32-35.png" style="height: 400px"/></div>
 
+:::tip
+可以在第一个镜像里运行一次`ssh-keygen -t rsa`添加`authorized_keys`,这样三个镜像应该也能互通,不行的话再用上面的办法  
+这一步可以防止livenode数量显示错误
+:::
+
 ### 启动集群
 进入hadoop0`docker exec -it hadoop0 /bin/bash`  
 进入`/usr/local/hadoop/`,`sbin/start-all.sh`  
@@ -491,7 +503,10 @@ hadoop1 hadoop2
 309 Jps
 58 DataNode
 ```
-就成功了
+就启动成功了,接下来解决UUID的问题  
+分别删除`/usr/local/hadoop/tmp/temp`下的dfs和nm什么,把temp清空就行了.  
+回到`cd /usr/local/hadoop`,再次格式化`bin/hdfs namenode -format`
+
 ### 验证一下
 在50070应该是这样
 8088应该是这样
@@ -507,9 +522,127 @@ hdfs dfs -put a.txt /
 ```
 执行wordcount程序
 ```
+cd /usr/local/hadoop/share/hadoop/mapreduce
+hadoop jar hadoop-mapreduce-examples-3.1.3.jar wordcount /a.txt /out
+```
+看看结果
+```
+hdfs dfs -text /out/patr-r-00000
 
+2019-12-25 01:45:21,449 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hello   2
+me      1
+you     1   
 ```
 
+<div align=center ><img src="./static/Snipaste_2019-12-25_16-21-02.png" style="height: 400px"/></div>
+
+## 出现的问题
+### 安全模式
+安全模式的相关命令:
+```
+获取安全模式的状态:
+
+hdfs dfsadmin -safemode get
+
+安全模式打开
+
+hdfs dfsadmin -safemode enter
+
+安全模式关闭
+
+hdfs dfsadmin -safemode leave
+```
+### 文件块丢失
+:::danger
+hdfs在单节点上传之后,在开启多节点之前要把文件删除再重新上传一次,不能直接加节点,块丢失.
+:::
+删除:`hdfs dfs -rm /a.txt `,`hdfs dfs -rm -r /out`
+### 内存不足和属性未指定
+[5] `vim mapred-site.xml`  
+在上面已经写进去了
+```
+    <property>
+        <name>yarn.app.mapreduce.am.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+    </property>
+    <property>
+        <name>mapreduce.map.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.env</name>
+        <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+    </property>
+    <property>
+    <name>mapreduce.map.memory.mb</name>
+    <value>2048</value>
+    </property>
+    <property>
+        <name>mapreduce.map.java.opts</name>
+        <value>-Xmx2048M</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.memory.mb</name>
+        <value>4096</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.java.opts</name>
+        <value>-Xmx4096M</value>
+    </property>
+```
+### LiveNodes数量不对
+任务正常运行没有任何报错,8088正常三个节点,50070只有一个节点且每次启动节点都会随机变化  
+根据网上有一个克隆虚拟机的帖子,猜测可能是datanodeuuid的问题.
+三个节点都进入`/usr/local/hadoop/tmp/dfs/name/current`,然后`cat VERSION `  
+发现uuid一样.
+hadoop0
+```
+[root@hadoop0 hadoop]# cd /usr/local/hadoop/tmp/dfs/name/current
+[root@hadoop0 current]# cat VERSION 
+#Wed Dec 25 07:12:37 UTC 2019
+namespaceID=678964001
+clusterID=CID-dc675f9a-7a43-4ee5-bcd1-669e58096734
+cTime=1577257957962
+storageType=NAME_NODE
+blockpoolID=BP-1966795420-192.168.2.10-1577257957962
+layoutVersion=-64
+```
+
+hadoop1
+```
+[root@hadoop1 hadoop]# cd /usr/local/hadoop/tmp/dfs/name/current
+[root@hadoop1 current]# cat VERSION 
+#Wed Dec 25 07:12:37 UTC 2019
+namespaceID=678964001
+clusterID=CID-dc675f9a-7a43-4ee5-bcd1-669e58096734
+cTime=1577257957962
+storageType=NAME_NODE
+blockpoolID=BP-1966795420-192.168.2.10-1577257957962
+layoutVersion=-64
+```
+hadoop2
+```
+[root@hadoop2 sbin]# cd /usr/local/hadoop/tmp/dfs/name/current
+[root@hadoop2 current]# ls
+VERSION                                        edits_inprogress_0000000000000000002  fsimage_0000000000000000000.md5
+edits_0000000000000000001-0000000000000000001  fsimage_0000000000000000000           seen_txid
+[root@hadoop2 current]# cat VERSION 
+#Wed Dec 25 07:12:37 UTC 2019
+namespaceID=678964001
+clusterID=CID-dc675f9a-7a43-4ee5-bcd1-669e58096734
+cTime=1577257957962
+storageType=NAME_NODE
+blockpoolID=BP-1966795420-192.168.2.10-1577257957962
+layoutVersion=-64
+```
+分别删除`/usr/local/hadoop/tmp/temp`下的dfs和nm什么,把temp清空就行了.  
+回到`cd /usr/local/hadoop`,再次格式化`bin/hdfs namenode -format`
+
+
 ## 引用参考
-https://blog.csdn.net/xu470438000/article/details/50512442
+- https://blog.csdn.net/u011462318/article/details/80439160
+- https://blog.csdn.net/xu470438000/article/details/50512442
 <Valine></Valine>
+
+
