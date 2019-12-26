@@ -20,6 +20,17 @@ tags:
     - **%JAVA_HOME%\jre\bin**
 
 ## maven
-
+所用版本为:
+### 安装配置
+### 修改源
+### IDEA配置
+### 尝试一下
 ## gradle
-
+所用版本为:
+### 安装配置
+### 修改源
+### IDEA配置
+### 尝试一下
+### 转换和构建
+maven项目转换为gradle项目
+settings.gradle配置

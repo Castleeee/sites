@@ -269,9 +269,19 @@ echo $TOKEN
 <br>
 <div align=center ><img src="./static/Snipaste_2019-12-26_22-31-29.png" style="height: 400px"/></div><br/>
 
+### 安装KubeSphere
+其实大家时间都不多,不可能把锁i有技术都学习一遍,学k8s也是拓展技术广度,所以简单易用快速达到目的是最好的.  
+k8s用dashboard管理不大全,我发现了这个宝贝,虽然现在还处于比较早期,有些坑,我先在这里写,后面再补充.  
+:::warning
+本教程从k8s开始就本着不求甚解的态度,为的就是追求效果最大化
+:::
+开始吧
+
 ## 引用参考
 - https://magicsong.github.io/2018/04/20/WSL-vscode%E5%8F%8C%E5%89%91%E5%90%88%E7%92%A7/
 - https://zhuanlan.zhihu.com/p/85531874
 - https://github.com/AliyunContainerService/k8s-for-docker-desktop
 - https://stackoverflow.com/questions/55528603/kubectl-create-invalid-object/55530485
+- https://kubesphere.com.cn/docs/v2.1/zh-CN/release/release-v210/
+- https://juejin.im/post/5d89a2e3518825090d61c39e
 <Valine></Valine>
