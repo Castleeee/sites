@@ -504,7 +504,7 @@ hadoop1 hadoop2
 58 DataNode
 ```
 就启动成功了,接下来解决UUID的问题  
-分别删除`/usr/local/hadoop/tmp/temp`下的dfs和nm什么,把temp清空就行了.  
+分别删除`/usr/local/hadoop/tmp/`下的dfs和nm什么,把tmp清空就行了.  
 回到`cd /usr/local/hadoop`,再次格式化`bin/hdfs namenode -format`
 
 ### 验证一下

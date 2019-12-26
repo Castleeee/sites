@@ -192,7 +192,7 @@ docker调出后台容器
 ### 持久化
 ## ⚓
 <div align= center>
-<h1>K8s⚓</h1>
+<h1>K8s⚓Kubernetes</h1>
 <br/>
 
 利用k8s编排并且管理集群和分布式环境<br/>
@@ -200,9 +200,78 @@ docker调出后台容器
 
 </div>
 
-## 鸽了
+## windows安装
+说明:我是在windows下安装docker-desktop,然后通过docker-desktop安装自带的Kubernets,然后在WSL中安装kubectl
+### 安装k8s
+在Windows下先安装好docker,记得暴露端口.
+- docker:19.03.4
+- k8s:1.14.7(和docker对应就行)
+- windows:1803+
+- WSL:Ubuntu18.14  
+ 
+  <br/>
+国内基本都被屏蔽了,如果你直接Enable Kubernetes会一直下载不完成卡住不动,所以要下载两个G的镜像很不容易,阿里有个仓库可以用.  
 
-/usr/myporject/go/distribute/worker/server
-docker run -it -p 8083:8888 --name worker3 --volumes-from dataContainer golang /bin/bash
+<div align=center ><img src="./static/Snipaste_2019-12-26_20-17-25.png" style="height: 450px"/></div>
+
+具体方法看<a href="https://github.com/AliyunContainerService/k8s-for-docker-desktop">这里</a>  
+下载对应版本的脚本,用powershell-admin进入,运行` .\load_images.ps1`
+下载约2G好了之后退出docker客户端然后重新启动,Enable Kubernetes,他想下载就允许,过5分钟左右应该就好了  
+之后在windows中可以正常查看,但是WSL中还没配置
+
+<div align=center ><img src="./static/Snipaste_2019-12-26_19-42-44.png" style="height: 350px"/></div>
+
+下载这个东西网址在这<a href="https://storage.googleapis.com/kubernetes-release/release/v1.14.7/bin/linux/amd64/kubectl">https://storage.googleapis.com/kubernetes-release/release/v1.14.7/bin/linux/amd64/kubectl</a>
+
+可以直接curl,大约50M下载完之后cp到自己WSL的~目录下
+
+- `chmod +x kubectl`
+- `sudo mv ./kubectl /usr/local/bin/kubectl`
+- 之后要让 WSL 里的 kubectl 命令知道如何连接 Docker Desktop for Windows 启动的 Kubernetes 集群把 Docker Desktop for Windows 创建的集群的配置文件拷贝到 WSL 里的用户目录下：
+- `mkdir ~/.kube && cp /c/Users/[USERNAME]/.kube/config ~/.kube`
+
+
+ <br/>
+<div align=center ><img src="./static/Snipaste_2019-12-26_19-43-26.png" style="height: 250px"/></div><br/>
+
+大功告成输入`kubectl cluster-info`,`kubectl get nodes`查看状态
+ <br/>
+<div align=center ><img src="./static/Snipaste_2019-12-26_21-41-22.png" style="height: 120px"/></div><br/>
+
+### 配置 Kubernetes 控制台
+首先把下载的那个文件夹,里面有个sample文件夹和**kubernetes-dashboard.yaml**,移动到WSL里面去,为了整洁放到`.kube`下  
+<br/>
+
+- `cp /e/ooowl/Download/k8s-for-docker-desktop-1.14.7/sample .`
+- `kubectl create -f kubernetes-dashboard.yaml`
+- 开启代理`kubectl proxy`,不过一旦结束ssh会话就会停止
+-  可以放后台`nohup kubectl proxy > .kube/log/kubeDashboard.log 2>&1 &`,日志放在`.kube/log/kubeDashboard.log`,不用的时候kill -9 PID
+
+<br>
+<div align=center ><img src="./static/Snipaste_2019-12-26_21-56-55.png" style="height: 350px"/></div><br/>
+
+:::warning
+kubectl的版本一定要和K8s版本对应,都则会报错  
+`error: SchemaError(io.k8s.api.authentication.v1.TokenReviewStatus): invalid object doesn't have additional properties`
+
+:::
+
+访问**url** <a href="http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default">http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default</a>
+### 创建token
+```
+TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
+
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+
+echo $TOKEN
+```
+**可能每次打开都需要**
+<br>
+<div align=center ><img src="./static/Snipaste_2019-12-26_22-31-29.png" style="height: 400px"/></div><br/>
+
+## 引用参考
+- https://magicsong.github.io/2018/04/20/WSL-vscode%E5%8F%8C%E5%89%91%E5%90%88%E7%92%A7/
+- https://zhuanlan.zhihu.com/p/85531874
+- https://github.com/AliyunContainerService/k8s-for-docker-desktop
+- https://stackoverflow.com/questions/55528603/kubectl-create-invalid-object/55530485
 <Valine></Valine>
-

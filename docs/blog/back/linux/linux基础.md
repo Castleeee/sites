@@ -483,10 +483,15 @@ super copy -> scp,必须要openssh-server
 <h3>免密登陆</h3>   
 
 scp和ssh的免密登陆在CI中部署的时候常用  
-鸽了
+免密登录思想很简单,双方互有公钥的情况下,连接过来时会互相校验私钥,确定身份之后就可以连接了  
+1. 假设a想要免密登录b
+2. 在a中运行`ssh-keygen -t rsa`一路回车
+3. cat `~/.ssh/id_rsa.pub`就是你的公钥
+4. 在b中`vim ~/.ssh/authorized_keys`复制进去
+5. b中`service sshd restart`,此时a `ssh root@b.ip.address -p 22`应该就可以直接连接了
+
 
 ## 进程
-
 
 
 
