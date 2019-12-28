@@ -497,6 +497,7 @@ Java中数组类型是一种**引用类型**。它可以作为引用，被 Java 
 - https://www.cnblogs.com/jing99/p/6092153.html
 - https://juejin.im/post/5c88e75fe51d4520a700b9f3
 
+<Valine></Valine>
 java的src下多个package,每个package能互相通信吗,怎么引入?  
 jvm的内存分配是怎么分配的,直接有一个系统线程常驻读写内存吗?  
 编译产生的各级目录是什么意思?  
