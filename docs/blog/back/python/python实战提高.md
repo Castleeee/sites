@@ -5,7 +5,7 @@ prev: ./python进阶.md
 next: false
 categories: backEnd
 tags:
-- python
+- python🐍
 - 错误记录
 - 后端
 - 所有文章

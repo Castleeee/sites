@@ -1,5 +1,5 @@
 ---
-title: java基础(2)
+title: java基础☕️(2)
 date: 2019-12-27 21:38:45
 prev: ./java基础语法1.md
 next: ./java基础语法3.md
@@ -8,7 +8,7 @@ tags:
 - 语言基础
 - 所有文章
 - 后端
-- java
+- java☕️
 ---
 
 :::tip   书接上回<br/>
@@ -477,16 +477,5 @@ public class StaticTest {
 static方法只能访问static变量为什么?
 为什么这个例子中一定要用static  
 
-## 内置包详解
-1. java.lang---包含一些Java语言的核心类，如String、Math、Integer、System和Thread，提供常用功能。
-2. java.net---包含执行与网络相关的操作的类和接口。
-3. java.io---包含能提供多种输入/输出功能的类。
-4. java.util---包含一些实用工具类，如定义系统特性、接口的集合框架类、使用与日期日历相关的函数。
-5. java.text---包含了一些java格式化相关的类6.iava.sql---包含了java进行JDBC数据库编程的相关类/接口7. java.awt---包含了j构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面（GUI）
-8. java.applet---包含applet运行所需的一些类。  
+
    
-Snipaste_2019-12-28_13-20-25.png  
-
-<div align=center ><img src="./static/Snipaste_2019-12-27_22-00-44.png" style="height: 400px"/>
-</div>
-

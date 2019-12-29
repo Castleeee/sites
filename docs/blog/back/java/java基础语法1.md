@@ -1,5 +1,5 @@
 ---
-title: java基础(1)
+title: java基础☕️(1)
 date: 2019-6-4 21:38:45
 prev: ./java环境管理.md
 next: ./java基础语法2.md
@@ -8,12 +8,12 @@ tags:
 - 语言基础
 - 所有文章
 - 后端
-- java
+- java☕️
 ---
 
 :::tip   惭愧<br/>
 身为CS专业学生JAVA却没怎么学 <B style='font-size:45px'>☕️</B><br/>
-语法网上到处都是，我就整理一下自己的所想所学吧<br/>
+语法网上到处都是，我就整理一下自己不大会的<br/>
 
 :::
 
@@ -339,7 +339,7 @@ public abstract class Graphics {
 ***int i=0;byte j=i;***  
 这种错误只有在javac的时候才能发现,编译期异常
 :::
-### 变量内存分配
+### 内存分配
 java基本的数据类型详情看<a href="https://www.runoob.com/java/java-basic-datatypes.html">菜鸟</a>大致有这么些
 <div align=center ><img src="./static/Snipaste_2019-12-27_15-06-16.png" style="height: 450px"/></div>
 
@@ -402,7 +402,7 @@ int b = 3;
 JVM对于字符串常量的"+"号连接，将程序编译期，JVM就将常量字符串的"+"连接优化为连接后的值，拿"a" + 1来说，经编译器优化后在class中就已经是a1。在编译期其字符串常量的值就确定下来.  
 
 final只对引用的"值"(即内存地址)有效，它迫使引用只能指向初始指向的那个对象，改变它的指向会导致编译期错误。至于它所指向的对象 的变化，final是不负责的。
-### String类创建为例
+### String创建
 字面量省内存
 
 
@@ -497,7 +497,7 @@ Java定义了位运算符，应用于整数类型(int)，长整型(long)，短�
 请留意，有些编程语言则不支持这点，如 C/C++ 语言，只允许数组维度是**常量**  
 数组维度并非没有**上限**的，如果数值过大，编译时会**报错**,数组过大可能会导致**栈溢出**  
 Java中数组类型是一种**引用类型**。它可以作为引用，被 Java 函数作为函数入参或返回值  
-
+    
 ## 引用参考
 - https://www.cnblogs.com/itmanxgl/p/605b4b093bd8abf5b60ef65749a0857d.html
 - https://zh.wikipedia.org/wiki/JAR_(%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)

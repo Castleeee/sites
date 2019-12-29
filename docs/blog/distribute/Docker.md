@@ -5,7 +5,7 @@ categories: Distributed
 tags:
 - 容器技术
 - 分布式
-- linux
+- linux🐧
 - 所有文章
 ---
 

@@ -8,7 +8,7 @@ tags:
 - 后端
 - web
 - Django
-- python
+- python🐍
 - 所有文章
 ---
 

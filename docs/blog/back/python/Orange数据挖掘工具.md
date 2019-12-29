@@ -6,7 +6,7 @@ next: ./数据挖掘笔记1.md
 categories: backEnd
 tags:
 - 数据挖掘
-- python
+- python🐍
 - 所有文章
 - 后端
 ---

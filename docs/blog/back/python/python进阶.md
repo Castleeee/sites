@@ -7,7 +7,7 @@ categories: backEnd
 tags:
 - 语言进阶
 - 异步
-- python
+- python🐍
 - 后端
 - 所有文章
 ---
