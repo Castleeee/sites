@@ -2,7 +2,7 @@
 title: java基础☕️(4)
 date: 2019-12-27 21:38:45
 prev: ./java基础语法3.md
-next: ./java基础语法5.md
+next: ./java基础语法4.md
 categories: backEnd
 tags:
 - 语言基础
