@@ -86,6 +86,7 @@ String s2=f+"";//直接+连接
 ```java
 
 ```
+
 留坑 static的作用和c++ static的区别,单例模式懒汉式和饿汉式71集  
 https://blog.csdn.net/fengyuzhengfan/article/details/38082999  
 https://blog.csdn.net/lyf52010/article/details/76785318  
@@ -241,8 +242,9 @@ public class letmego implements TestIn2,TestIn1{
 留坑:https://www.cnblogs.com/nerxious/archive/2013/01/25/2876489.html  
 https://www.cnblogs.com/chenssy/p/3390871.html  
 https://www.zhihu.com/question/26954130  
-https://blog.csdn.net/hikvision_java_gyh/article/details/8964155
-https://www.cnblogs.com/chenssy/p/3388487.html
+https://blog.csdn.net/hikvision_java_gyh/article/details/8964155  
+https://www.cnblogs.com/chenssy/p/3388487.html  
+https://www.jianshu.com/p/3ec6aa56fe6a  
 
 ***面向对象完成!!!!***
 
