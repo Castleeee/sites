@@ -1,8 +1,8 @@
 ---
 title: java基础☕️(5)
 date: 2019-12-27 21:38:45
-prev: ./java基础语法3.md
-next: ./java基础语法5.md
+prev: ./java基础语法4.md
+next: ./java基础语法6.md
 categories: backEnd
 tags:
 - 语言基础
@@ -98,16 +98,239 @@ Java 定义了一套注解，共有 7 个，3 个在 java.lang 中，剩下 4 �
 ## Java IO
 IO是语言的重中之重.  
 
-## 内置包详解
-1. java.lang---包含一些Java语言的核心类，如String、Math、Integer、System和Thread，提供常用功能。
-2. java.net---包含执行与网络相关的操作的类和接口。
-3. java.io---包含能提供多种输入/输出功能的类。
-4. java.util---包含一些实用工具类，如定义系统特性、接口的集合框架类、使用与日期日历相关的函数。
-5. java.text---包含了一些java格式化相关的类6.iava.sql---包含了java进行JDBC数据库编程的相关类/接口7. java.awt---包含了j构成抽象窗口工具集（abstract window toolkits）的多个类，这些类被用来构建和管理应用程序的图形用户界面（GUI）
-8. java.applet---包含applet运行所需的一些类。   
-<div align=center ><img src="./static/Snipaste_2019-12-28_13-20-25.png" style="height: 600px"/>`
-</div>
+按操作数据单位不同分为：字节流(8bit),字符流(16bit)  
+按数据流的流向不同分为：输入流，输出流  
+按流的角色的不同分为：节点流，处理流  
+IO流四十多种,但是非常规则,都是从四个抽象基类进化而来的,子类的后缀都是这四个  
 
+
+|抽象基类|字节流|字符流|
+|:---:|:---:|:---:|
+|输入流|InputStream|Reader|
+|输出流|OutputStream|Writer|  
+
+
+眼熟一下Java的IO流体系  
+
+
+<font size=2>
+
+|分类|字节输入流|字节输出流|字符输入流|字符输出流|
+|:-----:|:-----:|:-----:|:-----:|:-----:|
+|抽象基类|InputStream|OutputStream|Reader|Writer|
+|访问文件|FileInputStream|FileOutputStream|FileReader|FileWriter|
+|访问数组|ByteArrayInputStream|ByteArrayOutputStream|CharArrayReader|CharArrayWriter|
+|访问管道|PipedInputStream|PipedOutputStream|PipedReader|PipedWriter|
+|缓冲流|BufferedInputStream|BufferedOutputStream|BufferedReader|BufferedWriter|
+|转换流|||InputStreamReader|OutputStreamWriter|
+|对象流|ObjectInputStream|ObjectOutputStream|
+|抽象基类|FilterInputStream|FilterOutputStream|FilterReader|FilterWriter|
+|打印流||PrintStream||PrintWriter|
+|特殊流|DataInputStream|DataOutputStream|||
+
+</font>
+
+### File类
+`java.io.File`是可以**新建删除重命名目录和文件**,但是不能访问文件内容,要访问必须使用IO流  
+把文件路径当作参数传入,`\`是转义,`\\`和`/`和`File.separator`是目录  
+
+- `getPath()`获得路径
+- `getAbsolutePath()`获得绝对路径
+- `getAbsoluteFile()`获得带文件名的绝对文件
+- `getParent()`获得文件的父文件夹
+- `renameTo(new File("D:/Test/xxxx"))`重命名
+- `exists()`是否存在
+- `canExecute()`是否可执行
+- `canRead()`是否可读
+- `canWrite()`是否可写
+- `isFile()`是不是文件
+- `isDirectory()`是不是目录
+- `lastModified()`最后修改时间
+- `length()`返回文件长度,默认是字节数
+- `createNewFile()`创建文件
+- `delete()`删除文件
+- `mkdir()`创建文件夹,mkdirssh可以递归创建
+- `list()`列出文件夹和文件String类型数组
+- `listFiles()`列出文件夹和文件,File类型数组
+  
+```java
+package javaioPractice;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+
+public class FileP {
+    public static void main(String args[]) {
+        System.out.println("hello world");
+        File f1 = new File("D:"+File.separator+"Test\\sad.txt");
+        //访问文件名
+        System.out.println(f1.getName());
+        File f2=new File("src/javaioPractice/xxx");
+        System.out.println("f2.exists()"+f2.exists());
+        System.out.println("f2.getPath()"+f2.getPath());
+        System.out.println("f2.getAbsolutePath()"+f2.getAbsolutePath());
+        System.out.println("f2"+f2);
+        System.out.println("f2.getAbsoluteFile()"+f2.getAbsoluteFile());
+        System.out.println("f1.getParent()"+f1.getParent());
+        f2.renameTo(new File("D:/Test/xxx"));
+        File f3=new File("D:/Test/xxx");
+        System.out.println("f3.exists()"+f3.exists());
+        System.out.println("f3.canExecute()"+f3.canExecute());
+        System.out.println("f3.canRead()"+f3.canRead());
+        System.out.println("f3.canWrite()"+f3.canWrite());
+        System.out.println("f3.isFile()"+f3.isFile());
+        System.out.println("f3.isDirectory()"+f3.isDirectory());
+        System.out.println("f3.lastModified()"+f3.lastModified());
+        System.out.println("f3.length()"+f3.length());
+        File f4= new File("D:/Test/x3.txt");
+        if(!f4.exists()){
+            try{
+                f4.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+        }
+        f2.delete();
+        File f5=new File("D:/Test/aa/bb") ;
+        f5.mkdir();
+        File f6=new File("D:/Test");
+        String fl[]=f6.list();//注意返回的是String,包括目录和文件
+        for (String s:fl) {
+            System.out.println(s);
+        }
+        File[] fs=f6.listFiles();//这次返回的是File对象
+        for (File f  : fs) {
+            System.out.println(f);
+        }
+        Traversal t= new Traversal();
+        try{
+            t.Travers(new File("D:/Test"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+}
+
+class Traversal{//递归遍历文件夹
+    public void Travers(File f) throws Exception {
+        if (!f.exists()){
+            Exception e=new IOException();
+            throw e;
+        }
+        if (f.isFile()){
+            System.out.println(f);
+        }else if(f.isDirectory()){
+            for (File f1  :f.listFiles() ) {
+                System.out.println(f);
+                Travers(f1);
+            }
+        };
+    }
+}
+
+```
+:::danger 注意
+renameTo之后原来的File对象并没有改变,需要重新申请一个新位置的文件
+:::
+### 文件IO流
+流程
+- 使用`FileInputStream`,也是传入一个path
+- `byte b[]=new byte[10]`申请一个byte区存字节
+- 使用`in.read(b)`读取字节
+  - `in.read`方法有一个返回值，返回值是读取的数据的长度，如果读取到最后一个数据，还会向后读一个也就是说当in.read的返回值是-1的时候整个文件就读取完毕了
+  - 一般使用while防止最后一次读出一些奇怪的东西
+- `in.close()`记得一定要关掉
+- 注意文件可能打不开,需要用try-cache
+
+输出流要先转化为byte
+```java
+package javaioPractice;
+
+import java.io.*;
+
+public class FileIO {
+    public static void main(String args[]) {
+        System.out.println("hello world");
+        IOclass t=new IOclass();
+//        t.inS("D:\\Test\\sad.txt");
+//        t.outS("D:\\Test\\sad1.txt");
+        t.cpf("D:\\Test\\sad.txt","D:\\Test\\sadx.txt");
+
+    }
+}
+class IOclass{
+    public void inS(String Dir){
+        try{
+            FileInputStream in=new FileInputStream(Dir);
+            //BufferedInputStream br=new BufferedInputStream(in);
+            byte b[]=new byte[10];
+            int len =0;//为啥是0
+            //in.read(b);
+            while((len=in.read(b))!=-1){//while((len=br.read(b))!=-1)//使用缓冲字节流
+                System.out.print(new String(b,0,len));
+                //参数1是缓冲数据的数组，参数2是从数组的哪个位置开始转化字符串，参数3是总共转化几个字节
+            }
+            //br.close();//使用缓冲字节流
+            in.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            System.out.println("");
+            System.out.println("输出完毕!--------------------------");
+        }
+    }
+    public void outS(String Dir){
+        try {
+            FileOutputStream os=new FileOutputStream(Dir);
+            //BufferedOutputStream bo=new BufferedOutputStream(os);
+            String s="sdsadvsjdksa";//申请字符串
+            os.write(s.getBytes());//把字符串转化为byte,写到内存,然后写入文件
+            //bo.write(s.getBytes());//把字符串转化为byte,写到内存,然后写入内存
+            //bo.flush();//刷到硬盘
+            //bo.close();
+            os.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void cpf(String src,String dst){
+
+        try {
+            FileInputStream in=new FileInputStream(src);
+            FileOutputStream os=new FileOutputStream(dst);
+            byte b[]=new byte[10];
+            //in.read(b);
+            while(in.read(b)!=-1){
+                os.write(b);
+                //参数1是缓冲数据的数组，参数2是从数组的哪个位置开始转化字符串，参数3是总共转化几个字节
+            }
+
+            in.close();
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+`FileReader,FileWriter`和IOStream一样,只不过要换成char数组来存放  
+不过字符流只适合操作字符内容的文件,二进制和字节不合适  
+### 缓冲字节流
+`Bufferedlnputstream` 和 `BufferedOutputstream`套在`FileInputStream`和`FileOutputStream`上用  
+`BufferedReader `和 `BufferedWriter`套在`Reader`和`Writer`上用  
+缓冲流要“**套接**”在相应的节点流之上，对读写的数据提供了缓冲的功能，提高了读写的效率，同时增加了一些新的方法对于输出的缓冲流，写出的数据会先在**内存中缓存**，使用`flush()`将会使内存中的数据立刻写出  
+关闭的时候按照栈顺序.
+代码在上面注释里,字符流知识把类换换,没啥区别.  
+### 转换流
+
+
+## 反射机制
 ## 引用参考
 - [菜鸟注解](https://www.runoob.com/w3cnote/java-annotation.html)
 - [java注解求职讲堂pdf:ddcg](https://pan.baidu.com/s/1Xk-zeauimySygjNy1skT5A#list/path=%2F2019Java%E6%B1%82%E7%9F%A5%E8%AE%B2%E5%A0%82%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E8%AF%BE%E4%BB%B6%E6%BA%90%E4%BB%A3%E7%A0%81%2Fday11%2F%E8%B5%84%E6%96%99)
