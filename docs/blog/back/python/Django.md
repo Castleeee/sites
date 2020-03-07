@@ -1,5 +1,5 @@
 ﻿---
-title: Django的基础知识
+title: Django的基础知识(Old)
 date: 2019-1-1 20:38:45
 categories: backEnd
 prev: ./flask.md
@@ -13,10 +13,8 @@ tags:
 ---
 
 
-:::tip   Django的结构<br/>
-ORM的基本用法<br/>
-xdamin配置<br/>
-....
+:::danger   写的太乱已废弃<br/>
+移步大型电视连续剧Django[0]-环境配置
 :::
 
 
