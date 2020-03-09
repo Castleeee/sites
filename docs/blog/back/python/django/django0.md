@@ -163,6 +163,11 @@ DATABASES = {
     }
 }
 ```
+
+::: warning
+DB添加`OPTIONS`解决Incorrect string value: '\\xF0\\x9F\\x98\\x81'
+:::
+
 ### 修改static和media路径
 
 ### 修改时区添加跨域配置
