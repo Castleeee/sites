@@ -62,7 +62,7 @@ xadmin(最好直接把源码包放目录下,去github安直接pip版本不对)
 这是环境必须要求的
 
 ```shell
-pip install django==2.2 django-cors-headers django-crispy-forms django-filter django-formtools django-import-export django-redis django-reversion djangorestframework future httplib2 Jinja2 Markdown PyMySQL pytz redis six xlrd Xlsxwriter xlwt
+pip install django==2.2 django-cors-headers django-crispy-forms django-filter django-formtools django-import-export django-redis django-reversion djangorestframework future httplib2 Jinja2 Markdown PyMySQL pytz redis six xlrd Xlsxwriter xlwt djangorestframework_simplejwt ldap django_auth_ldap
 ```
 
 这是可选的
