@@ -33,6 +33,7 @@ conda记得设置代理,所有的中国源都不能用了,pip和conda的代理�
 ### conda需要的包
 不带版本号的直接安就行
 ```
+coreapi
 django               2.2(最新的3不兼容xadmin)
 django-cors-headers  
 django-crispy-forms  
@@ -62,7 +63,7 @@ xadmin(最好直接把源码包放目录下,去github安直接pip版本不对)
 这是环境必须要求的
 
 ```shell
-pip install django==2.2 django-cors-headers django-crispy-forms django-filter django-formtools django-import-export django-redis django-reversion djangorestframework future httplib2 Jinja2 Markdown PyMySQL pytz redis six xlrd Xlsxwriter xlwt djangorestframework_simplejwt ldap django_auth_ldap
+pip install django==2.2 django-cors-headers django-crispy-forms django-filter django-formtools django-import-export django-redis django-reversion djangorestframework future httplib2 Jinja2 Markdown PyMySQL pytz redis six xlrd Xlsxwriter xlwt djangorestframework_simplejwt ldap django_auth_ldap coreapi drf-yasg django-rest-swagger
 ```
 
 这是可选的

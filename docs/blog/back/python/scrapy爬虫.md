@@ -43,6 +43,6 @@ Pycharm设置好环境python路径等等不用多说<br/>
 linux下需要安装的
 
 ```shell
-pip install asyncio aiohttp beautifulsoup4 bs4 demjson elasticsearch elasticsearch-dsl fake-useragent lxml mysqlclient pymongo PyMySQL pyquery redis requests Scrapy selenium six Twisted urllib3 scrapy_djangoitem
+pip install asyncio aiohttp beautifulsoup4 bs4 demjson elasticsearch elasticsearch-dsl fake-useragent lxml mysqlclient pymongo PyMySQL pyquery redis requests Scrapy selenium six Twisted urllib3 scrapy_djangoitem scrapy-redis
 ```
 如果需要和django搭配使用,那就运行下面这一条,然后再去运行django的那一条懒人命令
