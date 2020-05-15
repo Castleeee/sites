@@ -2,6 +2,8 @@
 title: java环境管理☕️(0)
 date: 2019-4-2 20:38:45
 categories: backEnd
+prev: false
+next: ./java基础语法1.md
 tags:
 - 错误记录
 - 环境管理

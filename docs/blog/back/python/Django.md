@@ -1,5 +1,5 @@
 ﻿---
-title: Django的基础知识
+title: Django的基础知识(Old)
 date: 2019-1-1 20:38:45
 categories: backEnd
 prev: ./flask.md
@@ -13,10 +13,8 @@ tags:
 ---
 
 
-:::tip   Django的结构<br/>
-ORM的基本用法<br/>
-xdamin配置<br/>
-....
+:::danger   写的太乱已废弃<br/>
+移步大型电视连续剧Django[0]-环境配置
 :::
 
 
@@ -421,5 +419,6 @@ defalut="",#默认为空migrate才不会出错)<br/>
 :::danger 留坑
 导入xlsx json csv 插件的开发+外键自增似懂非懂留坑先填其他的 404 500 页面
 :::
+
 <Valine></Valine>
 

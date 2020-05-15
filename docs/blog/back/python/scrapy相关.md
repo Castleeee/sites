@@ -1,5 +1,5 @@
 ---
-title: Scrapy
+title: Scrapy(old)
 date: 2018-7-13 14:40:45
 prev: ./基础爬虫.md
 next: false
@@ -631,9 +631,9 @@ Schduler是一个调度器，这里面是一些队列存放了所有待爬的已
 :::danger 留坑
 看源码之后再写
 :::
-### 生命周期信号量
+<!-- ### 生命周期信号量
 
 ## 分布式开发留坑
 
-<Valine></Valine>
+<Valine></Valine> -->
 
