@@ -7,7 +7,7 @@ date: 2019-01-03 17:29:15
 
 <div align=center>
 
-博主是一个大学僧<br/>
+博主是一个大学僧(曾经)<br/>
 
 大三了，有点菜主要学python正在攻克java和go<br/>
 
